@@ -1,1 +1,1 @@
-web: gunicorn baby_bites.wsgi
+web: gunicorn my_project.wsgi
