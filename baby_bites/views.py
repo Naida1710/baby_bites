@@ -5,3 +5,4 @@ from .models import Post
 # Create your views here.
 class PostList(generic.ListView):
     model = Post
+    template_name = "baby_bites/post_list.html"
