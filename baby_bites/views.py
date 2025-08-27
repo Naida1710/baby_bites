@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from .models import Event
+from .models import Post
 
 
 # Create your views here.
-class EventList(generic.ListView):
-    model = Event
+class PostList(generic.ListView):
+    queryset = Post.objects.all()
+    template_name = "post_list.html"
     template_name = "index.html"
-    paginate_by = 12
-
+    paginate_by = 6
 
 def post_detail(request, slug):
 
