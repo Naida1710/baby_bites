@@ -167,4 +167,8 @@ body {
     text-align: center; /* center the text */
     padding: 0.5rem 0; /* vertical padding */
     box-sizing: border-box;
+    font-weight: bold;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);    /* faded black, 20% opacity */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* faded black, 20% opacity */
+
 }
