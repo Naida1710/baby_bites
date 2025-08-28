@@ -98,7 +98,7 @@ body {
 
 .post-link:hover,
 .page-link {
-    color: blue;
+    color: green;
 }
 
 .post-title {
@@ -158,4 +158,13 @@ body {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+.full-width-text {
+    display: block; /* make span behave like block */
+    width: 100vw;   /* full viewport width */
+    margin-left: calc(-50vw + 50%); /* pull it outside any container */
+    text-align: center; /* center the text */
+    padding: 0.5rem 0; /* vertical padding */
+    box-sizing: border-box;
 }
