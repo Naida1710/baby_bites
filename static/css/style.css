@@ -3,10 +3,10 @@ body {
 }
 
 .brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 2.5rem;                  /* Increase size */
+    font-weight: normal;                /* Usually script fonts are light */
+    color: black;                      /* Keep black color */
 }
 
 .thin {
