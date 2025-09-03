@@ -175,7 +175,7 @@ body {
 
 .green-link {
     position: relative;
-    color: green !important;
+    color: rgb(92, 212, 92) !important;
     font-weight: bold;
     text-decoration: none;
     padding-bottom: 3px;
@@ -200,4 +200,16 @@ body {
   .green-link:hover::after {
     width: 100%;
   }
+
+  .logout-link {
+    color: black !important;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #333 !important; /* slightly darker shade on hover */
+    text-decoration: underline;
+}
+
   
