@@ -3,14 +3,16 @@ body {
 }
 
 .brand {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Caveat', cursive;
     font-size: 2.5rem;                  /* Increase size */
     font-weight: normal;                /* Usually script fonts are light */
     color: black;                      /* Keep black color */
 }
 
 .thin {
-    font-weight: 300;
+    font-family: 'Caveat', cursive;
+    font-weight: 400; /* Normal for BITES */
+    font-size: 2.5rem;                  
 }
 
 .light-bg {
