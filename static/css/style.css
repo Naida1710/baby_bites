@@ -212,4 +212,32 @@ body {
     text-decoration: underline;
 }
 
+.home-link {
+    color: #ff6600 !important;           /* Vibrant orange */
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6600, #ffcc00, #00cc99);
+    transition: width 0.4s ease;
+    border-radius: 2px;
+}
+
+.home-link:hover {
+    color: #cc3300 !important;           /* Darker shade on hover */
+}
+
+.home-link:hover::after {
+    width: 100%;
+}
+
   
