@@ -21,7 +21,22 @@ def post_detail(request, slug):
     return render(
         request,
         "blog/post_detail.html",
-        {"post": post,
-        "comments": comments,
-        "comment_count": comment_count,},
+        {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+        },
     )
+
+
+def recipes_6_months(request):
+    return render(request, "recipes/6_months.html")
+
+def recipes_8_months(request):
+    return render(request, "recipes/8_months.html")
+
+def recipes_10_months(request):
+    return render(request, "recipes/10_months.html")
+
+def recipes_12_months(request):
+    return render(request, "recipes/12_months.html")
