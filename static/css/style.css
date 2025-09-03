@@ -172,3 +172,8 @@ body {
     border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* faded black, 20% opacity */
 
 }
+
+.green-link {
+    color: green !important;  /* !important ensures it overrides Bootstrap */
+    font-weight: bold;
+}
