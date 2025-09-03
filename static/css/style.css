@@ -238,4 +238,26 @@ body {
     width: 100%;
 }
 
+#recipesDropdown {
+    display: flex;
+    justify-content: space-between; /* pushes icon to right */
+    align-items: center; /* vertical center */
+    padding-right: 2.5rem; /* Adjust this to push icon left */
+}
   
+#recipesDropdown::after {
+    display: none; /* Hide default caret */
+}
+
+#dropdown-icon {
+    color: #28a745;
+    min-width: 1.2em;
+    display: flex;
+    justify-content: center;
+    /* Remove position and left */
+    position: static;
+    left: auto;
+}
+
+
+

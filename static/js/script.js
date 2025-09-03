@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!dropdownToggle || !dropdownIcon) return;
 
-    // Using Bootstrap's dropdown events to detect open/close state
     dropdownToggle.addEventListener('shown.bs.dropdown', function () {
         dropdownIcon.innerHTML = '<i class="fas fa-minus"></i>';
     });
