@@ -288,7 +288,7 @@ body {
 .overlay-text-box {
     position: absolute;
     top: 50%;
-    left: 60%; /* Slightly to the left of the overlay image */
+    right: 30%; /* Slightly to the left of the overlay image */
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
     padding: 20px;
