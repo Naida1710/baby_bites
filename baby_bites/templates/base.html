@@ -124,16 +124,28 @@
         </div>
         </div>
 
-        <!-- Intro Paragraph -->
-        <div class="container my-4">
-            <p class="lead text-center">
-                Ready to start your baby's solid food journey? You're in the right place. These baby-led weaning recipes and easy-to-follow guides are made just for you. 
-                With over 80 healthy, no-fuss finger food ideas, Baby Bites helps you kick off baby-led weaning with confidence. 
-                Start with our beginner-friendly meals, then explore the <strong>Top 10 First Foods</strong>, <strong>Instant Pot baby food</strong>, 
-                and our stage-by-stage <strong>baby food guide</strong>. Perfect for little ones 6 months and up!
-            </p>
-        </div>
-
+       <!-- Intro Paragraph + Image/Text Side by Side -->
+<div class="container my-4">
+    <div class="row align-items-center">
+      <!-- Left Column: Paragraph -->
+      <div class="col-md-7">
+        <p class="lead text-center text-md-start">
+          Ready to start your baby's solid food journey? You're in the right place. These baby-led weaning recipes and easy-to-follow guides are made just for you. 
+          With over 80 healthy, no-fuss finger food ideas, Baby Bites helps you kick off baby-led weaning with confidence. 
+          Start with our beginner-friendly meals, then explore the <strong>Top 10 First Foods</strong>, <strong>Instant Pot baby food</strong>, 
+          and our stage-by-stage <strong>baby food guide</strong>. Perfect for little ones 6 months and up!
+        </p>
+      </div>
+  
+      <!-- Right Column: Image + Text -->
+      <div class="col-md-5 text-center text-md-start">
+        <img src="{% static 'images/foodie3.png' %}" alt="Description of image" class="img-fluid mb-2" style="max-height: 200px; object-fit: cover;">
+        <p>Hey there!</p>
+        <p>I'm Naida, I'm a full-time mama here to help you take the stress out of everyday meals.</p>
+      </div>
+    </div>
+  </div>
+  
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
