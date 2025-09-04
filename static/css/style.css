@@ -288,16 +288,21 @@ body {
 .overlay-text-box {
     position: absolute;
     top: 50%;
-    right: 30%; /* Slightly to the left of the overlay image */
+    right: 21.6%; /* Slightly to the left of the overlay image */
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
     padding: 20px;
     color: white;
     z-index: 2;
-    max-width: 250px;
+    width: 350px;
+    height: 200px;
     text-align: center;
     font-size: 1.1rem;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
