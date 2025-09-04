@@ -262,11 +262,10 @@ body {
 .overlay-image {
     position: absolute;
     top: 50%; /* Adjust this as needed */
-    left: 50%;
+    left: 80%;
     transform: translate(-50%, -50%);
     max-width: 150px;
     z-index: 2;
-    border-radius: 8px; /* Optional */
 }
 
 .hero-banner > img:first-child {
