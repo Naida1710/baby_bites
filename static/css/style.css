@@ -304,6 +304,20 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.static-banner-text {
+    background-color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-weight: 600;
+    letter-spacing: 3.5px;
+    color: #555;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+}
+
 @media (max-width: 768px) {
     .overlay-text-box {
         width: 50%;
