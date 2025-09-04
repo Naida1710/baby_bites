@@ -327,6 +327,68 @@ body {
     margin: 0 auto;
 }
 
+.floating-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .floating-icons img {
+    position: absolute;
+    width: 40px;
+    opacity: 0.15;
+    animation: float 12s linear infinite;
+    transform-origin: center center;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(0deg);
+  }
+
+  /* Apple */
+.floating-icons img:nth-child(1) {
+    left: 10%;
+    animation-delay: 8s;
+  }
+
+  .floating-icons img:nth-child(2) {
+    left: 20%;
+    animation-delay: 2s;
+  }
+
+  .floating-icons img:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+  }
+
+  .floating-icons img:nth-child(4) {
+    left: 70%;
+    animation-delay: 10s;
+  }
+
+  /* Egg */
+.floating-icons img:nth-child(5) {
+    left: 85%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0% {
+      top: 100%;
+      transform: rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(180deg);
+    }
+    100% {
+      top: -10%;
+      transform: rotate(360deg);
+    }
+  }
 
 @media (max-width: 768px) {
     .overlay-text-box {

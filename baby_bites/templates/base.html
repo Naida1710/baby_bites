@@ -111,7 +111,8 @@
         <!-- Hero Image Banner -->
         <div class="hero-banner">
             <img src="{% static 'images/foodie.jpeg' %}" alt="Baby eating solid food" 
-            class="img-fluid w-100" style="max-height: 450px; object-fit: cover;">    
+            class="img-fluid w-100" style="max-height: 450px; object-fit: cover;"> 
+        
             
             <!-- Overlay Image -->
     <img src="{% static 'images/foodie1.png' %}" alt="Overlay image"
@@ -123,6 +124,15 @@
 
         </div>
         </div>
+    
+        <div class="floating-icons">
+            <img src="{% static 'images/apple.png' %}" alt="apple icon">
+            <img src="{% static 'images/food.png' %}" alt="brocolli icon">
+            <img src="{% static 'images/banana.png' %}" alt="banana icon">
+            <img src="{% static 'images/spoon.png' %}" alt="spoon icon">
+            <img src="{% static 'images/fried-egg.png' %}" alt="egg icon">
+          </div>
+
 
        <!-- Intro Paragraph + Image/Text Side by Side -->
     <div class="container mt-5 pt-5">
@@ -147,6 +157,8 @@
       </div>
     </div>
   </div>
+  
+
   
   <div class="container mt-5 pt-5">
         {% block content %}
