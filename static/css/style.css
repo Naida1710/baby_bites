@@ -318,6 +318,16 @@ body {
     z-index: 10;
 }
 
+.baby-bg {
+    background-color: #fff8e1;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    max-width: 100%;   /* Was 320px */
+    width: 100%;       /* Ensure full width inside the column */
+    margin: 0 auto;
+}
+
+
 @media (max-width: 768px) {
     .overlay-text-box {
         width: 50%;
