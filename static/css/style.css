@@ -288,7 +288,7 @@ body {
 .overlay-text-box {
     position: absolute;
     top: 50%;
-    right: 21.6%; /* Slightly to the left of the overlay image */
+    left: 28.7%; /* Slightly to the left of the overlay image */
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
     padding: 20px;
@@ -304,6 +304,13 @@ body {
     justify-content: center;
     align-items: center;
 }
+@media (max-width: 768px) {
+    .overlay-text-box {
+        width: 50%;
+        left: 29.2%;
+    }
+}
+
 
 
 
