@@ -259,18 +259,47 @@ body {
     left: auto;
 }
 
+.hero-banner {
+    position: relative;
+    max-height: 450px;
+    overflow: hidden;
+}
+
+/* Faded background image */
+.hero-banner > img:first-child {
+    opacity: 0.3;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Overlay Image */
 .overlay-image {
     position: absolute;
-    top: 50%; /* Adjust this as needed */
-    left: 80%;
+    top: 50%;
+    left: 75%;
     transform: translate(-50%, -50%);
     max-width: 300px;
     z-index: 2;
+    border-radius: 8px;
 }
 
-.hero-banner > img:first-child {
-    opacity: 0.3;
+/* Transparent Text Background */
+.overlay-text-box {
+    position: absolute;
+    top: 50%;
+    left: 60%; /* Slightly to the left of the overlay image */
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    padding: 20px;
+    color: white;
+    z-index: 2;
+    max-width: 250px;
+    text-align: center;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
+
 
 
 
