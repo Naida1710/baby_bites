@@ -269,6 +269,10 @@ body {
     border-radius: 8px; /* Optional */
 }
 
+.hero-banner > img:first-child {
+    opacity: 0.3;
+}
+
 
 
 
