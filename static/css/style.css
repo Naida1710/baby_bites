@@ -264,7 +264,7 @@ body {
     top: 50%; /* Adjust this as needed */
     left: 80%;
     transform: translate(-50%, -50%);
-    max-width: 150px;
+    max-width: 300px;
     z-index: 2;
 }
 
