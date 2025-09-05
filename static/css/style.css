@@ -431,15 +431,13 @@ body {
 }
 
 .baby-bg {
-    background-color: #fffaf2; /* Lighter pastel peach */
+    background: linear-gradient(135deg, #fff4d1, #ffe0e9);
     padding: 1.5rem;
     border-radius: 1rem;
-    max-width: 100%;
-    width: 100%;
-    border: 2px solid #ffd6d6; /* Soft pink border */
-    box-shadow: 0 4px 12px rgba(255, 183, 183, 0.2); /* Gentle pink glow */
-    transition: transform 0.2s ease;
-}
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
 
 .baby-bg:hover {
     transform: translateY(-5px);
