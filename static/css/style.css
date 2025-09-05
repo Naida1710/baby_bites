@@ -390,6 +390,17 @@ body {
     }
   }
 
+  .pastel-divider {
+    border: none;
+    height: 4px;
+    background-color: #ffd1dc; /* soft pastel pink */
+    border-radius: 2px;
+    width: 60%;
+    margin: 1.5rem auto 2rem auto; /* spacing above and below */
+    opacity: 0.6;
+  }
+  
+
 @media (max-width: 768px) {
     .overlay-text-box {
         width: 50%;
