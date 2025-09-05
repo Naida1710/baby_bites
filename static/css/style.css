@@ -448,6 +448,42 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
+.nutrition-section {
+    background-color: #fff7f0;
+  }
+  
+  .circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border-radius: 50%;
+    background: conic-gradient(#ff9f68 0%, #ff9f68 var(--value), #eee var(--value), #eee 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #444;
+    transition: background 1s ease-in-out;
+  }
+  
+  .circle::before {
+    content: attr(data-value) '%';
+    position: absolute;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .circle .label {
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+
   
 
 @media (max-width: 768px) {

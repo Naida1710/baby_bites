@@ -12,3 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
         dropdownIcon.innerHTML = '<i class="fas fa-plus"></i>';
     });
 });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const circles = document.querySelectorAll(".circle");
+
+    circles.forEach(circle => {
+      let value = circle.getAttribute("data-value");
+      circle.style.setProperty('--value', value + '%');
+    });
+  });
+
