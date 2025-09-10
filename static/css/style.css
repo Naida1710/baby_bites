@@ -238,11 +238,12 @@ body {
     width: 100%;
 }
 
-#recipesDropdown {
-    display: flex;
-    justify-content: space-between; /* pushes icon to right */
-    align-items: center; /* vertical center */
-    padding-right: 2.5rem; /* Adjust this to push icon left */
+.dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    text-align: center;
+    min-width: max-content;
 }
   
 #recipesDropdown::after {
