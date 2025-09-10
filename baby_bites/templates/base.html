@@ -65,13 +65,12 @@
                         <a class="nav-link home-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Home</a>
                     </li>
-                    {% if user.is_authenticated %}
+            
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle green-link" href="#" id="recipesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            All Recipes <span id="dropdown-icon" class="ms-5"><i class="fas fa-plus"></i></span>
+                        <a class="nav-link dropdown-toggle green-link d-flex align-items-center justify-content-between" href="#" id="recipesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            All Recipes 
+                            <span id="dropdown-icon" class="ms-2"><i class="fas fa-chevron-down"></i></span>
                         </a>
-                        
-                        
                         <ul class="dropdown-menu" aria-labelledby="recipesDropdown">
                             <li><a class="dropdown-item" href="{% url 'recipes_6_months' %}">6+ Months</a></li>
                             <li><a class="dropdown-item" href="{% url 'recipes_8_months' %}">8+ Months</a></li>
@@ -79,7 +78,7 @@
                             <li><a class="dropdown-item" href="{% url 'recipes_12_months' %}">1 Year Old</a></li>
                         </ul>
                     </li>
-                    
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
 	                    <a class="nav-link logout-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" 
                             href="{% url 'account_logout' %}">Logout</a>

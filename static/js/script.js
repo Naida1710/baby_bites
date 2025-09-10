@@ -1,18 +1,23 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const dropdownToggle = document.getElementById('recipesDropdown');
-    const dropdownIcon = document.getElementById('dropdown-icon');
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdownToggle = document.getElementById("recipesDropdown");
+    const dropdownMenu = document.querySelector("#recipesDropdown + .dropdown-menu");
+    const dropdownIcon = document.querySelector("#dropdown-icon i");
 
-    if (!dropdownToggle || !dropdownIcon) return;
+    if (dropdownToggle && dropdownMenu && dropdownIcon) {
+      // When dropdown is shown
+      dropdownToggle.addEventListener("shown.bs.dropdown", function () {
+        dropdownIcon.classList.remove("fa-chevron-down");
+        dropdownIcon.classList.add("fa-chevron-up");
+      });
 
-    dropdownToggle.addEventListener('shown.bs.dropdown', function () {
-        dropdownIcon.innerHTML = '<i class="fas fa-minus"></i>';
-    });
-
-    dropdownToggle.addEventListener('hidden.bs.dropdown', function () {
-        dropdownIcon.innerHTML = '<i class="fas fa-plus"></i>';
-    });
-});
-
+      // When dropdown is hidden
+      dropdownToggle.addEventListener("hidden.bs.dropdown", function () {
+        dropdownIcon.classList.remove("fa-chevron-up");
+        dropdownIcon.classList.add("fa-chevron-down");
+      });
+    }
+  });
+  
   document.addEventListener("DOMContentLoaded", function () {
     const circles = document.querySelectorAll(".circle");
 
@@ -21,4 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
       circle.style.setProperty('--value', value + '%');
     });
   });
+
+
+
 
