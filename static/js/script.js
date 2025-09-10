@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
-  
+
   document.addEventListener("DOMContentLoaded", function () {
     const circles = document.querySelectorAll(".circle");
 
@@ -26,6 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
       circle.style.setProperty('--value', value + '%');
     });
   });
+
+  document.querySelector('#recipesDropdown').addEventListener('show.bs.dropdown', function () {
+    document.querySelector('#dropdown-icon i').style.transform = 'rotate(180deg)';
+  });
+  document.querySelector('#recipesDropdown').addEventListener('hide.bs.dropdown', function () {
+    document.querySelector('#dropdown-icon i').style.transform = 'rotate(0deg)';
+  });
+  
 
 
 

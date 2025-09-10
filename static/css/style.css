@@ -514,6 +514,8 @@ body {
         left: 50% !important;
         transform: translateX(-50%) !important;
         text-align: center;
+        min-width: max-content;
+        right: auto !important;
       }
 }
 
