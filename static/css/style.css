@@ -472,9 +472,44 @@ body {
     margin-right: 1rem;
 }
 
-.navbar-nav .nav-link {
-    letter-spacing: 3px; /* You can increase this to 2px, 3px, etc. */
+/* Shared styles for register & login links */
+.navbar-nav .nav-link.register-link,
+.navbar-nav .nav-link.login-link {
+    color: #444 !important; /* Soft dark gray */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
+
+/* Hover effect - subtle shift + color change */
+.navbar-nav .nav-link.register-link:hover,
+.navbar-nav .nav-link.login-link:hover {
+    color: #ff7597 !important; /* Soft coral pink */
+    transform: translateY(-1px);
+}
+
+/* Optional underline effect on hover only */
+.navbar-nav .nav-link.register-link::after,
+.navbar-nav .nav-link.login-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #ff7597;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link.register-link:hover::after,
+.navbar-nav .nav-link.login-link:hover::after {
+    width: 100%;
+}
+
 
 .dropdown-wrapper {
     position: relative !important;
