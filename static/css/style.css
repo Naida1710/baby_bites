@@ -490,6 +490,69 @@ body {
     letter-spacing: 3px; /* You can increase this to 2px, 3px, etc. */
 }
 
+.dropdown-wrapper {
+    position: relative !important;
+  }
+  
+  .centered-dropdown {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    width: auto;
+    text-align: center;
+  }
+  
+/* Center the Dropdown Menu */
+.dropdown-menu.centered-dropdown {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Slight background with opacity */
+    backdrop-filter: blur(6px); /* Soft blur effect behind the dropdown */
+    border-radius: 16px;
+    padding: 12px 10px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    border: none;
+    min-width: 240px;
+}
+
+/* Individual Card-Like Dropdown Items */
+.dropdown-menu .card-item {
+    background: linear-gradient(135deg, #fff4d1cc, #ffe0e9cc); /* Gradient with ~80% opacity */
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Effects */
+.dropdown-menu .card-item:hover {
+    background: linear-gradient(135deg, #fff4d1, #ffe0e9); /* Full opacity on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+/* Optional Icon Styling */
+.dropdown-menu .card-item i {
+    margin-right: 8px;
+    color: #ff8ca6;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu .card-item:hover i {
+    transform: scale(1.2);
+}
+
+
+  
+
 
   
 
@@ -518,6 +581,16 @@ body {
         right: auto !important;
       }
 }
+
+/* Custom class to center dropdown menu on small screens */
+@media (max-width: 991.98px) { /* Bootstrap's lg breakpoint */
+    .dropdown-menu-center {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      right: auto !important;
+    }
+  }
+  
 
 
 
