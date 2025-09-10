@@ -308,7 +308,7 @@ body {
     text-align: center;
     border-bottom: 1px solid #ddd;
     font-weight: 600;
-    letter-spacing: 3.5px;
+    letter-spacing: 4.4px;
     color: #555;
     text-transform: uppercase;
     position: relative;
@@ -481,8 +481,18 @@ body {
   }
 
   .navbar-collapse {
-    margin-left: 18.5rem; /* or 30px, adjust as needed */
+    margin-left: 16rem; /* or 30px, adjust as needed */
 }
+
+.nav-spacing .nav-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.navbar-nav .nav-link {
+    letter-spacing: 3px; /* You can increase this to 2px, 3px, etc. */
+}
+
 
   
 
