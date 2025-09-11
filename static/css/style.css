@@ -213,14 +213,32 @@ body {
 .home-link {
     color: #ff6600 !important;           /* Vibrant orange */
     font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.3s ease;
     
 }
 
-
+.home-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff6600; /* Same as link color */
+    transition: width 0.3s ease;
+}
 
 .home-link:hover {
     color: #cc3300 !important;           /* Darker shade on hover */
 }
+
+.home-link:hover::after {
+    width: 100%;
+}
+
 
 
 
