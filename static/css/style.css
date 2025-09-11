@@ -173,7 +173,7 @@ body {
 
 .green-link {
     position: relative;
-    color: rgb(92, 212, 92) !important;
+    color: #98FF98 !important;
     font-weight: bold;
     text-decoration: none;
     padding-bottom: 3px;
@@ -534,26 +534,21 @@ body {
   }
   
   .centered-dropdown {
+    position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     right: auto !important;
-    width: auto;
+    top: 100%;
+    z-index: 1000;
     text-align: center;
-  }
-  
-/* Center the Dropdown Menu */
-.dropdown-menu.centered-dropdown {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    right: auto !important;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9); /* Slight background with opacity */
-    backdrop-filter: blur(6px); /* Soft blur effect behind the dropdown */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
     border-radius: 16px;
     padding: 12px 10px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     border: none;
     min-width: 240px;
+    width: max-content;
 }
 
 /* Individual Card-Like Dropdown Items */
@@ -619,6 +614,17 @@ body {
         min-width: max-content;
         right: auto !important;
       }
+
+      .centered-dropdown {
+        width: 50vw;               /* Make dropdown take up 90% of screen width */
+        min-width: unset !important; /* Remove fixed min-width */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        padding: 16px 20px;
+        border-radius: 12px;
+        text-align: center;
+    }
+  
 }
 
 /* Custom class to center dropdown menu on small screens */
