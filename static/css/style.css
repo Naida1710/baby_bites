@@ -624,6 +624,22 @@ body {
         border-radius: 12px;
         text-align: center;
     }
+
+    .navbar-brand {
+        width: 100%;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto !important;
+    }
+
+    .navbar-brand img {
+        max-height: 80px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
   
 }
 
