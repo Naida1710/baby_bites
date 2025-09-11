@@ -313,7 +313,7 @@ body {
     text-align: center;
     border-bottom: 1px solid #ddd;
     font-weight: 600;
-    letter-spacing: 4.4px;
+    letter-spacing: 6px;
     color: #555;
     text-transform: uppercase;
     position: relative;
@@ -584,13 +584,27 @@ body {
     transform: scale(1.2);
 }
 
+.footer a {
+    text-decoration: none;
+}
 
-  
+.social-icon {
+    color: white;
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    transition: transform 0.2s ease, color 0.3s ease;
+    text-decoration: none;
+}
 
+.social-icon:hover {
+    transform: scale(1.3);
+    color: #ffc107; /* Optional color change */
+}
 
-  
+.social-icon:active {
+    transform: scale(0.9); /* Slight shrink on click */
+}
 
-  
 
 @media (max-width: 768px) {
     .overlay-text-box {
