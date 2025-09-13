@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+AGE_GROUP_CHOICES = [
+    ("6_months", "6+ Months"),
+    ("8_months", "8+ Months"),
+    ("10_months", "10+ Months"),
+    ("12_months", "1 Year Old"),
+]
+
 
 # Create your models here.
 class Post(models.Model):
@@ -18,7 +25,7 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
-
+    age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default="6_months")
 
 class Comment(models.Model):
     post = models.ForeignKey(

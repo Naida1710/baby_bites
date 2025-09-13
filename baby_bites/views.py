@@ -30,16 +30,19 @@ def post_detail(request, slug):
 
 
 def recipes_6_months(request):
-    return render(request, "recipes/6_months.html")
+    posts = Post.objects.filter(age_group="6_months", status=1)
+    return render(request, "recipes/6_months.html", {"posts": posts})
 
 
 def recipes_8_months(request):
+    posts = Post.objects.filter(age_group="8_months", status=1)
     return render(request, "recipes/8_months.html")
 
 
 def recipes_10_months(request):
+    posts = Post.objects.filter(age_group="10_months", status=1)
     return render(request, "recipes/10_months.html")
 
-
 def recipes_12_months(request):
+    posts = Post.objects.filter(age_group="12_months", status=1)
     return render(request, "recipes/12_months.html")
