@@ -507,6 +507,40 @@ body {
     margin-right: 0.5rem;
 }
 
+.post-date {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeInDate 1s ease forwards;
+    animation-delay: 0.5s;
+    transition: color 0.3s ease;
+  }
+  
+  .post-date i {
+    color: #ffa69e;
+    font-size: 1.1rem;
+  }
+  
+  .post-date:hover {
+    color: #ff7597;
+  }
+  
+  @keyframes fadeInDate {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
 .baby-bg {
     background: linear-gradient(135deg, #fff4d1, #ffe0e9);
     padding: 1.5rem;
