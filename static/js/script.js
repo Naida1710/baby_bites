@@ -19,19 +19,34 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener("DOMContentLoaded", function () {
-    const circles = document.querySelectorAll(".circle");
-
-    circles.forEach(circle => {
-      let value = circle.getAttribute("data-value");
-      circle.style.setProperty('--value', value + '%');
-    });
-  });
-
-  document.querySelector('#recipesDropdown').addEventListener('show.bs.dropdown', function () {
-    document.querySelector('#dropdown-icon i').style.transform = 'rotate(180deg)';
-  });
-  document.querySelector('#recipesDropdown').addEventListener('hide.bs.dropdown', function () {
-    document.querySelector('#dropdown-icon i').style.transform = 'rotate(0deg)';
+    const circles = document.querySelectorAll(".animated-circle");
+  
+    const animateCircle = (circle) => {
+      const value = +circle.dataset.value;
+      let current = 0;
+  
+      const update = () => {
+        if (current <= value) {
+          circle.style.background = `conic-gradient(#ff9f68 ${current}%, #eee ${current}%)`;
+          circle.querySelector(".percent").textContent = `${current}%`;
+          current++;
+          requestAnimationFrame(update);
+        }
+      };
+  
+      update();
+    };
+  
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCircle(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+  
+    circles.forEach((circle) => observer.observe(circle));
   });
   
 

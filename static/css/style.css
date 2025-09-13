@@ -453,6 +453,14 @@ body {
 .nutrition-section {
     background-color: #fff7f0;
   }
+
+  .label-top {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: #444;
+    text-align: center;
+  }
   
   .circle {
     position: relative;
@@ -460,30 +468,31 @@ body {
     height: 120px;
     margin: auto;
     border-radius: 50%;
-    background: conic-gradient(#ff9f68 0%, #ff9f68 var(--value), #eee var(--value), #eee 100%);
+    background: conic-gradient(#ff9f68 0%, #eee 0%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #444;
-    transition: background 1s ease-in-out;
   }
   
-  .circle::before {
-    content: attr(data-value) '%';
+  .circle .percent {
     position: absolute;
-    font-size: 1.1rem;
-    font-weight: 600;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    background-color: white;
+    padding: 0.2rem 0.4rem;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
   }
   
   .circle .label {
-    position: absolute;
-    bottom: -30px;
-    width: 100%;
-    font-size: 1rem;
-    color: #555;
+    display: none;
   }
+  
 
 .nav-spacing .nav-item {
     margin-left: 1rem;
