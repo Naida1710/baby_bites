@@ -48,6 +48,25 @@ document.addEventListener("DOMContentLoaded", function () {
   
     circles.forEach((circle) => observer.observe(circle));
   });
+
+
+  document.querySelectorAll('.btn-nav').forEach(button => {
+    button.addEventListener('click', function (e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+
+        const rect = this.getBoundingClientRect();
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        ripple.style.left = e.clientX - rect.left - (parseInt(ripple.style.width) / 2) + 'px';
+        ripple.style.top = e.clientY - rect.top - (parseInt(ripple.style.height) / 2) + 'px';
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+});
   
 
 
