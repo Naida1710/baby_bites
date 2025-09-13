@@ -1,49 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Post Header -->
 <div class="container">
-    <div class="row g-0">
-        <div class="col-md-6 masthead-text">
-            <!-- Post title goes in these h1 tags -->
-            <h1 class="post-title">{{ post.title }}</h1>
-            <!-- Post author goes before the | the post's created date goes after -->
-            <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
-        </div>
-        <div class="d-none d-md-block col-md-6 masthead-image">
-            <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
-        </div>
+  <div class="row g-0">
+    <div class="col-md-6 masthead-text">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
     </div>
-</div>
+    <div class="d-none d-md-block col-md-6 masthead-image">
+      <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
+    </div>
+  </div>
 </div>
 
+<!-- Post Content -->
 <div class="container">
-<div class="row">
-    <div class="col card mb-4  mt-3 left  top">
-        <div class="card-body">
-            <!-- The post content goes inside the card-text. -->
-            <!-- Use the | safe filter inside the template tags -->
-            <h2>{{ coder }}</h2>
-            <p class="card-text">
-                {{ post.content | safe }}
-            </p>
-        </div>
+  <div class="row">
+    <div class="col card mb-4 mt-3 left top">
+      <div class="card-body">
+        <p class="card-text">
+          {{ post.content | safe }}
+        </p>
+      </div>
     </div>
-</div>
- <!-- Displaying count of comments -->
- <div class="row">
+  </div>
+
+  <!-- Comment Count -->
+  <div class="row">
     <div class="col-12">
       <strong class="text-secondary">
-        <i class="far fa-comments"></i> {{ comment_count }}
+        <i class="far fa-comments"></i> {{ comment_count }} Comments
       </strong>
     </div>
     <div class="col-12">
       <hr>
     </div>
   </div>
-  <!-- Displaying Comments -->
+
+  <!-- Comments Section -->
   <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-8 card mb-4 mt-3">
       <h3>Comments:</h3>
       <div class="card-body">
-        <!-- We want a for loop inside the empty control tags
-          to iterate through each comment in comments -->
         {% for comment in comments %}
         <div class="p-2 comments
           {% if not comment.approved and comment.author == user %}
@@ -59,12 +60,29 @@
           </div>
           {% if not comment.approved and comment.author == user %}
           <p class="approval">
-            This comment is awaiting approval
+            This comment is awaiting approval.
           </p>
           {% endif %}
         </div>
-        <!-- Our for loop ends here -->
+        {% empty %}
+        <p>No comments yet. Be the first to comment!</p>
         {% endfor %}
+      </div>
+
+      <!-- Comment Form -->
+      <div class="card-body">
+        {% if user.is_authenticated %}
+        <h3>Leave a Comment</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+          <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+        {% else %}
+        <p>
+          <a href="{% url 'account_login' %}">Log in</a> to leave a comment.
+        </p>
+        {% endif %}
       </div>
     </div>
   </div>

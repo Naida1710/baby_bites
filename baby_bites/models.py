@@ -11,7 +11,6 @@ AGE_GROUP_CHOICES = [
 ]
 
 
-# Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -26,6 +25,10 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default="6_months")
+
+    def __str__(self):
+        return self.title
+
 
 class Comment(models.Model):
     post = models.ForeignKey(
