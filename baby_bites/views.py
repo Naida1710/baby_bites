@@ -64,4 +64,3 @@ def recipes_10_months(request):
 def recipes_12_months(request):
     posts = Post.objects.filter(age_group="12_months", status=1)
     return render(request, "recipes/12_months.html", {"posts": posts})
-
