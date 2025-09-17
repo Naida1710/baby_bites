@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Comment
 from django.contrib import messages
 from .models import About
 from .forms import CommentForm
 from .forms import CollaborateForm
+from django.http import HttpResponseRedirect
 
 
 def about_me(request):
@@ -14,7 +15,7 @@ def about_me(request):
         if collaborate_form.is_valid():
             collaborate_form.save()
             messages.add_message(request, messages.SUCCESS, "Collaboration request received! I endeavour to respond within 2 working days.")
-            
+       
     about = About.objects.all().order_by('-updated_on').first()
     collaborate_form = CollaborateForm()
 
