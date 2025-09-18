@@ -13,7 +13,8 @@ AGE_GROUP_CHOICES = [
 
 
 class About(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
+    profile_image = CloudinaryField('image', default='placeholder')
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
 
