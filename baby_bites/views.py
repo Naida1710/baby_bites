@@ -3,7 +3,6 @@ from django.views import generic
 from django.contrib.auth.models import User
 from .models import Post, Comment
 from django.contrib import messages
-from .models import About
 from .forms import CommentForm
 from .forms import CollaborateForm
 from django.http import HttpResponseRedirect
