@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+
+  <!-- 🌟 Filter Menu -->
+  <div id="filter-menu" class="filter-menu mb-4">
+    <h5>Filter by Age Group</h5>
+    <ul class="list-unstyled d-flex gap-2 flex-wrap">
+      <li><a href="?age=6_months" class="btn btn-outline-primary {% if selected_age == '6_months' %}active{% endif %}">6+ Months</a></li>
+      <li><a href="?age=8_months" class="btn btn-outline-success {% if selected_age == '8_months' %}active{% endif %}">8+ Months</a></li>
+      <li><a href="?age=10_months" class="btn btn-outline-warning {% if selected_age == '10_months' %}active{% endif %}">10+ Months</a></li>
+      <li><a href="?age=12_months" class="btn btn-outline-info {% if selected_age == '12_months' %}active{% endif %}">1 Year</a></li>
+      <li><a href="{% url 'recipe_list' %}" class="btn btn-outline-secondary {% if not selected_age %}active{% endif %}">All</a></li>
+    </ul>
+  </div>
+
+  <!-- 📦 Recipes Grid -->
+  <div class="row">
+    {% for recipe in recipes %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100" data-age-group="{{ recipe.age_group }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ recipe.title }}</h5>
+            <p class="card-text">{{ recipe.excerpt|truncatewords:20 }}</p>
+            <a href="{% url 'post_detail' recipe.slug %}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No recipes found.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination Controls -->
+  {% if page_obj and paginator %}
+  <div class="d-flex justify-content-center align-items-center my-4">
+
+    {% if page_obj.has_previous %}
+      <a href="?{% if selected_age %}age={{ selected_age }}&{% endif %}page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary me-2">Previous</a>
+    {% else %}
+      <button class="btn btn-outline-secondary me-2" disabled>Previous</button>
+    {% endif %}
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination mb-0">
+        {% for num in paginator.page_range %}
+          <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="?{% if selected_age %}age={{ selected_age }}&{% endif %}page={{ num }}">{{ num }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {% if page_obj.has_next %}
+      <a href="?{% if selected_age %}age={{ selected_age }}&{% endif %}page={{ page_obj.next_page_number }}" class="btn btn-outline-primary ms-2">Next</a>
+    {% else %}
+      <button class="btn btn-outline-secondary ms-2" disabled>Next</button>
+    {% endif %}
+
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

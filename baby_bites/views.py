@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import CommentForm
 from .forms import CollaborateForm
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 
 def comment_edit(request, slug, comment_id):
@@ -54,7 +55,7 @@ def about_me(request):
         if collaborate_form.is_valid():
             collaborate_form.save()
             messages.add_message(request, messages.SUCCESS, "Collaboration request received! I endeavour to respond within 2 working days.")
-       
+
     about = About.objects.all().order_by('-updated_on').first()
     collaborate_form = CollaborateForm()
 
@@ -101,6 +102,28 @@ def post_detail(request, slug):
             "comment_form": comment_form,
         },
     )
+
+
+# views.py
+def recipe_list(request):
+    age_filter = request.GET.get('age')  # e.g. '6', '10', etc.
+
+    if age_filter:
+        recipes = Recipe.objects.filter(age=age_filter)
+    else:
+        recipes = Recipe.objects.all()
+
+    # Pagination
+    paginator = Paginator(recipes, 10)  # Show 10 recipes per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'recipe_list.html', {
+        'recipes': page_obj.object_list,  # Paginated recipes for current page
+        'page_obj': page_obj,
+        'paginator': paginator,
+        'selected_age': age_filter,
+    })
 
 
 def profile_page(request):

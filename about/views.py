@@ -5,6 +5,7 @@ from .models import About
 from .forms import CollaborateForm
 from django.contrib import messages
 
+
 def about_me(request):
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)
@@ -25,4 +26,3 @@ def about_me(request):
             "collaborate_form": collaborate_form
         },
     )
-

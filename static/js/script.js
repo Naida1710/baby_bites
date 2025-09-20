@@ -67,8 +67,60 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 600);
     });
 });
-  
 
 
+  // 🌊 Ripple Effect for .btn-nav buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.btn-nav').forEach(button => {
+      button.addEventListener('click', function (e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+
+        const rect = this.getBoundingClientRect();
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        ripple.style.left = e.clientX - rect.left - (parseInt(ripple.style.width) / 2) + 'px';
+        ripple.style.top = e.clientY - rect.top - (parseInt(ripple.style.height) / 2) + 'px';
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // 🍽️ Recipe Filter Highlighting
+    const filterButtons = document.querySelectorAll('.filter-option');
+    const recipeCards = document.querySelectorAll('.card[data-age-group]');
+    let activeFilter = null;
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+
+        // Toggle filter
+        activeFilter = (activeFilter === filter) ? null : filter;
+
+        // Update active button state
+        filterButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-filter') === activeFilter);
+        });
+
+        // Highlight matching recipe cards
+        recipeCards.forEach(card => {
+          if (!activeFilter) {
+            card.classList.remove('filtered-highlight');
+          } else {
+            if (card.getAttribute('data-age-group') === activeFilter) {
+              card.classList.add('filtered-highlight');
+            } else {
+              card.classList.remove('filtered-highlight');
+            }
+          }
+        });
+      });
+    });
+  });
 
 
+ 
