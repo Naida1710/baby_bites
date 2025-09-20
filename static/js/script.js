@@ -123,4 +123,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
+  const select = document.querySelector('.order-form select');
+
+  // When user clicks or focuses the select, add 'open' class
+  select.addEventListener('mousedown', () => {
+    select.classList.add('open');
+  });
+
+  // When user changes selection or blurs (closes dropdown), remove 'open' class
+  select.addEventListener('change', () => {
+    select.classList.remove('open');
+  });
+
+  select.addEventListener('blur', () => {
+    select.classList.remove('open');
+  });
+
+
+
  
