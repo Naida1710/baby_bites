@@ -9,6 +9,17 @@
 
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
+            <div class="d-flex justify-content-end mb-3">
+                <form method="get" class="order-form">
+                    <label for="order" class="me-2">Sort by:</label>
+                    <select name="order" id="order" onchange="this.form.submit()" class="form-select form-select-sm w-auto d-inline-block">
+                        <option value="latest" {% if request.GET.order == "latest" or not request.GET.order %}selected{% endif %}>Latest</option>
+                        <option value="earliest" {% if request.GET.order == "earliest" %}selected{% endif %}>Earliest</option>
+                    </select>
+
+                </form>
+            </div>
+            
             <div class="row">
                 {% for post in post_list %}
                 <div class="col-md-4">

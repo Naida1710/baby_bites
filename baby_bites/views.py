@@ -70,9 +70,16 @@ def about_me(request):
 
 
 class PostList(generic.ListView):
-    queryset = Post.objects.filter(status=1).order_by("-created_on")
+    model = Post
     template_name = "index.html"
     paginate_by = 6
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        order = self.request.GET.get('order', 'latest')  # default to latest
+        if order == 'earliest':
+            return Post.objects.filter(status=1).order_by('created_on')
+        return Post.objects.filter(status=1).order_by('-created_on')
 
 
 def post_detail(request, slug):
