@@ -572,7 +572,82 @@ body {
     transform: translateY(-5px);
 }
 
-
+/* Modern card container */
+.password-reset-container {
+    max-width: 480px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #e0f8e9, #d1f2ec);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Lato', sans-serif;
+  }
+  
+  /* Header styling */
+  .password-reset-container h2 {
+    font-size: 1.8rem;
+    color: #2e8b57;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Description */
+  .password-reset-container p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Input field */
+  .password-reset-container input[type="email"],
+  .password-reset-container input[type="text"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .password-reset-container input:focus {
+    border-color: #2e8b57;
+    outline: none;
+  }
+  
+  /* Submit button */
+  .password-reset-container input[type="submit"],
+  .password-reset-container button[type="submit"] {
+    background-color: #2e8b57;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+  .password-reset-container input[type="submit"]:hover {
+    background-color: #257a49;
+  }
+  
+  /* Help text */
+  .password-reset-container .help-text {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #888;
+  }
+  
+  /* Optional: Add icon to heading */
+  .password-reset-container h2 i {
+    margin-right: 0.5rem;
+    color: #2e8b57;
+  }
+  
 
 .nutrition-section {
     background: linear-gradient(to right, #d4fc79, #96e6a1);
