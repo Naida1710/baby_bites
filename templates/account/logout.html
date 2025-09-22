@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends "base_auth.html" %}
 {% load i18n static %}
 
 {% block head_title %}
@@ -6,56 +6,46 @@
 {% endblock head_title %}
 
 {% block content %}
-<div class="container py-5 position-relative">
+<div class="container mt-5 mb-5 position-relative">
 
-    <!-- Floating pastel icons (hearts, food, etc.) -->
-    <div class="floating-icons">
-        <img src="{% static 'images/float-apple.png' %}" alt="apple">
-        <img src="{% static 'images/float-bottle.png' %}" alt="bottle">
-        <img src="{% static 'images/float-pacifier.png' %}" alt="pacifier">
-        <img src="{% static 'images/float-egg.png' %}" alt="egg">
-        <img src="{% static 'images/float-carrot.png' %}" alt="carrot">
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4 baby-bg shadow fadeInCard text-center">
+
+        
+        <h2 class="mb-3" style="font-family: 'Caveat', cursive; color: #ff7597;">
+          {% trans "Leaving so soon?" %}
+        </h2>
+
+        <p class="lead text-muted mb-4">
+          {% trans "Are you sure you want to sign out?" %}
+        </p>
+
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+          {% endif %}
+          
+          <button type="submit" class="logout-big w-100 mb-3">
+            {% trans "Log Me Out" %}
+          </button>
+        </form>
+
+        <a href="{% url 'home' %}" class="home-link d-block mt-2">
+          🏠 {% trans "No, take me home" %}
+        </a>
+
+        <hr class="pastel-divider">
+
+        <p class="faded mt-3">
+          🍼 {% trans "We hope to see you again soon!" %}
+        </p>
+      </div>
     </div>
-
-    <!-- Logout Box -->
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="baby-bg text-center p-5">
-
-                <img src="{% static 'images/bye-baby.png' %}" alt="Goodbye baby" class="img-fluid mb-4" style="max-height: 150px;">
-
-                <h2 class="mb-3" style="font-family: 'Caveat', cursive; color: #ff7597; font-size: 2.5rem;">
-                    {% trans "Leaving so soon?" %}
-                </h2>
-
-                <p class="lead text-muted mb-4">
-                    {% trans "Are you sure you want to sign out?" %}
-                </p>
-
-                <form method="post" action="{% url 'account_logout' %}">
-                    {% csrf_token %}
-                    {% if redirect_field_value %}
-                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
-                    {% endif %}
-                    <button type="submit" class="btn btn-lg btn-danger logout-big w-100 mb-4">
-                      👋 {% trans "Yes, Log Me Out" %}
-                    </button>
-                  
-                  
-                </form>
-
-                <a href="{% url 'home' %}" class="home-link d-block mt-2">
-                    🏠 {% trans "No, take me home" %}
-                </a>
-
-                <hr class="pastel-divider">
-
-                <p class="faded mt-3">
-                    🍼 {% trans "We hope to see you again soon!" %}
-                </p>
-
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 {% endblock content %}
+
