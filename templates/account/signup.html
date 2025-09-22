@@ -1,34 +1,48 @@
-{% extends "account/base.html" %}
-{% load i18n %}
-{% load static %}
+{% extends "base_auth.html" %}
+{% load i18n static account socialaccount widget_tweaks %}
 
 {% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
-<div class="container mt-5 mb-5">
+<div class="container py-5 my-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card p-4 baby-bg shadow fadeInCard">
-        <h2 class="text-center mb-3" style="font-family: 'Caveat', cursive; color: #ff7597;">Create Your Account</h2>
+    <div class="col-md-8 col-lg-6 text-center">
 
-        <p class="text-center mb-4">
-          {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="green-link">sign in</a>.{% endblocktrans %}
+      <div class="card shadow-lg p-5 baby-bg">
+
+        <h2 class="mb-3" style="color: #ff7597;">{% trans "Join Us!" %}</h2>
+        <p class="text-muted mb-4">
+          {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="home-link">sign in</a>.{% endblocktrans %}
         </p>
 
-        <form method="post" id="signup_form" action="{% url 'account_signup' %}">
+        <form method="post" action="{% url 'account_signup' %}">
           {% csrf_token %}
-          {{ form.as_p }}  {# optional: replace with form.as_p if not using crispy forms #}
+
+          {% for field in form %}
+            <div class="mb-3 text-start">
+              {{ field.label_tag }}
+              {{ field|add_class:"form-control rounded-pill py-2 px-4 shadow-sm" }}
+              {% if field.errors %}
+                <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
 
           {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
           {% endif %}
 
-          <div class="text-center mt-3">
-            <button type="submit" class="btn-nav">Sign Up &raquo;</button>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-signup">
+              🌸 {% trans "Sign Up" %}
+            </button>
           </div>
         </form>
+
       </div>
+
     </div>
   </div>
 </div>
 {% endblock %}
+
