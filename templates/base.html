@@ -313,6 +313,50 @@
       {% endif %} 
       {% endblock content %}
     </main>
+    <section class="nutrition-section py-5">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 style="font-family: 'Caveat', cursive; color: #ff7597; font-size: 2.5rem;">
+            🥕 Nutrition Summary
+          </h2>
+          <p class="text-muted">How balanced are your baby's meals today?</p>
+        </div>
+    
+        <div class="row justify-content-center text-center">
+          <!-- Protein -->
+          <div class="col-md-3 mb-4">
+            <div class="label-top">Protein</div>
+            <div class="circle animated-circle" data-value="70">
+              <span class="percent">0%</span>
+            </div>
+          </div>
+    
+          <!-- Carbs -->
+          <div class="col-md-3 mb-4">
+            <div class="label-top">Carbs</div>
+            <div class="circle animated-circle" data-value="60">
+              <span class="percent">0%</span>
+            </div>
+          </div>
+    
+          <!-- Fats -->
+          <div class="col-md-3 mb-4">
+            <div class="label-top">Fats</div>
+            <div class="circle animated-circle" data-value="50">
+              <span class="percent">0%</span>
+            </div>
+          </div>
+    
+          <!-- Fiber -->
+          <div class="col-md-3 mb-4">
+            <div class="label-top">Fiber</div>
+            <div class="circle animated-circle" data-value="80">
+              <span class="percent">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
       <!-- Footer -->
       <footer class="footer dark-bg py-4 mt-5">
@@ -344,5 +388,6 @@
       crossorigin="anonymous"
     ></script>
     {% block extras %} {% endblock %}
+    
   </body>
 </html>
