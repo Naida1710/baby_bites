@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
   document.addEventListener("DOMContentLoaded", function () {
     const circles = document.querySelectorAll(".animated-circle");
-  
+
     const animateCircle = (circle) => {
       const value = +circle.dataset.value;
       let current = 0;
-  
+
       const update = () => {
         if (current <= value) {
           circle.style.background = `conic-gradient(#ff9f68 ${current}%, #eee ${current}%)`;
@@ -33,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
           requestAnimationFrame(update);
         }
       };
-  
+
       update();
     };
-  
+
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -45,9 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     }, { threshold: 0.5 });
-  
+
     circles.forEach((circle) => observer.observe(circle));
   });
+
+
 
 
   document.querySelectorAll('.btn-nav').forEach(button => {
