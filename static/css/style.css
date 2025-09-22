@@ -395,15 +395,6 @@ body {
     z-index: 10;
 }
 
-.baby-bg {
-    background-color: #fff8e1;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    max-width: 100%;   /* Was 320px */
-    width: 100%;       /* Ensure full width inside the column */
-    margin: 0 auto;
-}
-
 .floating-icons {
     position: absolute;
     top: 0;
@@ -554,10 +545,7 @@ body {
     transform: translateY(-5px);
 }
 
-.baby-bg img {
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
+
 
 .nutrition-section {
     background-color: #fff7f0;
@@ -863,13 +851,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.baby-bg {
-    background: linear-gradient(135deg, #fff4d1, #ffe0e9);
-    border-radius: 1rem;
-    transition: transform 0.3s ease;
-    max-width: 400px; /* limit max width */
-    margin: 0 auto;
-}
+
 
 .baby-bg:hover {
     transform: translateY(-5px);

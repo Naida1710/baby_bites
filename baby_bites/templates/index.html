@@ -21,9 +21,9 @@
             </div>
             
             <div class="row">
-                {% for post in post_list %}
+                {% for post in posts %}
                 <div class="col-md-4">
-                    <div class="card mb-4">
+                    <a href="{% url 'post_detail' post.slug %}" class="card mb-4 post-link" style="text-decoration: none; color: inherit;">
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in post.featured_image.url %}
@@ -36,11 +36,10 @@
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
-                            <a href="{% url 'post_detail' post.slug %}" class="post-link"></a>
-                            <a href="#" class="post-link">
+                            
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
-                            </a>
+                            
 
                             <hr />
                             <p class="post-date">
@@ -48,7 +47,7 @@
                                 Posted on {{ post.created_on|date:"M d, Y" }} at {{ post.created_on|time:"P" }}
                               </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 {% if forloop.counter|divisibleby:3 %}
             </div>

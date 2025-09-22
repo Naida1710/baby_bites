@@ -7,7 +7,7 @@ urlpatterns = [
     path('recipes/8-months/', views.recipes_8_months, name='recipes_8_months'),
     path('recipes/10-months/', views.recipes_10_months, name='recipes_10_months'),
     path('recipes/12-months/', views.recipes_12_months, name='recipes_12_months'),
-    path('<slug:slug>/', views.post_detail, name='post_detail'),
+    path('post<slug:slug>/', views.post_detail, name='post_detail'),
     path('<slug:slug>/edit_comment/<int:comment_id>',
          views.comment_edit, name='comment_edit'),
     path('<slug:slug>/delete_comment/<int:comment_id>',

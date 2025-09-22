@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 
 
+
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
@@ -68,6 +69,9 @@ def about_me(request):
         },
     )
 
+def home(request):
+    return render(request, 'baby_bites/home.html')
+
 
 class PostList(generic.ListView):
     model = Post
@@ -101,7 +105,7 @@ def post_detail(request, slug):
 
     return render(
         request,
-        "blog/post_detail.html",
+        "blog/post_detail.html", 
         {
             "post": post,
             "comments": comments,
