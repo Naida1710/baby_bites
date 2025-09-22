@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 
 
-
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments

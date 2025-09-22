@@ -1,19 +1,20 @@
+{% extends "base.html" %}
+{% load i18n static account socialaccount widget_tweaks %}
 
-{% load i18n static account socialaccount %}
+
 
 {% block head_title %}
     {% trans "Sign In" %}
 {% endblock head_title %}
 
 {% block content %}
+
 <div class="container py-5 my-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6 text-center">
 
             <div class="card shadow-lg p-5 baby-bg">
-                <!-- Optional image -->
-                <img src="{% static 'images/login-baby.png' %}" alt="Login Baby" class="img-fluid mb-4" style="max-height: 150px;">
-
+               
                 <h2 class="mb-3" style="color: #ff7597;">{% trans "Welcome Back!" %}</h2>
                 <p class="text-muted mb-4">{% trans "Please sign in to your account" %}</p>
 
@@ -32,13 +33,14 @@
                     {% csrf_token %}
                     <div class="mb-3 text-start">
                         {{ form.login.label_tag }}
-                        {{ form.login }}
+                        {{ form.login|add_class:"form-control rounded-pill py-2 px-4 shadow-sm" }}
                     </div>
-
+                    
                     <div class="mb-3 text-start">
                         {{ form.password.label_tag }}
-                        {{ form.password }}
+                        {{ form.password|add_class:"form-control rounded-pill py-2 px-4 shadow-sm" }}
                     </div>
+                    
 
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">

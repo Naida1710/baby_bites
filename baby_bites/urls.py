@@ -1,5 +1,7 @@
 from . import views
+from .views import home 
 from django.urls import path, include
+from allauth.account.views import LoginView
 
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
@@ -14,4 +16,5 @@ urlpatterns = [
          views.comment_delete, name='comment_delete'),
     path('about/', include('about.urls')),
     path('recipes/', views.recipe_list, name='recipe_list'),
+    path('accounts/login/', LoginView.as_view(), name='account_login')
 ]
