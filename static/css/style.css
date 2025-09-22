@@ -494,15 +494,6 @@ body {
     }
   }
 
-  .pastel-divider {
-    border: none;
-    height: 8px; /* thicker than before */
-    background-color:  #ff92ac; /* pastel pink */
-    border-radius: 4px;
-    width: 90%;
-    margin: 1.5rem auto 2rem auto;
-    opacity: 0.7; /* a little more visible */
-  }
 
   .intro-section h2 {
     font-family: 'Caveat', cursive;
