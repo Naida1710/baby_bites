@@ -19,6 +19,49 @@ The goals of the project are to:
 ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
 By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
+## Technologies Used
+
+### Backend
+- **Django 5.2** - High-level Python web framework that encourages rapid development and clean, pragmatic design.
+- **Python 3.13.2+** - Backend programming language used with Django.
+- **PostgreSQL** - Robust, scalable open-source relational database.
+- **Django Allauth** - Handles user authentication, registration, and account management.
+- **Django Summernote** - Text editor integrated into the Django admin for easier content creation.
+
+### Frontend
+- **HTML5** - Markup language.
+- **CSS3** - For styling and layout.
+- **JavaScript (ES6)** - Client-side interactivity.
+- **Bootstrap 5** - CSS framework used for responsive and mobile-first design.
+- **jQuery** - Simplifies DOM manipulation.
+
+### External Services and tools
+- **Cloudinary** - Cloud storage for user profile pictures.
+- **Heroku** - Cloud platform for deployment.
+- **GitHub** - Version control and code repository.
+- **Slack/Discord** - For updates and communication.
+- [Canva](https://www.canva.com/) - For Baby Bites logo image and README image.
+
+### Development Tools
+- **VS Code** - Code editor.
+- **Git** - Version control.
+- **PEP8** - Python style guide compliance.
+- **JSHint** - JavaScript code quality tool.
+- **W3C Validator** - HTML/CSS validation.
+
+### Key Packages
+- **Django 5.2.5** - Core web framework for building the application.
+- **django-allauth** - User authentication
+- **django-crispy-forms** - Form rendering library for better form styling.
+- **crispy-bootstrap5** - Bootstrap 5 template pack for crispy forms.
+- **django-summernote** - Rich text editor for admin interface.
+- **cloudinary** - Cloud storage service for user profile pictures and media files.
+- **dj-database-url** - Database URL configuration for Heroku deployment.
+- **gunicorn** - WSGI HTTP server used to serve the app on Heroku
+- **psycopg2** - PostgreSQL database adapter
+- **whitenoise** - For serving static files in production
+- **widget_tweaks** - Allows easier customization of form rendering
+
 ## Installation & Setup
 
 ### Prerequisites
