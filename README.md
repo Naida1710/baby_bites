@@ -19,6 +19,48 @@ The goals of the project are to:
 ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
 By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
+### User Stories
+
+#### **User Stories**
+
+**Navigation bar**
+1. The navbar should be displayed on all pages, except the Login, Logout and Registration pages.
+2. The navbar should include clearly labeled links (Home, About, All Recipes, Register, Login and Logout).
+3. The currently active page should be visually highlighted to help users identify their location within the site.Additionally, when hovering over Home, About, Login, Logout and Register navigation links, an animated underline should appear smoothly beneath the text to improve user experience and clarity.
+The All Recipes link should have a downward arrow icon next to the label and act as a dropdown menu toggle. When clicked on the arrow, it should display a dropdown list of age-based recipe categories (e.g., 6+ Months, 8+ Months, 10+ Months, 1 Year Old). Each dropdown item should be a clickable link that routes to the corresponding age-specific recipe page part.
+4. The navigation should dynamically adjust based on the user’s authentication status:
+- If the user is not authenticated: show Login and Register links.
+- If the user is authenticated: show the Logout link instead.
+5. The navbar should be responsive across all device sizes. On smaller screens, links should be collapsed into a dropdown (hamburger menu) for better usability.
+6. All navigation links should route the user to the correct pages:
+- Login, Logout, and Register should link to external pages (typically handled by Django AllAuth or similar).
+- Home and About should link to internal pages within the app (e.g., via {% url 'home' %} and {% url 'about' %}).
+
+**Login and logout**
+1. Users should be able to log in using their username or email along with their password.
+2. Upon successful login, users should be redirected to the homepage.
+3. When a user is logged in:
+- The Login and Register links should be hidden.
+- The Logout link should be visible instead.
+4. The navbar should clearly indicate the user is logged in by displaying their username or name.
+5. Users should be able to log out from their account.
+6. After logout, the user should be redirected to the homepage.
+7. The login form must validate all required fields and display appropriate error messages for missing or incorrect input.
+8. Failed login attempts should show clear and user-friendly error messages without disclosing any sensitive or security-related information.
+
+**Register an account**
+1. The user can register an account by providing a username, email, and password.
+2. The account should be created successfully only when all the entered details are valid.
+3. If a duplicate email address is used, the system should display a clear error message indicating the email is already registered.
+4. If any required fields are left blank, the system should prompt the user with an appropriate error message indicating which fields need to be filled.
+5. Upon successful registration, the user should receive feedback confirming that the account has been created successfully.
+6. Passwords should meet minimum security requirements, such as a minimum length, use of uppercase and lowercase letters, numbers, and/or special characters.
+7. Usernames should be unique across the system to prevent duplication.
+8. The email address should be validated to ensure it is in the correct format and must also be unique in the system.
+9. A UserProfile object (or equivalent user-related profile) should be automatically created and linked to the user upon registration.
+10. After successful registration, the user should be automatically logged in without needing to manually sign in.
+
+
 
 ### Design
 
@@ -28,7 +70,7 @@ The application uses a pink, green and grayish gradient theme throughout, mainta
 ![Colour Palette](staticfiles/images/Coolors.png)
 
 #### Typography
-The application uses Google Fonts **Caveat**, **Segoe UI** and **Lato** throughout.
+I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 - **Caveat**: Used for headings, brand elements, nutrition summary section and logo providing a casual, handwritten script font designed to feel friendly and approachable..
 - **Segoe UI**: Used for password confirmation email page providing cleand and readable UI elements.
