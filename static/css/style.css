@@ -2,6 +2,16 @@ body {
     background-color: #F9FAFC;
 }
 
+.love-spacing {
+    margin-top: 40px;
+    background-color: lightyellow;
+  }
+  
+  .love {
+    margin-top: 20px;
+  }
+  
+
 .card {
     opacity: 0;
     transform: translateY(20px);
