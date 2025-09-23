@@ -60,6 +60,20 @@ The All Recipes link should have a downward arrow icon next to the label and act
 9. A UserProfile object (or equivalent user-related profile) should be automatically created and linked to the user upon registration.
 10. After successful registration, the user should be automatically logged in without needing to manually sign in.
 
+**Baby Bites User Profile**
+1. Display user profile data including name, email, profile picture, type of surgery (free text input), and account creation date.
+2. Allow users to save and update their profile details in real-time, reflecting changes immediately on the page.
+3. If the user is not logged in, redirect them to the login page before allowing access to the profile.
+4. Ensure the profile page is accessible only to the logged-in user, preventing other users from viewing or editing someone else’s profile.
+
+**Admin - View Posts**
+1. Admin users can see all parents posts in the system.
+2. Posts should display the name of the author, date and time of posting.
+3. Appointments should be sorted by date and time.
+4. Admin can filter appointments by status (pending, confirmed, completed).
+5. Admin can search appointments by patient name or date.
+6. The admin dashboard should be accessible only to staff users.
+7. Appointments should show creation and update timestamps.
 
 
 ### Design
