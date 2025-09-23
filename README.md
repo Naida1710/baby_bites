@@ -19,11 +19,102 @@ The goals of the project are to:
 ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
 By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
+## Installation & Setup
+
+### Prerequisites
+- Python 3.13.2
+- GitHub account (for repository access)
+- A PostgreSQL database
+- A Cloudinary account (free tier is fine)
+
+### Local Development Setup
+
+1. **Fork and Clone the Repository**
+   - **Fork the Repository:**
+     - Go to the original repository on GitHub.
+     - Click the "Fork" button in the top-right corner.
+     - Select your GitHub account to create a fork.
+   
+   - **Clone Using VS Code:**
+     - Open VS Code.
+     - Type "Git: Clone" and select it.
+     - Enter your forked repository URL: ``.
+     - Choose a local folder to save the project.
+     - Click "Clone".
+     - VS Code will automatically open the project folder.
+
+2. **Set Up Virtual Environment**
+   - **Create Virtual Environment:**
+     - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open Command Palette.
+     - Type "Python: Create Environment" and select it.
+     - Choose "Venv" as the environment type.
+     - Select your Python interpreter (usually the latest version).
+     - Choose ".venv" as the environment name.
+     - VS Code will create the virtual environment automatically.
+   
+   - **Verify Virtual Environment:**
+     - Check that '.venv' is displayed in the bottom information bar (on the right hand side).
+
+3. **Install Dependencies**
+   - **Install from requirements.txt:**
+     - Ensure your virtual environment is activated (you should see `(.venv)` in terminal).
+     - Run: `pip install -r requirements.txt`.
+     - You should see a success message when installation is complete.
+   
+   - **Verify Installation:**
+     - Run: `pip list` to see all installed packages.
+     - You should see Django and other packages listed.
+
+4. **Environment Variables**
+   - **Create .env File:**
+     - In VS Code, right-click in the explorer panel (left sidebar).
+     - Select "New File".
+     - Name it exactly `.env` (with the dot).
+     - Add the following content:
+
+import os
+os.environ.setdefault("DATABASE_URL", <database_url_goes_here>)
+os.environ.setdefault("SECRET_KEY", <secret_key_goes_here>)
+os.environ.setdefault("CLOUDINARY_CLOUD_NAME", <cloud_name_goes_here>)
+os.environ.setdefault("CLOUDINARY_API_KEY", <api_key_goes_here>)
+os.environ.setdefault("CLOUDINARY_API_SECRET", <api_secret_goes_here>)
+
+5. **Database Setup**
+   - **Run Migrations:**
+     - Open VS Code terminal (ensure virtual environment is activated).
+     - Run: `python manage.py migrate`.
+     - Wait for all migrations to complete.
+
+6. **Create Superuser**
+   - **Set Up Admin Account:**
+     - In the terminal, run: `python manage.py createsuperuser`.
+     - Enter a username when prompted.
+     - Enter an email address when prompted.
+     - Enter and confirm a password when prompted.
+
+7. **Collect Static Files**
+   - **Prepare Static Files:**
+     - In the terminal, run: `python manage.py collectstatic`.
+     - Type "yes" when prompted to collect static files.
+     - Files will be copied to the `staticfiles` directory.
+
+8. **Run Development Server**
+   - **Start Local Server:**
+     - In the terminal, run: `python manage.py runserver`.
+     - You should see "Starting development server at http://127.0.0.1:8000/".
+     - Open your web browser and go to `http://127.0.0.1:8000/`.
+     - Your app should now be running locally.
+
+- **Cloudinary Setup**: Sign up for a free account at [cloudinary.com](https://cloudinary.com) and get your cloud name, API key, and API secret
+- **Database**: For local development, you can use SQLite (Django's default) or set up PostgreSQL
+- **Static Files**: The project uses Django's static file handling with Cloudinary for media files
+
+
 ## Deployment
 
 This project is deployed on [Heroku](https://www.heroku.com/). Follow these steps to deploy your own instance:
 
-### 1. Prepare for Deployment
+### 1. Steps for Deployment
 
 **Install Required Packages:**
 - Open VS Code terminal (ensure virtual environment is activated).
