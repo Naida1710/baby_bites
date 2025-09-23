@@ -23,11 +23,13 @@ By combining nutrition, convenience, and real-life practicality, Baby Bites help
 
 ### Prerequisites
 - Python 3.13.2
-- GitHub account (for repository access)
-- A PostgreSQL database
-- A Cloudinary account (free tier is fine)
+- Git and GitHub account 
+- PostgreSQL account
+- Cloudinary account 
+- Heroku account
+- Environment variables
 
-### Local Development Setup
+### Local Development Steps
 
 1. **Fork and Clone the Repository**
    - **Fork the Repository:**
