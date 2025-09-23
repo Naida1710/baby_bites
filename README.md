@@ -19,6 +19,14 @@ The goals of the project are to:
 ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
 By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
+
+### Design
+
+#### Colour Scheme
+The application uses a pink, green and grayish gradient theme throughout, maintaining visual consistency across all pages. The color palette was carefully selected using Coolers to give a professional appearance:
+
+![Colour Palette](staticfiles/images/Coolors.png)
+
 ## Testing
 
 ###
