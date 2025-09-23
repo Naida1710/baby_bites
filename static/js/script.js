@@ -18,38 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const circles = document.querySelectorAll(".animated-circle");
-
-    const animateCircle = (circle) => {
-      const value = +circle.dataset.value;
-      let current = 0;
-
-      const update = () => {
-        if (current <= value) {
-          circle.style.background = `conic-gradient(#ff9f68 ${current}%, #eee ${current}%)`;
-          circle.querySelector(".percent").textContent = `${current}%`;
-          current++;
-          requestAnimationFrame(update);
-        }
-      };
-
-      update();
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCircle(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    circles.forEach((circle) => observer.observe(circle));
-  });
-
+  
 
 
 

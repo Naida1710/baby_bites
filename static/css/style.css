@@ -733,8 +733,11 @@ body {
   }
   
 
-.nutrition-section {
+.container-banana {
     background: linear-gradient(to right, #d4fc79, #96e6a1);
+    max-width: 700px;
+        margin: 0 auto;
+        padding: 0 1rem;
 
   }
 
@@ -745,37 +748,7 @@ body {
     color: #444;
     text-align: center;
   }
-  
-  .circle {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin: auto;
-    border-radius: 50%;
-    background: conic-gradient(#ff9f68 0%, #eee 0%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .circle .percent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    background-color: white;
-    padding: 0.2rem 0.4rem;
-    border-radius: 8px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-  
-  .circle .label {
-    display: none;
-  }
+
   
 
 .nav-spacing .nav-item {

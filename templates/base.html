@@ -331,50 +331,25 @@
       {% endif %} 
       {% endblock content %}
     </main>
-    <section class="nutrition-section py-5">
-      <div class="container">
-        <div class="text-center mb-4">
-          <h2 style="font-family: 'Caveat', cursive; color: #ff7597; font-size: 2.5rem;">
-            🥕 Nutrition Summary
-          </h2>
-          <p class="text-muted">How balanced are your baby's meals today?</p>
-        </div>
+    <section class="feeding-tip-section py-5 text-center">
+      <div class="container-banana mx-auto">
+        <h2 style="font-family: 'Caveat', cursive; color: #ff7597; font-size: 2.5rem;">
+          👶 Feeding Tip of the Day
+        </h2>
+        <p class="text-muted mx-auto" style="max-width: 600px;">
+          At <strong>8 months</strong>, most babies are ready for soft finger foods. Try tiny pieces of banana or avocado!<br>
+          Don’t worry if your baby doesn’t finish — it’s all about exploring textures.
+        </p>
     
-        <div class="row justify-content-center text-center">
-          <!-- Protein -->
-          <div class="col-md-3 mb-4">
-            <div class="label-top">Protein</div>
-            <div class="circle animated-circle" data-value="70">
-              <span class="percent">0%</span>
-            </div>
-          </div>
-    
-          <!-- Carbs -->
-          <div class="col-md-3 mb-4">
-            <div class="label-top">Carbs</div>
-            <div class="circle animated-circle" data-value="60">
-              <span class="percent">0%</span>
-            </div>
-          </div>
-    
-          <!-- Fats -->
-          <div class="col-md-3 mb-4">
-            <div class="label-top">Fats</div>
-            <div class="circle animated-circle" data-value="50">
-              <span class="percent">0%</span>
-            </div>
-          </div>
-    
-          <!-- Fiber -->
-          <div class="col-md-3 mb-4">
-            <div class="label-top">Fiber</div>
-            <div class="circle animated-circle" data-value="80">
-              <span class="percent">0%</span>
-            </div>
-          </div>
+        <!-- Optional: Add a visual for fun -->
+        <div class="mt-4">
+          <img src="{% static 'images/banana.png' %}" alt="Banana icon" style="height: 60px; margin-right: 20px;">
+          <img src="{% static 'images/avocado.png' %}" alt="Avocado icon" style="height: 60px;">
         </div>
       </div>
     </section>
+    
+    
 
       <!-- Footer -->
       <footer class="footer dark-bg py-4 mt-5">
