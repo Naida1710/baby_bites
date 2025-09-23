@@ -27,6 +27,13 @@ The application uses a pink, green and grayish gradient theme throughout, mainta
 
 ![Colour Palette](staticfiles/images/Coolors.png)
 
+#### Typography
+The application uses Google Fonts **Caveat**, **Segoe UI** and **Lato** throughout.
+
+- **Caveat**: Used for headings, brand elements, nutrition summary section and logo providing a casual, handwritten script font designed to feel friendly and approachable..
+- **Segoe UI**: Used for password confirmation email page providing cleand and readable UI elements.
+- **Lato**: Used for password reset page.
+
 ## Testing
 
 ###
