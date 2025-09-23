@@ -19,6 +19,16 @@ The goals of the project are to:
 ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
 By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
+## Testing
+
+###
+I performed manual testing on each page and feature of the app to test its functionality and responsiveness.
+
+### Validation Tools Used
+- **Python**: PEP8 compliance with proper formatting and documentation.
+- **JavaScript**: JSHint validation with ES6 compatibility.
+- **HTML/CSS**: W3C validation for markup and styling.
+
 ## Technologies Used
 
 ### Backend
