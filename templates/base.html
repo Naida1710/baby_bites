@@ -1,12 +1,12 @@
-{% load static %}
-
 <!DOCTYPE html>
+{% load static %} 
 <html class="h-100" lang="en">
   <head>
-    <title>Baby Bites</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Title -->
+    <title>Baby Bites</title>
     <!-- Favicon links go here -->
-    <!-- Favicon Setup (Correct Paths) -->
     <link
       rel="icon"
       href="{% static 'favicon/favicon-32x32.png' %}"
@@ -30,6 +30,7 @@
       href="{% static 'favicon/favicon-16x16.png' %}"
     />
     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
+    
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -44,11 +45,13 @@
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
     <!-- Font Awesome CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
@@ -56,8 +59,10 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
   </head>
   <body class="d-flex flex-column h-100 main-bg">
     <main class="flex-shrink-0 main-bg">
@@ -66,9 +71,12 @@
       {% else %}
       <p class="text-end m-3">You are not logged in</p>
       {% endif %}
-      <!-- Navigation -->
+
+      <!-- Navigation bar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
+
+          {# Centered logo linking to homepage #}
           <a
             class="navbar-brand mx-auto d-block text-center"
             href="{% url 'home' %}"
@@ -79,6 +87,8 @@
               style="height: 100px"
             />
           </a>
+
+          {# Mobile menu toggle button #}
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -90,16 +100,21 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+
+          {# Collapsible navbar menu items #}
           <div class="collapse navbar-collapse text-center" id="navbarText">
             <ul class="navbar-nav mx-auto text-center nav-spacing">
+
+              {# Home link with active class toggle #}
               <li class="nav-item">
-                <a
-                  class="nav-link home-link {% if request.path == home_url %}active{% endif %}"
+                <a class="nav-link home-link {% if request.path == home_url %}active{% endif %}"
                   aria-current="page"
                   href="{% url 'home' %}"
                   >Home</a
                 >
               </li>
+
+              {# Dropdown menu for All Recipes by age group #}
               <li class="nav-item dropdown dropdown-wrapper">
                 <a
                   class="nav-link dropdown-toggle green-link d-flex justify-content-center align-items-center"
@@ -224,8 +239,7 @@
       <!-- Intro Paragraph + Image/Text Side by Side -->
       <div class="container mt-5 pt-5">
         <div class="row align-items-center">
-          <!-- Left Column: Paragraph -->
-          <!-- Left Column: Intro Section -->
+        
           <div class="col-md-7 intro-section pe-md-5">
             <h2>Your baby’s first bites start here.</h2>
             <p>
@@ -265,6 +279,7 @@
           </div>
           <!-- Right Column: Image + Text -->
           <div class="col-md-5 text-center ps-md-4">
+
             <!-- Added padding start on md+ -->
             <div class="baby-bg mx-auto" style="max-width: 200px">
               <img
@@ -283,10 +298,11 @@
         </div>
       </div>
       {% block content %}
-      <!-- Your page-specific content goes here -->
+
       <!-- Pagination Controls -->
       {% if page_obj and paginator %}
       <div class="d-flex justify-content-center align-items-center my-4">
+
         <!-- Previous button -->
         {% if page_obj.has_previous %}
         <a
@@ -299,6 +315,7 @@
           Previous
         </button>
         {% endif %}
+
         <!-- Page numbers -->
         <nav aria-label="Page navigation">
             <ul class="pagination">
@@ -317,6 +334,7 @@
               
           </ul>
         </nav>
+
         <!-- Next button -->
         {% if page_obj.has_next %}
         <a
@@ -331,17 +349,18 @@
       {% endif %} 
       {% endblock content %}
     </main>
+
+    <!-- A Tip od the Day section -->
     <section class="feeding-tip-section py-5 text-center">
       <div class="container-banana mx-auto">
         <h2 style="font-family: 'Caveat', cursive; color: #ff7597; font-size: 2.5rem;">
           👶 Feeding Tip of the Day
         </h2>
-        <p class="text-muted mx-auto" style="max-width: 600px;">
-          At <strong>8 months</strong>, most babies are ready for soft finger foods. Try tiny pieces of banana or avocado!<br>
-          Don’t worry if your baby doesn’t finish — it’s all about exploring textures.
+        <p id="feeding-tip" class="text-muted mx-auto" style="max-width: 600px;">
+        
         </p>
     
-        <!-- Optional: Add a visual for fun -->
+        <!-- Add a visual for fun -->
         <div class="mt-4">
           <img src="{% static 'images/banana.png' %}" alt="Banana icon" style="height: 60px; margin-right: 20px;">
           <img src="{% static 'images/avocado.png' %}" alt="Avocado icon" style="height: 60px;">
@@ -376,11 +395,15 @@
       
     <!-- Bootstrap JS Bundle -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"
-    ></script>
-    {% block extras %} {% endblock %}
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"
+  ></script>
+  
+  <!-- ✅ Your custom JavaScript -->
+  <script src="{% static 'js/script.js' %}" defer></script>
+  
+  {% block extras %}{% endblock %}
     
   </body>
 </html>

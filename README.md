@@ -75,6 +75,70 @@ The All Recipes link should have a downward arrow icon next to the label and act
 6. The admin dashboard should be accessible only to staff users.
 7. Appointments should show creation and update timestamps.
 
+### Homepage (index.html)
+* **Appointment Booking Form** - The main feature allowing users to book appointments with healthcare professionals. Users can select date, time, appointment type, and add optional notes. The form includes real-time validation and prevents booking past dates or unavailable time slots. This ensures users can only book valid appointments.
+
+
+  ![Homepage Booking Form](documentation/homebooking.png)
+
+
+* **Welcome Section** - Displays a welcoming message and brief introduction to Baby Bites blog site. This section introduces the 
+
+
+  ![Homepage Welcome Section](documentation/welcomemessagehome.png)
+
+
+* **Mobile Homepage** - Responsive design showing how the homepage adapts to mobile devices. This ensures users can access the service easily from their smartphones and tablets.
+
+
+  ![Mobile Homepage](documentation/bookingmobhome.png)
+
+
+* **Appointment Success Message** - Confirmation message displayed after successful appointment booking with details and next steps. This provides users with reassurance that their booking has been received.
+
+
+  ![Appointment Success](documentation/homeappsuccess.png)
+
+### Authentication Pages
+* **Login Page** - The login form with username/email and password fields. Includes validation and error message display for failed login attempts.
+Includes Take Me Home button which directs the user to homepage.
+Includes Create an Account option that takes them to the registration/signup page.
+Includes Forgot Password Recover. If a user forgets their password, they can click the "Forgot Password?" link. This directs them to a secure form where they can request a password reset email. From there, they can follow the link provided to set a new password.It also includes AUtofill Support. Autofill Support
+Login forms are optimized for browser autofill, allowing users to log in more quickly with saved credentials.
+
+
+  ![Login Page](staticfiles/images/signin1.png)
+
+  ![Login Page](staticfiles/images/signin.png)
+
+  ![Login Page](staticfiles/images/signin.png)
+
+
+* **Login Success** - Confirmation message displayed after successful login.
+
+
+  ![Login Affirmation](staticfiles/images/signinmessage.png)
+
+
+* **Registration Page** - User registration form with username, email, and password fields. All required fields enforce validation to prevent accidental skips, displaying browser prompts if left empty. Includes a “Take me home” button for easy navigation back to the homepage.
+
+
+  ![Registration Page](staticfiles/images/reg%201.png)
+
+  ![Registration Page](staticfiles/images/regi.png)
+
+
+* **Logout Page** - Includes a “Take me home” button for easy navigation back to the homepage.
+
+
+  ![Logout Page](staticfiles/images/logoutpage.png)
+
+
+* **Logout Success** - Confirmation message displayed after successful logout.
+
+
+  ![Logout Success](documentation/signoutsuccess.png)
+
 
 ### Design
 
