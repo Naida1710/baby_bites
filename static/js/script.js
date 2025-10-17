@@ -19,12 +19,29 @@
     }
 
     const tips = [
-      "At <strong>8 months</strong>, most babies are ready for soft finger foods. Try tiny pieces of banana or avocado!<br>Don’t worry if your baby doesn’t finish — it’s all about exploring textures.",
-      "Introduce a sippy cup with water during mealtime to help develop drinking skills.",
-      "Avoid honey before 1 year — it can cause infant botulism.",
-      "Let your baby touch, squish, and play with food. It helps with sensory learning.",
-      "Try iron-rich foods like mashed lentils or pureed meats around 6 months."
-    ];
+      "At <strong>8 months</strong>, most babies are ready for soft finger foods. Try small pieces of banana or avocado. Exploring textures is just as important as eating!",
+      
+      "Offer a <strong>sippy cup</strong> with water during meals. It builds coordination and helps your baby practice drinking from a cup.",
+      
+      "Skip <strong>honey</strong> until after 12 months — it can carry bacteria that cause infant botulism, a serious illness in babies.",
+      
+      "Let your baby <strong>play with food</strong> — squishing and touching helps them learn about textures and builds confidence with new tastes.",
+      
+      "Start offering <strong>iron-rich foods</strong> like mashed lentils, soft tofu, or pureed meats from 6 months to support healthy development.",
+
+      "Offer a variety of <strong>colors and textures</strong> on the plate. It encourages curiosity and helps build a love for healthy foods early on.",
+
+  "Try soft-cooked <strong>veggies</strong> like carrots or zucchini cut into baby-safe pieces. Steamed sticks are perfect for little hands to grab.",
+
+  "Around 7–8 months, try introducing <strong>allergens</strong> like peanut butter (thinned) or eggs — but always one at a time and in small amounts.",
+
+  "Babies learn by watching — eat together and let your little one <strong>see you enjoying healthy food</strong>. Mealtime is social, too!",
+
+  "Don’t stress about mess — <strong>messy meals</strong> are normal and help with motor skills. Keep wipes nearby and let them explore freely!"
+]
+
+    
+    
     
     let currentTip = 0;
     const tipElement = document.getElementById("feeding-tip");
