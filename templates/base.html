@@ -100,7 +100,8 @@ crossorigin="anonymous"
   
       <!-- Collapsible menu -->
       <div class="collapse navbar-collapse mt-3 mt-lg-0 justify-content-center justify-content-lg-end" id="navbarText">
-        <ul class="navbar-nav text-center text-lg-end">
+        <ul class="navbar-nav text-center text-lg-end d-lg-flex align-items-lg-center gap-lg-4">
+
           <li class="nav-item">
             <a class="nav-link home-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
           </li>
