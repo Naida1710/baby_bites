@@ -589,48 +589,9 @@ body {
 
 
 
-.nutrition-section {
-    background-color: #fff7f0;
-  }
 
-  .label-top {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.6rem;
-    color: #444;
-    text-align: center;
-  }
   
-  .circle {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin: auto;
-    border-radius: 50%;
-    background: conic-gradient(#ff9f68 0%, #eee 0%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .circle .percent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    background-color: white;
-    padding: 0.2rem 0.4rem;
-    border-radius: 8px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-  
-  .circle .label {
-    display: none;
-  }
+
   
 
 .nav-spacing .nav-item {
@@ -650,6 +611,7 @@ body {
     padding-bottom: 4px;
     transition: color 0.3s ease, transform 0.3s ease;
 }
+
 
 /* Hover effect - subtle shift + color change */
 .navbar-nav .nav-link.register-link:hover,

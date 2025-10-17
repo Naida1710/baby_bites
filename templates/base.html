@@ -351,21 +351,23 @@
     </main>
 
     <!-- A Tip od the Day section -->
-    <section class="feeding-tip-section py-5 text-center">
+    <section class="feeding-tip-section py-5 text-center my-5">
       <div class="container-banana mx-auto">
-        <h2 style="font-family: 'Caveat', cursive; color: #ff7597; font-size: 2.5rem;">
+        <h2 class="feeding-title mb-5">
           👶 Feeding Tip of the Day
         </h2>
-        <p id="feeding-tip" class="text-muted mx-auto" style="max-width: 600px;">
-        
-        </p>
-    
-        <!-- Add a visual for fun -->
-        <div class="mt-4">
-          <img src="{% static 'images/banana.png' %}" alt="Banana icon" style="height: 60px; margin-right: 20px;">
-          <img src="{% static 'images/avocado.png' %}" alt="Avocado icon" style="height: 60px;">
+        <div class="tip-box p-5 mx-auto">
+          <p id="feeding-tip" class="tip-text mb-0">
+            <!-- JavaScript will inject tips here -->
+          </p>
         </div>
-      </div>
+    
+       <!-- Cute icons -->
+    <div class="mt-4 d-flex justify-content-center gap-3">
+      <img src="{% static 'images/banana.png' %}" alt="Banana icon" style="height: 60px;">
+      <img src="{% static 'images/avocado.png' %}" alt="Avocado icon" style="height: 60px;">
+    </div>
+  </div>
     </section>
     
     
