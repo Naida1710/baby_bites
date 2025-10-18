@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="card p-4 baby-bg shadow fadeInCard">
+    <!-- Post Title -->
+    <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
+      {{ post.title }}
+    </h1>
+    <p class="text-muted text-center">
+      {{ post.created_on|date:"F d, Y" }} by {{ post.author }}
+    </p>
+
+    <hr class="pastel-divider">
+
+    <!-- Post Content -->
+    <div class="mb-4">
+      {{ post.content|linebreaks }}
+    </div>
+
+    <!-- Comments Section -->
+    <h3 class="mt-5 mb-3 text-center" style="color: #4a4a4a;">Comments ({{ comment_count }})</h3>
+    
+    <div class="comment-grid">
+      {% for comment in comments %}
+        <div class="comment-card">
+          <p><strong>{{ comment.author }}</strong></p>
+          <p>{{ comment.body }}</p>
+          <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
+        </div>
+      {% empty %}
+        <p class="text-center">No comments yet. Be the first to comment!</p>
+      {% endfor %}
+    </div>
+
+    <!-- Comment Form -->
+    {% if user.is_authenticated %}
+      <div class="mt-5">
+        <h4>Leave a Comment</h4>
+        <form method="post">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+          <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+      </div>
+    {% else %}
+      <p class="text-center mt-4">
+        Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.
+      </p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

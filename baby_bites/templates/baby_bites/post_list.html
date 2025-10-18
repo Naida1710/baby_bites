@@ -9,15 +9,42 @@
     <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">Latest Posts</h1>
     <hr class="pastel-divider">
 
-    {% for post in object_list %}
-      <div class="mb-4">
-        <h3><a href="{% url 'post_detail' slug=post.slug %}" class="green-link">{{ post.title }}</a></h3>
-        <p class="text-muted">{{ post.created_on|date:"F d, Y" }}</p>
-        <p>{{ post.excerpt }}</p>
+    <!-- Post Grid -->
+    <div class="post-grid">
+      {% for post in posts %}
+        <div class="post-card">
+          <h3>
+            <a href="{% url 'post_detail' slug=post.slug %}" class="green-link">{{ post.title }}</a>
+          </h3>
+          <p class="text-muted">{{ post.created_on|date:"F d, Y" }}</p>
+          <p>{{ post.excerpt|truncatewords:20 }}</p>
+        </div>
+      {% empty %}
+        <p>No posts found.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination: Place it right here -->
+    {% if is_paginated %}
+      <div class="pagination mt-4 d-flex justify-content-center">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary me-2">Previous</a>
+        {% endif %}
+
+        {% for num in paginator.page_range %}
+          <a href="?page={{ num }}" class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
+            {{ num }}
+          </a>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary ms-2">Next</a>
+        {% endif %}
       </div>
-    {% empty %}
-      <p>No posts found.</p>
-    {% endfor %}
+    {% endif %}
+
   </div>
 </div>
 {% endblock %}
+
+

@@ -74,7 +74,7 @@ def home(request):
 
 class PostList(generic.ListView):
     model = Post
-    template_name = "index.html"
+    template_name = "baby_bites/post_list.html"
     paginate_by = 6
     context_object_name = 'posts'
 
@@ -104,7 +104,7 @@ def post_detail(request, slug):
 
     return render(
         request,
-        "blog/post_detail.html", 
+        "baby_bites/post_detail.html", 
         {
             "post": post,
             "comments": comments,
