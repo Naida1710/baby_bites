@@ -142,6 +142,31 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.leave-comment-section {
+  text-align: center;
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+
+.leave-comment-section form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leave-comment-section form p {
+  width: 100%;
+  max-width: 400px;
+  margin: 0.5rem 0;
+}
+
+.leave-comment-section form button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+}
+
+
 /* Comment section wrapper - make it wider */
 .comment-section-wrapper {
   width: 50%; /* full width of parent */
