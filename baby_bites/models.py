@@ -37,6 +37,11 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default="6_months")
+    likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.title

@@ -7,6 +7,18 @@ from .forms import CommentForm
 from .forms import CollaborateForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def toggle_like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect('post_detail', pk=post.pk)
 
 
 def comment_edit(request, slug, comment_id):

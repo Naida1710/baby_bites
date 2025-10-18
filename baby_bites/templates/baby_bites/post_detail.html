@@ -21,6 +21,20 @@
       {{ post.content|linebreaks }}
     </div>
 
+    <!-- Like/Unlike Button -->
+<div class="text-center mt-4">
+  <form action="{% url 'toggle_like' post.pk %}" method="POST">
+    {% csrf_token %}
+    {% if user in post.likes.all %}
+      <button class="btn btn-danger" type="submit">Unlike ❤️</button>
+    {% else %}
+      <button class="btn btn-outline-danger" type="submit">Like ♡</button>
+    {% endif %}
+    <p class="mt-2 text-muted">Likes: {{ post.total_likes }}</p>
+  </form>
+</div>
+
+
     <!-- Comments Section -->
     <div class="comment-section-wrapper">
     <h3 class="mt-5 mb-3 text-center" style="color: #4a4a4a;">Comments ({{ comment_count }})</h3>
