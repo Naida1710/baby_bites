@@ -40,6 +40,9 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
 
 
+    
+
+
     def total_likes(self):
         return self.likes.count()
 

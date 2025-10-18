@@ -18,7 +18,8 @@
 
     <!-- Post Content -->
     <div class="mb-4">
-      {{ post.content|linebreaks }}
+      {{ post.content|striptags }}
+
     </div>
 
     <!-- Like/Unlike Button -->
