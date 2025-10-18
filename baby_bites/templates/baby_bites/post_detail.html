@@ -22,6 +22,7 @@
     </div>
 
     <!-- Comments Section -->
+    <div class="comment-section-wrapper">
     <h3 class="mt-5 mb-3 text-center" style="color: #4a4a4a;">Comments ({{ comment_count }})</h3>
     
     <div class="comment-grid">
@@ -35,6 +36,7 @@
         <p class="text-center">No comments yet. Be the first to comment!</p>
       {% endfor %}
     </div>
+  </div>
 
     <!-- Comment Form -->
     {% if user.is_authenticated %}
