@@ -9,6 +9,15 @@
     <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">All recipes</h1>
     <hr class="pastel-divider">
 
+    <!-- Sort Filter Dropdown -->
+    <form method="get" class="d-flex justify-content-end mb-3" style="gap: 0.5rem;">
+      <label for="order-select" class="form-label align-self-center mb-0 me-2" style="font-weight: 600;">Sort by:</label>
+      <select id="order-select" name="order" class="form-select w-auto" onchange="this.form.submit()">
+        <option value="latest" {% if request.GET.order == 'latest' or not request.GET.order %}selected{% endif %}>Latest</option>
+        <option value="earliest" {% if request.GET.order == 'earliest' %}selected{% endif %}>Earliest</option>
+      </select>
+    </form>
+
     <!-- Post Grid -->
     <div class="post-grid">
       {% for post in posts %}
@@ -28,17 +37,17 @@
     {% if is_paginated %}
       <div class="pagination mt-4 d-flex justify-content-center">
         {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary me-2">Previous</a>
+          <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn btn-outline-secondary me-2">Previous</a>
         {% endif %}
 
         {% for num in paginator.page_range %}
-          <a href="?page={{ num }}" class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
+          <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
             {{ num }}
           </a>
         {% endfor %}
 
         {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary ms-2">Next</a>
+          <a href="?page={{ page_obj.next_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn btn-outline-secondary ms-2">Next</a>
         {% endif %}
       </div>
     {% endif %}
@@ -46,5 +55,4 @@
   </div>
 </div>
 {% endblock %}
-
 
