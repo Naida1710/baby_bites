@@ -1,15 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Create a New Recipe{% endblock %}
+{% block title %}Create a Recipe{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2>Share a New Baby Recipe</h2>
-  <form method="post" enctype="multipart/form-data" class="mt-4">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Publish</button>
-  </form>
+<div class="container py-5 fadeInCard">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card p-4 baby-bg shadow">
+        <h2 class="text-center mb-4" style="font-family: 'Caveat', cursive; color: #ff7597;">
+          🍓 Share Your Baby-Approved Recipe
+        </h2>
+        <p class="text-center text-muted mb-4">
+          Fill out the form below to add your recipe to the Baby Bites community!
+        </p>
+
+        <form method="POST" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label fw-bold">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% if field.errors %}
+                <div class="text-danger small">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+
+          <div class="d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2">
+              <i class="fas fa-plus-circle me-2"></i> Submit Recipe
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
