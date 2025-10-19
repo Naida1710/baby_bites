@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Latest Blog Posts</h1>
+    
+    <div class="row image-container">
+        {% for post in post_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+
+                <!-- Your image snippet starts here -->
+                {% if "placeholder" in post.featured_image.url %}
+                <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                {% else %}
+                <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                {% endif %}
+                <div class="image-flash">
+                    <!-- You can add some overlay or label here if needed -->
+                </div>
+                <!-- Image snippet ends -->
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Read more</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No blog posts yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

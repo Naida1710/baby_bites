@@ -8,6 +8,15 @@ from .forms import CollaborateForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from .models import Post  
+
+
+def index(request):
+    posts = Post.objects.all()  # or your queryset
+    context = {
+        'post_list': posts,
+    }
+    return render(request, 'openid/index.html', context)
 
 @login_required
 def toggle_like(request, pk):

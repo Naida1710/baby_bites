@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from ckeditor.fields import RichTextField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -17,6 +18,7 @@ class About(models.Model):
     profile_image = CloudinaryField('image', default='placeholder')
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
+    content = RichTextField()
 
     def __str__(self):
         return self.title

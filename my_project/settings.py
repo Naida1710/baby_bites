@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'about',
     'widget_tweaks',
+    'ckeditor',
+
 
 ]
 
