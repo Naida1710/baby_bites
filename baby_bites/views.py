@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, redirect
+
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Post, Comment
@@ -111,19 +113,26 @@ def post_detail(request, slug):
     comment_count = comments.count()
 
     if request.method == "POST":
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.post = post
-            comment.author = request.user
-            comment.save()
-            return redirect("post_detail", slug=slug)
+        if request.user.is_authenticated:
+            comment_form = CommentForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.post = post
+                comment.author = request.user
+                comment.save()
+                messages.success(request, "Your comment has been submitted and is awaiting approval.")
+                return redirect("post_detail", slug=slug)
+            else:
+                messages.error(request, "There was an error with your comment. Please try again.")
+        else:
+            messages.error(request, "You must be logged in to leave a comment.")
+            return redirect(f"{redirect('account_login').url}?next={request.path}")
     else:
         comment_form = CommentForm()
 
     return render(
         request,
-        "baby_bites/post_detail.html", 
+        "baby_bites/post_detail.html",
         {
             "post": post,
             "comments": comments,
