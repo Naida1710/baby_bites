@@ -135,33 +135,23 @@ def post_detail(request, slug):
 
 # views.py
 def recipe_list(request):
-    age_filter = request.GET.get('age')  # e.g. '6', '10', etc.
-    order = request.GET.get('order', 'latest')  # default to latest
-
-    recipes = Recipe.objects.all()
-
-    if age_filter:
-        recipes = recipes.filter(age=age_filter)
-
+    order = request.GET.get('order', 'latest')
     if order == 'earliest':
-        recipes = recipes.order_by('created_on')
-    else:  # latest or any other value
-        recipes = recipes.order_by('-created_on')
+        post_list = Post.objects.all().order_by('created_on')
+    else:  # latest by default
+        post_list = Post.objects.all().order_by('-created_on')
 
-    paginator = Paginator(recipes, 10)  # Show 10 recipes per page
+    paginator = Paginator(post_list, 10)  # Show 10 posts per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
-        'posts': page_obj.object_list,  # Use 'posts' to match your template
+        'posts': page_obj,
+        'is_paginated': page_obj.has_other_pages(),
         'page_obj': page_obj,
         'paginator': paginator,
-        'selected_age': age_filter,
-        'order': order,
     }
-
     return render(request, 'baby_bites/post_list.html', context)
-
 
 def profile_page(request):
     user = get_object_or_404(User, pk=request.user.pk)
