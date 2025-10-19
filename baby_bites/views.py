@@ -113,20 +113,19 @@ def post_detail(request, slug):
     comment_count = comments.count()
 
     if request.method == "POST":
-        if request.user.is_authenticated:
-            comment_form = CommentForm(data=request.POST)
-            if comment_form.is_valid():
-                comment = comment_form.save(commit=False)
-                comment.post = post
-                comment.author = request.user
-                comment.save()
-                messages.success(request, "Your comment has been submitted and is awaiting approval.")
-                return redirect("post_detail", slug=slug)
-            else:
-                messages.error(request, "There was an error with your comment. Please try again.")
-        else:
-            messages.error(request, "You must be logged in to leave a comment.")
-            return redirect(f"{redirect('account_login').url}?next={request.path}")
+        if not request.user.is_authenticated:
+            messages.error(request, "You must be logged in to comment.")
+            return redirect("account_login")
+
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.author = request.user
+            comment.approved = True  # ✅ Automatically approve
+            comment.save()
+            messages.success(request, "Your comment was posted successfully.")
+            return redirect("post_detail", slug=slug)
     else:
         comment_form = CommentForm()
 
