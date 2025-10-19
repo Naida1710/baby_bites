@@ -5,74 +5,81 @@
 
 {% block content %}
 <div class="container mt-5 mb-5">
-  <div class="card p-4 baby-bg shadow fadeInCard">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">  <!-- Adjust width here -->
 
-    <!-- ✅ Back to Recipes Button -->
-    <a href="{% url 'index' %}" class="btn btn-outline-primary mb-3">
-      ← Back to Recipes
-    </a>
+      <div class="card p-4 baby-bg shadow fadeInCard">
 
-    <!-- Post Title -->
-    <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
-      {{ post.title }}
-    </h1>
-    <p class="text-muted text-center">
-      {{ post.created_on|date:"F d, Y" }} by {{ post.author }}
-    </p>
+        <!-- ✅ Back to Recipes Button -->
+        <a href="{% url 'index' %}" class="btn btn-outline-primary mb-3">
+          ← Back to Recipes
+        </a>
 
-    <hr class="pastel-divider">
+        <!-- Post Title -->
+        <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
+          {{ post.title }}
+        </h1>
+        <p class="text-muted text-center">
+          {{ post.created_on|date:"F d, Y" }} by {{ post.author }}
+        </p>
 
-    <!-- Post Content -->
-    <div class="mb-4">
-      {{ post.content|striptags }}
-    </div>
+        <hr class="pastel-divider">
 
-    <!-- Like/Unlike Button -->
-    <div class="text-center mt-4">
-      <form action="{% url 'toggle_like' post.pk %}" method="POST">
-        {% csrf_token %}
-        {% if user in post.likes.all %}
-          <button class="btn btn-danger" type="submit">Unlike ❤️</button>
-        {% else %}
-          <button class="btn btn-outline-danger" type="submit">Like ♡</button>
-        {% endif %}
-        <p class="mt-2 text-muted">Total: {{ post.total_likes }}</p>
-      </form>
-    </div>
+        <!-- Post Content -->
+        <div class="mb-4">
+          {{ post.content|striptags }}
+        </div>
 
-    <!-- Comments Section -->
-    <div class="comment-section-wrapper">
-      <h3 class="mt-5 mb-3 text-center" style="color: #4a4a4a;">Comments ({{ comment_count }})</h3>
-      <div class="comment-grid">
-        {% for comment in comments %}
-          <div class="comment-card">
-            <p><strong>{{ comment.author }}</strong></p>
-            <p>{{ comment.body }}</p>
-            <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
+        <!-- Like/Unlike Button -->
+        <div class="text-center mt-4">
+          <form action="{% url 'toggle_like' post.pk %}" method="POST">
+            {% csrf_token %}
+            {% if user in post.likes.all %}
+              <button class="btn btn-danger" type="submit">Unlike ❤️</button>
+            {% else %}
+              <button class="btn btn-outline-danger" type="submit">Like ♡</button>
+            {% endif %}
+            <p class="mt-2 text-muted">Total: {{ post.total_likes }}</p>
+          </form>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comment-section-wrapper">
+          <h3 class="mt-5 mb-3 text-center" style="color: #4a4a4a;">Comments ({{ comment_count }})</h3>
+          <div class="comment-grid">
+            {% for comment in comments %}
+              <div class="comment-card">
+                <p><strong>{{ comment.author }}</strong></p>
+                <p>{{ comment.body }}</p>
+                <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
+              </div>
+            {% empty %}
+              <p class="text-center">No comments yet. Be the first to comment!</p>
+            {% endfor %}
           </div>
-        {% empty %}
-          <p class="text-center">No comments yet. Be the first to comment!</p>
-        {% endfor %}
+        </div>
+
+        <!-- Comment Form -->
+        {% if user.is_authenticated %}
+        <div class="leave-comment-section mt-5">
+          <h4>Leave a Comment</h4>
+          <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+          </form>
+        </div>
+        {% else %}
+        <p class="text-center mt-4">
+          Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.
+        </p>
+        {% endif %}
+
       </div>
-    </div>
 
-    <!-- Comment Form -->
-    {% if user.is_authenticated %}
-    <div class="leave-comment-section mt-5">
-      <h4>Leave a Comment</h4>
-      <form method="post">
-        {% csrf_token %}
-        {{ comment_form.as_p }}
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
-      </form>
     </div>
-    {% else %}
-    <p class="text-center mt-4">
-      Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.
-    </p>
-    {% endif %}
-
   </div>
 </div>
 {% endblock %}
+
 
