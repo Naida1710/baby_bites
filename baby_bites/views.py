@@ -12,8 +12,22 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .models import Post
 from .models import Recipe
+from .forms import PostForm
 
-        
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)  # Don't save yet
+            post.author = request.user      # Set the author to the logged-in user
+            post.save()                    # Now save
+            return redirect('post_detail', slug=post.slug)
+    else:
+        form = PostForm()
+    return render(request, 'create_post.html', {'form': form})
+
+    
 
 def comment_edit(request, slug, comment_id):
     """

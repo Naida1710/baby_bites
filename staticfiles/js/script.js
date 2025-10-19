@@ -1,146 +1,126 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const dropdownToggle = document.getElementById("recipesDropdown");
-    const dropdownMenu = document.querySelector("#recipesDropdown + .dropdown-menu");
-    const dropdownIcon = document.querySelector("#dropdown-icon i");
-
-    if (dropdownToggle && dropdownMenu && dropdownIcon) {
-      // When dropdown is shown
-      dropdownToggle.addEventListener("shown.bs.dropdown", function () {
-        dropdownIcon.classList.remove("fa-chevron-down");
-        dropdownIcon.classList.add("fa-chevron-up");
-      });
-
-      // When dropdown is hidden
-      dropdownToggle.addEventListener("hidden.bs.dropdown", function () {
-        dropdownIcon.classList.remove("fa-chevron-up");
-        dropdownIcon.classList.add("fa-chevron-down");
-      });
-    }
+  // 1. Bootstrap Tooltip initialization
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl);
   });
 
+  // ✅ 1.1 Bootstrap Popover initialization
+  const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+  popoverTriggerList.forEach(function (popoverTriggerEl) {
+    new bootstrap.Popover(popoverTriggerEl);
+  });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const circles = document.querySelectorAll(".animated-circle");
+  // 2. Dropdown toggle icon logic
+  const dropdownToggle = document.getElementById("recipesDropdown");
+  const dropdownMenu = document.querySelector("#recipesDropdown + .dropdown-menu");
+  const dropdownIcon = document.querySelector("#dropdown-icon i");
 
-    const animateCircle = (circle) => {
-      const value = +circle.dataset.value;
-      let current = 0;
+  if (dropdownToggle && dropdownMenu && dropdownIcon) {
+    dropdownToggle.addEventListener("shown.bs.dropdown", function () {
+      dropdownIcon.classList.remove("fa-chevron-down");
+      dropdownIcon.classList.add("fa-chevron-up");
+    });
+    dropdownToggle.addEventListener("hidden.bs.dropdown", function () {
+      dropdownIcon.classList.remove("fa-chevron-up");
+      dropdownIcon.classList.add("fa-chevron-down");
+    });
+  }
 
-      const update = () => {
-        if (current <= value) {
-          circle.style.background = `conic-gradient(#ff9f68 ${current}%, #eee ${current}%)`;
-          circle.querySelector(".percent").textContent = `${current}%`;
-          current++;
-          requestAnimationFrame(update);
-        }
-      };
+  // 3. Animate circles on intersection
+  const circles = document.querySelectorAll(".animated-circle");
 
-      update();
+  const animateCircle = (circle) => {
+    const value = +circle.dataset.value;
+    let current = 0;
+
+    const update = () => {
+      if (current <= value) {
+        circle.style.background = `conic-gradient(#ff9f68 ${current}%, #eee ${current}%)`;
+        circle.querySelector(".percent").textContent = `${current}%`;
+        current++;
+        requestAnimationFrame(update);
+      }
     };
+    update();
+  };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCircle(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCircle(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
 
-    circles.forEach((circle) => observer.observe(circle));
-  });
+  circles.forEach((circle) => observer.observe(circle));
 
-
-
-
+  // 4. Ripple effect on .btn-nav buttons
   document.querySelectorAll('.btn-nav').forEach(button => {
     button.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
-        ripple.classList.add('ripple');
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
 
-        const rect = this.getBoundingClientRect();
-        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
-        ripple.style.left = e.clientX - rect.left - (parseInt(ripple.style.width) / 2) + 'px';
-        ripple.style.top = e.clientY - rect.top - (parseInt(ripple.style.height) / 2) + 'px';
+      const rect = this.getBoundingClientRect();
+      ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+      ripple.style.left = e.clientX - rect.left - (parseInt(ripple.style.width) / 2) + 'px';
+      ripple.style.top = e.clientY - rect.top - (parseInt(ripple.style.height) / 2) + 'px';
 
-        this.appendChild(ripple);
+      this.appendChild(ripple);
 
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
     });
-});
+  });
 
+  // 5. Recipe filter highlighting
+  const filterButtons = document.querySelectorAll('.filter-option');
+  const recipeCards = document.querySelectorAll('.card[data-age-group]');
+  let activeFilter = null;
 
-  // 🌊 Ripple Effect for .btn-nav buttons
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.btn-nav').forEach(button => {
-      button.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
-        ripple.classList.add('ripple');
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+      activeFilter = (activeFilter === filter) ? null : filter;
 
-        const rect = this.getBoundingClientRect();
-        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
-        ripple.style.left = e.clientX - rect.left - (parseInt(ripple.style.width) / 2) + 'px';
-        ripple.style.top = e.clientY - rect.top - (parseInt(ripple.style.height) / 2) + 'px';
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
+      filterButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === activeFilter);
       });
-    });
 
-    // 🍽️ Recipe Filter Highlighting
-    const filterButtons = document.querySelectorAll('.filter-option');
-    const recipeCards = document.querySelectorAll('.card[data-age-group]');
-    let activeFilter = null;
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-
-        // Toggle filter
-        activeFilter = (activeFilter === filter) ? null : filter;
-
-        // Update active button state
-        filterButtons.forEach(btn => {
-          btn.classList.toggle('active', btn.getAttribute('data-filter') === activeFilter);
-        });
-
-        // Highlight matching recipe cards
-        recipeCards.forEach(card => {
-          if (!activeFilter) {
-            card.classList.remove('filtered-highlight');
+      recipeCards.forEach(card => {
+        if (!activeFilter) {
+          card.classList.remove('filtered-highlight');
+        } else {
+          if (card.getAttribute('data-age-group') === activeFilter) {
+            card.classList.add('filtered-highlight');
           } else {
-            if (card.getAttribute('data-age-group') === activeFilter) {
-              card.classList.add('filtered-highlight');
-            } else {
-              card.classList.remove('filtered-highlight');
-            }
+            card.classList.remove('filtered-highlight');
           }
-        });
+        }
       });
     });
   });
 
-
+  // 6. Order form select open/close class toggle
   const select = document.querySelector('.order-form select');
+  if (select) {
+    select.addEventListener('mousedown', () => {
+      select.classList.add('open');
+    });
 
-  // When user clicks or focuses the select, add 'open' class
-  select.addEventListener('mousedown', () => {
-    select.classList.add('open');
-  });
+    select.addEventListener('change', () => {
+      select.classList.remove('open');
+    });
 
-  // When user changes selection or blurs (closes dropdown), remove 'open' class
-  select.addEventListener('change', () => {
-    select.classList.remove('open');
-  });
+    select.addEventListener('blur', () => {
+      select.classList.remove('open');
+    });
+  }
 
-  select.addEventListener('blur', () => {
-    select.classList.remove('open');
-  });
+  // 7. Add your other JS code here (edit buttons, delete modals, etc.)
+});
 
 
 

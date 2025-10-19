@@ -25,16 +25,21 @@
     <!-- ✅ Anchor Target for Back to Recipes Button -->
     <div id="recipes" class="post-grid mt-4">
       {% for post in posts %}
-        <div class="post-card mb-4">
-          <h3>
+      <div class="post-card mb-4">
+        <h3>
+          {% if post.slug %}
             <a href="{% url 'post_detail' slug=post.slug %}" class="green-link">{{ post.title }}</a>
-          </h3>
-          <p class="text-muted">{{ post.created_on|date:"F d, Y" }}</p>
-          <p>{{ post.excerpt|truncatewords:20 }}</p>
-        </div>
-      {% empty %}
-        <p class="text-center">No posts found.</p>
-      {% endfor %}
+          {% else %}
+            {{ post.title }}
+          {% endif %}
+        </h3>
+        <p class="text-muted">{{ post.created_on|date:"F d, Y" }}</p>
+        <p>{{ post.excerpt|truncatewords:20 }}</p>
+      </div>
+    {% empty %}
+      <p class="text-center">No posts found.</p>
+    {% endfor %}
+    
     </div>
 
     <!-- Pagination Controls -->

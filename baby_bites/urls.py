@@ -1,6 +1,5 @@
 from django.urls import path, include
 from . import views
-from .views import home
 from allauth.account.views import LoginView
 
 urlpatterns = [
@@ -16,4 +15,6 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('post/<int:pk>/like/', views.toggle_like, name='toggle_like'),
+    path('create/', views.create_post, name='create_post'),
 ]
+

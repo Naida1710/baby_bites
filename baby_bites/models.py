@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -26,7 +27,7 @@ class About(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -41,8 +42,18 @@ class Post(models.Model):
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default="6_months")
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            # Check for duplicates and add a suffix if needed
+            while Post.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
-    
 
 
     def total_likes(self):
