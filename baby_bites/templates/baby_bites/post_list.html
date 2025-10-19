@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}All Posts{% endblock %}
+{% block title %}All Recipes{% endblock %}
 
 {% block content %}
 <div class="container mt-5 mb-5">
   <div class="card p-4 baby-bg shadow fadeInCard">
-    <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">All recipes</h1>
+    
+    <!-- Page Heading -->
+    <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
+      All Recipes
+    </h1>
     <hr class="pastel-divider">
 
     <!-- Sort Filter Dropdown -->
@@ -18,10 +22,10 @@
       </select>
     </form>
 
-    <!-- Post Grid -->
-    <div class="post-grid">
+    <!-- ✅ Anchor Target for Back to Recipes Button -->
+    <div id="recipes" class="post-grid mt-4">
       {% for post in posts %}
-        <div class="post-card">
+        <div class="post-card mb-4">
           <h3>
             <a href="{% url 'post_detail' slug=post.slug %}" class="green-link">{{ post.title }}</a>
           </h3>
@@ -29,21 +33,24 @@
           <p>{{ post.excerpt|truncatewords:20 }}</p>
         </div>
       {% empty %}
-        <p>No posts found.</p>
+        <p class="text-center">No posts found.</p>
       {% endfor %}
     </div>
 
-    <!-- Pagination: Place it right here -->
+    <!-- Pagination Controls -->
     {% if is_paginated %}
-      <div class="pagination mt-4 d-flex justify-content-center">
+      <div class="pagination mt-4 d-flex justify-content-center align-items-center flex-wrap">
         {% if page_obj.has_previous %}
           <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn btn-outline-secondary me-2">Previous</a>
         {% endif %}
 
         {% for num in paginator.page_range %}
-          <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
-            {{ num }}
-          </a>
+          {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+            <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}"
+              class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
+              {{ num }}
+            </a>
+          {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next %}
@@ -51,7 +58,6 @@
         {% endif %}
       </div>
     {% endif %}
-
   </div>
 </div>
 {% endblock %}

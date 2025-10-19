@@ -8,27 +8,10 @@ from .forms import CollaborateForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from .models import Post  
+from .models import Post
+from .models import Recipe
 
-
-def index(request):
-    posts = Post.objects.all()  # or your queryset
-    context = {
-        'post_list': posts,
-    }
-    return render(request, 'openid/index.html', context)
-
-@login_required
-def toggle_like(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-
-    if request.user in post.likes.all():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
-
-    return redirect('post_detail', pk=post.pk)
-
+        
 
 def comment_edit(request, slug, comment_id):
     """
@@ -68,6 +51,21 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+def index(request):
+    # Your logic here
+    return render(request, 'index.html')
+
+def toggle_like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    user = request.user
+    if user.is_authenticated:
+        if user in post.likes.all():
+            post.likes.remove(user)
+        else:
+            post.likes.add(user)
+    return redirect('post_detail', slug=post.slug)
+
 
 
 def about_me(request):
@@ -138,23 +136,31 @@ def post_detail(request, slug):
 # views.py
 def recipe_list(request):
     age_filter = request.GET.get('age')  # e.g. '6', '10', etc.
+    order = request.GET.get('order', 'latest')  # default to latest
+
+    recipes = Recipe.objects.all()
 
     if age_filter:
-        recipes = Recipe.objects.filter(age=age_filter)
-    else:
-        recipes = Recipe.objects.all()
+        recipes = recipes.filter(age=age_filter)
 
-    # Pagination
+    if order == 'earliest':
+        recipes = recipes.order_by('created_on')
+    else:  # latest or any other value
+        recipes = recipes.order_by('-created_on')
+
     paginator = Paginator(recipes, 10)  # Show 10 recipes per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'recipe_list.html', {
-        'recipes': page_obj.object_list,  # Paginated recipes for current page
+    context = {
+        'posts': page_obj.object_list,  # Use 'posts' to match your template
         'page_obj': page_obj,
         'paginator': paginator,
         'selected_age': age_filter,
-    })
+        'order': order,
+    }
+
+    return render(request, 'baby_bites/post_list.html', context)
 
 
 def profile_page(request):
