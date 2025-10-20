@@ -94,7 +94,7 @@
 
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a href="{% url 'create_post' %}" class="btn btn-outline-success ms-lg-2">+ Share a Recipe</a>
+                <a href="{% url 'create_post' %}#create_recipe" class="btn btn-outline-success ms-lg-2">+ Share a Recipe</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link logout-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
