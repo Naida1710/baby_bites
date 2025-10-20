@@ -4,7 +4,7 @@ from .forms import CollaborateForm
 from django.contrib import messages
 
 
-def about_me(request):
+def about_view(request):
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)
         if collaborate_form.is_valid():

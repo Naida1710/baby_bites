@@ -20,6 +20,7 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('post/<int:pk>/like/', views.toggle_like, name='toggle_like'),
     path('create/', views.create_post, name='create_post'),
+    path('about/', views.about_view, name='about'),
 ]
 
 # Only in development

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.shortcuts import render, get_object_or_404, redirect
+from .models import About
 
 from django.views import generic
 from django.contrib.auth.models import User
@@ -87,7 +88,7 @@ def toggle_like(request, pk):
 
 
 
-def about_me(request):
+def about_view(request):
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)
         if collaborate_form.is_valid():
@@ -99,7 +100,7 @@ def about_me(request):
 
     return render(
         request,
-        "about/about.html",
+        "baby_bites/about.html",
         {
             "about": about,
             "collaborate_form": collaborate_form
