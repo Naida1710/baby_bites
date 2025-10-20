@@ -52,25 +52,28 @@
     </div>
 
     <!-- Pagination Controls -->
-    {% if is_paginated %}
-      <div class="pagination mt-4 d-flex justify-content-center align-items-center flex-wrap">
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn btn-outline-secondary me-2">Previous</a>
-        {% endif %}
+    <!-- Pagination Controls -->
+{% if is_paginated %}
+<div class="pagination mt-4 d-flex justify-content-center align-items-center flex-wrap">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes" class="btn btn-outline-secondary me-2">Previous</a>
+  {% endif %}
 
-        {% for num in paginator.page_range %}
-          {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
-            <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}"
-              class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
-              {{ num }}
-            </a>
-          {% endif %}
-        {% endfor %}
+  {% for num in paginator.page_range %}
+    {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+      <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes"
+        class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
+        {{ num }}
+      </a>
+    {% endif %}
+  {% endfor %}
 
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}" class="btn btn-outline-secondary ms-2">Next</a>
-        {% endif %}
-      </div>
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes" class="btn btn-outline-secondary ms-2">Next</a>
+  {% endif %}
+</div>
+
+
     {% endif %}
   </div>
 </div>
