@@ -5,6 +5,7 @@
 
 {% block content %}
 <div class="container mt-5 mb-5">
+ 
   <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8">
 
@@ -26,7 +27,7 @@
         <hr class="pastel-divider">
 
         <!-- Post Content -->
-        <div class="mb-4">
+        <div id="post-content"  class="mb-4">
           {{ post.content|striptags }}
         </div>
 
