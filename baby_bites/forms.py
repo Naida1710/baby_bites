@@ -21,11 +21,11 @@ class CommentForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content', 'featured_image', 'excerpt', 'age_group', 'status']
+        fields = ['title', 'content', 'featured_image', 'excerpt', 'age_group']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'excerpt': forms.Textarea(attrs={'class': 'form-control'}),
             'content': CKEditorWidget(),
             'age_group': forms.Select(attrs={'class': 'form-select'}),
-            'status': forms.Select(attrs={'class': 'form-select'}),
+            
         }

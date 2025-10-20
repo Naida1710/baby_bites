@@ -5,12 +5,17 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'slug', 'status', 'created_on',)
+    list_display = ('title', 'slug', 'created_on',)
     search_fields = ['title', 'content']  # fixed missing comma here
-    list_filter = ('status', 'created_on')
+    list_filter = ('created_on', 'approved')
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('content',)
+    actions = ["approve_posts"]
 
+    def approve_posts(self, request, queryset):
+        queryset.update(approved=True)
+        self.message_user(request, "Selected posts have been approved.")
+    approve_posts.short_description = "Approve selected posts"
 
 @admin.register(About)
 class AboutAdmin(SummernoteModelAdmin):

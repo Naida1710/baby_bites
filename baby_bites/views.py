@@ -22,7 +22,8 @@ def create_post(request):
             post = form.save(commit=False)  # Don't save yet
             post.author = request.user      # Set the author to the logged-in user
             post.save()                    # Now save
-            return redirect('post_detail', slug=post.slug)
+            messages.success(request, 'Your recipe has been submitted and is awaiting admin approval.')
+            return redirect("home")
     else:
         form = PostForm()
     return render(request, 'create_post.html', {'form': form})
@@ -115,13 +116,14 @@ class PostList(generic.ListView):
 
     def get_queryset(self):
         order = self.request.GET.get('order', 'latest')  # default to latest
+        qs = Post.objects.filter (approved=True)
         if order == 'earliest':
-            return Post.objects.filter(status=1).order_by('created_on')
-        return Post.objects.filter(status=1).order_by('-created_on')
+            return qs.order_by('created_on')
+        return qs.order_by('-created_on')
 
 
 def post_detail(request, slug):
-    queryset = Post.objects.filter(status=1)
+    queryset = Post.objects.all()
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.filter(approved=True).order_by("-created_on")
     comment_count = comments.count()

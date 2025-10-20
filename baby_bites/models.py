@@ -4,7 +4,6 @@ from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 
-STATUS = ((0, "Draft"), (1, "Published"))
 
 AGE_GROUP_CHOICES = [
     ("6_months", "6+ Months"),
@@ -36,12 +35,12 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default="6_months")
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
-
+    approved = models.BooleanField(default=False)
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.title)
