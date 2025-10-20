@@ -166,7 +166,7 @@ def recipe_list(request):
     else:  # latest by default
         post_list = Post.objects.all().order_by('-created_on')
 
-    paginator = Paginator(post_list, 10)  # Show 10 posts per page
+    paginator = Paginator(post_list, 10)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
