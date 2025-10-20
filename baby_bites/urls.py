@@ -4,6 +4,8 @@ from allauth.account.views import LoginView
 
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),  # or views.index, pick one
+    path('recipes/all/', views.all_recipes, name='all_recipes'),
+
     path('recipes/', views.recipe_list, name='recipe_list'),  # Make sure this view exists
     path('recipes/6-months/', views.recipes_6_months, name='recipes_6_months'),
     path('recipes/8-months/', views.recipes_8_months, name='recipes_8_months'),

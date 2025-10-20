@@ -156,6 +156,10 @@ def post_detail(request, slug):
         },
     )
 
+def all_recipes(request):
+    posts = Post.objects.filter(approved=True).order_by('-created_on')
+
+    return render(request, 'recipes/all_recipes.html', {'posts': posts})
 
 # views.py
 def recipe_list(request):

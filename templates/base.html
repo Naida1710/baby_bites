@@ -54,12 +54,27 @@
               </li>
 
               <li class="nav-item dropdown dropdown-wrapper">
-                <a class="nav-link dropdown-toggle green-link" href="#" id="recipesDropdown" data-bs-toggle="dropdown">
-                  All Recipes
-                  <span id="dropdown-icon" class="ms-2">
+                <div class="nav-item dropdown d-flex align-items-center dropdown-wrapper">
+                  <!-- "All Recipes" direct link -->
+                  <a class="nav-link green-link" href="{% url 'all_recipes' %}">
+                    All Recipes
+                  </a>
+                
+                  <!-- Arrow icon toggles dropdown only -->
+                  <a class="nav-link dropdown-toggle green-link px-2" href="#" id="recipesDropdown" role="button"
+                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-chevron-down"></i>
-                  </span>
-                </a>
+                  </a>
+                
+                  <!-- Dropdown menu design preserved -->
+                  <ul class="dropdown-menu centered-dropdown" aria-labelledby="recipesDropdown">
+                    <li><a class="card-item" href="{{ recipes_6_months_url }}"><i class="fas fa-baby"></i> 6+ Months</a></li>
+                    <li><a class="card-item" href="{{ recipes_8_months_url }}"><i class="fas fa-utensils"></i> 8+ Months</a></li>
+                    <li><a class="card-item" href="{{ recipes_10_months_url }}"><i class="fas fa-apple-alt"></i> 10+ Months</a></li>
+                    <li><a class="card-item" href="{{ recipes_12_months_url }}"><i class="fas fa-birthday-cake"></i> 1 Year Old</a></li>
+                  </ul>
+                </div>
+                
                 <ul class="dropdown-menu centered-dropdown">
                   <li><a class="card-item" href="{{ recipes_6_months_url }}"><i class="fas fa-baby"></i> 6+ Months</a></li>
                   <li><a class="card-item" href="{{ recipes_8_months_url }}"><i class="fas fa-utensils"></i> 8+ Months</a></li>
@@ -201,9 +216,8 @@
 
           <div class="mt-4 d-flex justify-content-center gap-3">
             <img src="{% static 'images/banana.png' %}" alt="Banana icon" style="height: 60px;" />
-            <img src="{% static 'images/avocado.png' %}" alt="Avocado icon" style="height: 60px;" />
-            <img src="{% static 'images/vegetable.png' %}" alt="Vegetables icon" style="height: 60px;" />
-            <img src="{% static 'images/cabbage.png' %}" alt="Cabbage icon" style="height: 60px;" />
+            
+            <img src="{% static 'images/vegetable.png' %}" alt="Vegetables icon" style="height: 60px;" >
             <img src="{% static 'images/milk.png' %}" alt="Milk icon" style="height: 60px;" />
             <img src="{% static 'images/meat.png' %}" alt="Meat icon" style="height: 60px;" />
             <img src="{% static 'images/rice.png' %}" alt="Rice icon" style="height: 60px;" />

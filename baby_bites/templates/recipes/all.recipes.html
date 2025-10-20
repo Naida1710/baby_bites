@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>All Baby Recipes</h2>
+<div class="recipe-grid">
+  {% for post in posts %}
+    <div class="recipe-card">
+      <h5>{{ post.title }}</h5>
+      <p>{{ post.excerpt }}</p>
+      <a href="{% url 'post_detail' slug=post.slug %}">Read more</a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
