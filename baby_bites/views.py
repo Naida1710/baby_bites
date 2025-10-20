@@ -15,6 +15,8 @@ from .models import Recipe
 from .forms import PostForm
 
 
+from django.db import models
+
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -26,7 +28,7 @@ def create_post(request):
             return redirect("home")
     else:
         form = PostForm()
-    return render(request, 'create_post.html', {'form': form})
+    return render(request, 'baby_bites/create_post.html', {'form': form})
 
     
 
@@ -156,11 +158,6 @@ def post_detail(request, slug):
         },
     )
 
-def all_recipes(request):
-    posts = Post.objects.filter(approved=True).order_by('-created_on')
-
-    return render(request, 'recipes/all_recipes.html', {'posts': posts})
-
 # views.py
 def recipe_list(request):
     order = request.GET.get('order', 'latest')
@@ -188,20 +185,20 @@ def profile_page(request):
 
 
 def recipes_6_months(request):
-    posts = Post.objects.filter(age_group="6_months", status=1)
-    return render(request, "recipes/6_months.html", {"posts": posts})
+    recipes = Recipe.objects.filter(age_group="6_months", approved=True)
+    return render(request, "recipes/6_months.html", {"recipes": recipes})
 
 
 def recipes_8_months(request):
-    posts = Post.objects.filter(age_group="8_months", status=1)
-    return render(request, "recipes/8_months.html", {"posts": posts})
+    posts = Recipe.objects.filter(age_group="8_months", approved=True)
+    return render(request, "recipe/8_months.html", {"recipe": recipe})
 
 
 def recipes_10_months(request):
-    posts = Post.objects.filter(age_group="10_months", status=1)
-    return render(request, "recipes/10_months.html", {"posts": posts})
+    posts = Recipe.objects.filter(age_group="10_months", status=1)
+    return render(request, "recipe/10_months.html", {"posts": posts})
 
 
 def recipes_12_months(request):
     posts = Post.objects.filter(age_group="12_months", status=1)
-    return render(request, "recipes/12_months.html", {"posts": posts})
+    return render(request, "recipe/12_months.html", {"posts": posts})

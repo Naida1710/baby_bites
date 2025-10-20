@@ -1,10 +1,12 @@
 from django.urls import path, include
 from . import views
 from allauth.account.views import LoginView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),  # or views.index, pick one
-    path('recipes/all/', views.all_recipes, name='all_recipes'),
+
 
     path('recipes/', views.recipe_list, name='recipe_list'),  # Make sure this view exists
     path('recipes/6-months/', views.recipes_6_months, name='recipes_6_months'),
@@ -19,4 +21,8 @@ urlpatterns = [
     path('post/<int:pk>/like/', views.toggle_like, name='toggle_like'),
     path('create/', views.create_post, name='create_post'),
 ]
+
+# Only in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

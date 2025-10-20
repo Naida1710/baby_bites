@@ -54,11 +54,14 @@
               </li>
 
               <li class="nav-item dropdown dropdown-wrapper">
+                <!-- All Recipes Navigation (Preserving Previous Design) -->
                 <div class="nav-item dropdown d-flex align-items-center dropdown-wrapper">
                   <!-- "All Recipes" direct link -->
-                  <a class="nav-link green-link" href="{% url 'all_recipes' %}">
+                  <a class="nav-link green-link" href="{% url 'recipe_list' %}#recipe_list" id="allRecipesLink">
                     All Recipes
                   </a>
+
+                  
                 
                   <!-- Arrow icon toggles dropdown only -->
                   <a class="nav-link dropdown-toggle green-link px-2" href="#" id="recipesDropdown" role="button"
@@ -66,14 +69,20 @@
                     <i class="fas fa-chevron-down"></i>
                   </a>
                 
-                  <!-- Dropdown menu design preserved -->
+                  <!-- Dropdown menu -->
                   <ul class="dropdown-menu centered-dropdown" aria-labelledby="recipesDropdown">
-                    <li><a class="card-item" href="{{ recipes_6_months_url }}"><i class="fas fa-baby"></i> 6+ Months</a></li>
-                    <li><a class="card-item" href="{{ recipes_8_months_url }}"><i class="fas fa-utensils"></i> 8+ Months</a></li>
-                    <li><a class="card-item" href="{{ recipes_10_months_url }}"><i class="fas fa-apple-alt"></i> 10+ Months</a></li>
-                    <li><a class="card-item" href="{{ recipes_12_months_url }}"><i class="fas fa-birthday-cake"></i> 1 Year Old</a></li>
+                    <li><a class="card-item" href="{% url 'recipes_6_months' %}#recipe_list"><i class="fas fa-baby"></i> 6+ Months</a></li>
+                    <li>
+                      <a class="card-item" href="{% url 'recipes_8_months' %}#recipe_list"
+                        ><i class="fas fa-birthday-cake"></i>8+ Months</a
+                      >
+                    </li>
+                    <li><a class="card-item" href="{% url 'recipes_10_months' %}#recipe_list"><i class="fas fa-apple-alt"></i> 10+ Months</a></li>
+                    <li><a class="card-item" href="{% url 'recipes_12_months' %}#recipe_list"><i class="fas fa-birthday-cake"></i> 1 Year Old</a></li>
                   </ul>
                 </div>
+                
+
                 
                 <ul class="dropdown-menu centered-dropdown">
                   <li><a class="card-item" href="{{ recipes_6_months_url }}"><i class="fas fa-baby"></i> 6+ Months</a></li>
