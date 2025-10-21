@@ -141,6 +141,13 @@ Login forms are optimized for browser autofill, allowing users to log in more qu
 
   ![Logout Success](documentation/signoutsuccess.png)
 
+### Future planning 
+
+- I want to include - **a "Forgot your password?" option** - on the Login page which would take the user directly to the reset password page. When the users enters their email, a confirmation message appears on the page instructing them to check their email. The email should contain all the necessary information required to reset their password.
+
+- **favorite/Bookmark Recipes** - Enable users to save their favorite recipes for later use, creating a personal collection they can easily access.
+
+- **Advanced Search Options** - Provide advanced search features to filter recipes based on ingredients, difficulty level, cooking time, or dietary restrictions (e.g., gluten-free, vegetarian).
 
 ### Design
 
@@ -158,7 +165,7 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 - **Segoe UI**: Used for password confirmation email page providing cleand and readable UI elements.
 - **Lato**: Used for password reset page.
 
-### Features Overview
+### Features Overview and Functionability testing
 
 - **Baby Bites logo** - the logo mantains across internal pages (Home, About, All Recipe, Share a Recipe), but not across external links (Login, Register and Logout).
 
@@ -269,9 +276,13 @@ If the user is already logged in, they are automatically directed to the Sign In
 
 **Logout page** - Users can either log out or click "Take me back home" button instead.
 
+![Logout Page](staticfiles/images/logoutpage.png)
+
+
+A successful signed out message appears on the home page.
+
 ![Logout](staticfiles/images/Screenshot%202025-10-21%20at%2018.17.14.png)
 
-![Logout Page](staticfiles/images/logoutpage.png)
 
 
 **Footer** - In the footer, there is a copyright notice and links to Twitter, Facebook, and Instagram.
