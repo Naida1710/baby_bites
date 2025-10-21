@@ -167,30 +167,38 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ![Favicon](staticfiles/images/favicon12.png)
 
-- **Navigation bar** - I used Favicon.io to create the favicon for the site. 
+- **Navigation bar** - I have a navigation bar with the following links: Home, About, All Recipes, Share a Recipe, Login, Logout, and Register.
+- On the mobile version, the navigation is displayed as a burger icon/dropdown menu.
 
 ![Navmenu](staticfiles/images/navbar.png)
 ![Navmenudesktop](staticfiles/images/navbardesktop.png)
 
-- **Introductory message** - I used Favicon.io to create the favicon for the site. 
+- When the user is logged in, they can add their own recipe, so the Share a Recipe and Logout links are visible.
+
+![Navmenu1](staticfiles/images/Screenshot%202025-10-21%20at%2014.54.47.png)
+
+- When the user is not logged in, the Share a Recipe and Logout links are hidden, and instead, the Register and Login links are shown.
+
+![Navmenu2](staticfiles/images/Screenshot%202025-10-21%20at%2014.56.29.png)
+
+- Each link has either an underline or hover effect (or both) to help the user orient themselves within the navigation.
+
+
+
+- **Introductory message** - This serves as a call-to-action message that enhances the design and attracts new parents to get involved.
 
 ![Intro](staticfiles/images/intro.png)
 
-- **Hero image** - I used Favicon.io to create the favicon for the site. 
+- **Hero image** - The image represents the concept of healthy food, emphasizing that for our little ones, we want only the best recipes.
 
 ![Intro](staticfiles/images/heroo.png)
 
-- **Introductory text/home page** - I used Favicon.io to create the favicon for the site. 
+- **Introductory text/home page** - Displays a brief introduction to Baby Bites blog community. This section helps users understand the purpose of the page  and encourages them to engage.
 
 ![Introtext](staticfiles/images/introtext.png)
 
-
-
-- **Introductory text/home page** - I used Favicon.io to create the favicon for the site. 
-
 ![Introtext1](staticfiles/images/homepag.png)
 
-- **Introductory text/home page** - I used Favicon.io to create the favicon for the site. 
 
 ![About](staticfiles/images/getto.png)
 
@@ -202,13 +210,30 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.38.42.png)
 
-- **All Recipe Page Count** - I used Favicon.io to create the favicon for the site. 
+- **All Recipe Page Count** - There are previous and next buttons, allowing users to easily navigate between pages.
 
 ![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.41.02.png)
 
-- **All Recipe Dropdown Menu List** - I used Favicon.io to create the favicon for the site. 
+- **All Recipe Dropdown Menu List** - 
 
 ![Dropdown](staticfiles/images/Screenshot%202025-10-21%20at%2014.06.32.png)
+
+- **Recipe** - I used Favicon.io to create the favicon for the site. 
+
+![Recipe](staticfiles/images/Screenshot%202025-10-21%20at%2014.28.17.png)
+
+![Recipe](staticfiles/images/Screenshot%202025-10-21%20at%2014.30.02.png)
+
+- At the top of the page, there is a "Back to All Recipes" button that automatically takes the user back to the main recipe page.
+
+![Back-button](staticfiles/images/Screenshot%202025-10-21%20at%2014.31.08.png)
+
+- **Comment Section and Like/Unlike** - When users open a recipe, the recipe description is displayed immediately. Below that, there is a like/unlike option, where registered users can like or comment on recipes made by others.
+If the user is not registered, they cannot use any of those features, but they can still see how many likes or comments a recipe has. If there are no comments, a message will be displayed on the page indicating that.
+
+![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.32.59.png)
+
+![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.34.52.png)
 
 - **Login and Hover** - I used Favicon.io to create the favicon for the site. 
 
@@ -216,6 +241,16 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 ![loginpage](staticfiles/images/signin.png)
 ![loginpage2](staticfiles/images/signin1.png)
 ![loginpage3](staticfiles/images/signinmessage.png)
+![loginpage3](staticfiles/images/Screenshot%202025-10-21%20at%2014.16.03.png)
+
+- **Forget the Password Page** - I used Favicon.io to create the favicon for the site. 
+
+![resetpass](staticfiles/images/)
+
+- **Register Page** - I used Favicon.io to create the favicon for the site. 
+
+![registration](staticfiles/images/reg%201.png)
+![registration2](staticfiles/images/regi.png)
 
 - **Footer** - I used Favicon.io to create the favicon for the site. 
 

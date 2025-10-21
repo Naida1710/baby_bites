@@ -197,15 +197,15 @@ def recipes_6_months(request):
 
 
 def recipes_8_months(request):
-    posts = Recipe.objects.filter(age_group="8_months", approved=True)
-    return render(request, "recipe/8_months.html", {"recipe": recipe})
+    recipes = Recipe.objects.filter(age_group="8_months", approved=True)
+    return render(request, "recipes/8_months.html", {"recipes": recipes})
 
 
 def recipes_10_months(request):
-    posts = Recipe.objects.filter(age_group="10_months", status=1)
-    return render(request, "recipe/10_months.html", {"posts": posts})
+    recipes = Recipe.objects.filter(age_group="10_months", approved=True)
+    return render(request, "recipes/10_months.html", {"recipes": recipes})
 
 
 def recipes_12_months(request):
-    posts = Post.objects.filter(age_group="12_months", status=1)
-    return render(request, "recipe/12_months.html", {"posts": posts})
+    recipes = Post.objects.filter(age_group="12_months", approved=True)
+    return render(request, "recipes/12_months.html", {"recipes": recipes})

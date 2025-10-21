@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}6+ Months Recipes{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="card p-4 baby-bg shadow fadeInCard">
+    
+    <!-- Page Heading -->
+    <div id="recipe_list">
+      <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
+        6+ Months Recipes
+      </h1>
+      <hr class="pastel-divider">
+    </div>
+
+    <!-- Recipe Grid -->
+    <div class="post-grid mt-4">
+      {% for recipe in recipes %}
+      <div class="post-card mb-4">
+        {% if recipe.featured_image %}
+          <img src="{{ recipe.featured_image.url }}" alt="{{ recipe.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+        {% endif %}
+        <div class="card-body">
+          <h3>
+            {% if recipe.slug %}
+              <a href="{% url 'post_detail' slug=recipe.slug %}#post-content" class="green-link">{{ recipe.title }}</a>
+            {% else %}
+              {{ recipe.title }}
+            {% endif %}
+          </h3>
+          <p class="text-muted">{{ recipe.created_on|date:"F d, Y" }}</p>
+          {% if recipe.excerpt %}
+            <p>{{ recipe.excerpt|truncatewords:20 }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% empty %}
+        <p class="text-center">No recipes found for 6+ months.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
