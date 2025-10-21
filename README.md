@@ -4,11 +4,12 @@
 ## Project Goals
 
 **Baby Bites Blog** is a Full-Stack site designed for busy parents and caregivers who want to feed their babies well — but often don’t have the time, energy, or knowledge to prepare fresh, age-appropriate meals every day.
-Introducing solids can be confusing and stressful. Between lack of sleep, returning to work, and managing household responsibilities, many parents find themselves asking:
+- Introducing solids can be confusing and stressful. Between lack of sleep, returning to work, and managing household responsibilities, many parents find themselves asking:
 - What should my baby eat at this age?
 - Is this food safe?
 - Do I have time to make something nutritious — or will it just be another pouch?
-Baby Bites was created to solve these challenges. This platform provides simple, fast, and nutritious recipes tailored for babies aged 6 to 12 months, so parents can feel confident about feeding their little ones — even on the busiest days.
+Baby Bites was created to solve these challenges.
+- This platform provides simple, fast, and nutritious recipes tailored for babies aged 6 to 12 months, so parents can feel confident about feeding their little ones — even on the busiest days.
 The goals of the project are to:
 - ✅ Take the guesswork out of what to cook for babies at each age stage
 - ✅ Offer quick and healthy recipes using everyday ingredients
@@ -17,7 +18,7 @@ The goals of the project are to:
 - ✅ Empower caregivers with clear, practical feeding guidance without the stress
 - ✅ Build a supportive community where users can comment on recipes, ask questions, and share their own creations
 - ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
-By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
+- By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
 ### User Stories
 
@@ -159,7 +160,7 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ### Features Overview
 
-- **Baby Bites logo** - the logo mantains across internal pages (Home, About, All Recipe, Share a Recipe), but not across external links (login, Register and Logout).
+- **Baby Bites logo** - the logo mantains across internal pages (Home, About, All Recipe, Share a Recipe), but not across external links (Login, Register and Logout).
 
 ![Logo](staticfiles/images/logoimg1.png)
 
@@ -167,10 +168,11 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ![Favicon](staticfiles/images/favicon12.png)
 
-- **Navigation bar** - I have a navigation bar with the following links: Home, About, All Recipes, Share a Recipe, Login, Logout, and Register.
+**Navigation bar** - I have a navigation bar with the following links: Home, About, All Recipes, Share a Recipe, Login, Logout, and Register.
 - On the mobile version, the navigation is displayed as a burger icon/dropdown menu.
 
 ![Navmenu](staticfiles/images/navbar.png)
+
 ![Navmenudesktop](staticfiles/images/navbardesktop.png)
 
 - When the user is logged in, they can add their own recipe, so the Share a Recipe and Logout links are visible.
@@ -185,40 +187,42 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 
 
-- **Introductory message** - This serves as a call-to-action message that enhances the design and attracts new parents to get involved.
+**Introductory message** - This serves as a call-to-action message that enhances the design and attracts new parents to get involved.
 
 ![Intro](staticfiles/images/intro.png)
 
-- **Hero image** - The image represents the concept of healthy food, emphasizing that for our little ones, we want only the best recipes.
+**Hero image** - The image represents the concept of healthy food, emphasizing that for our little ones, we want only the best recipes.
 
 ![Intro](staticfiles/images/heroo.png)
 
-- **Introductory text/home page** - Displays a brief introduction to Baby Bites blog community. This section helps users understand the purpose of the page  and encourages them to engage.
+**Introductory text/home page** - Displays a brief introduction to Baby Bites blog community. This section helps users understand the purpose of the page  and encourages them to engage.
 
 ![Introtext](staticfiles/images/introtext.png)
 
 ![Introtext1](staticfiles/images/homepag.png)
 
+**About page** - The About page features a section titled "Get to Know Me," where users are taken to learn more about the author and the inspiration behind the project. When the user clicks on the "About" internal link, they are taken directly to this section.
 
 ![About](staticfiles/images/getto.png)
 
-- **All Recipe** - I used Favicon.io to create the favicon for the site. 
+**All Recipes** - When we click on the "All Recipes" link (and not the arrow next to it) in the menu bar, we are taken to the All Recipes section, where all posts from both the admin and users are displayed.
 
 ![AllRecipe](staticfiles/images/allrecipe.png)
 
-- **All Recipe Filter** - I used Favicon.io to create the favicon for the site. 
+**All Recipe Filter** - Users can filter all recipes by latest to see the most recently added posts first, or by earliest to view the oldest recipes at the top. This helps users easily find new additions or browse from the beginning.
 
 ![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.38.42.png)
 
-- **All Recipe Page Count** - There are previous and next buttons, allowing users to easily navigate between pages.
+**All Recipe Page Count** - On the All Recipes page, users can navigate through multiple pages of content using a pagination system. It features "Previous" and "Next" buttons, along with numbered page links (such as 1, 2, 3, 4), allowing users to jump to specific pages and browse recipes more efficiently.
 
 ![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.41.02.png)
 
-- **All Recipe Dropdown Menu List** - 
+**All Recipe Dropdown Menu List** - I made a dropdown menu located under the All Recipes category, which includes subcategories for 6 months, 8 months, 10 months, and 12 months.
+When a user clicks on one of the options, they are taken directly to that section on the page, where only the recipes for that specific age (e.g. 6 months) are displayed.
 
 ![Dropdown](staticfiles/images/Screenshot%202025-10-21%20at%2014.06.32.png)
 
-- **Recipe** - I used Favicon.io to create the favicon for the site. 
+- **Recipe** - When a user clicks on a post, the recipe opens with a detailed description. Under the recipe title, the post displays date and the author.
 
 ![Recipe](staticfiles/images/Screenshot%202025-10-21%20at%2014.28.17.png)
 
