@@ -239,24 +239,32 @@ If the user is not registered, they cannot use any of those features, but they c
 
 ![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.34.52.png)
 
-- **Login and Hover** - I used Favicon.io to create the favicon for the site. 
+**Login Hover** - When I hover over the login and register links, they change to a prominent color and display an underline.
+
+**Login Page** -When a user is on the login page, they cannot enter the password before typing in their username, and a reminder message appears to let them know.
+Login credentials are saved automatically, if the user chooses to enable that option.
+If the user is not registered, there is a "Sign me up here" option that allows them to register directly from the login page, as well as a "Take me back to the home page" option to return to the homepage.
 
 ![login](staticfiles/images/Screenshot%202025-10-21%20at%2014.09.13.png)
+
 ![loginpage](staticfiles/images/signin.png)
+
 ![loginpage2](staticfiles/images/signin1.png)
+
 ![loginpage3](staticfiles/images/signinmessage.png)
+
 ![loginpage3](staticfiles/images/Screenshot%202025-10-21%20at%2014.16.03.png)
 
-- **Forget the Password Page** - I used Favicon.io to create the favicon for the site. 
-
-![resetpass](staticfiles/images/)
-
-- **Register Page** - I used Favicon.io to create the favicon for the site. 
+**Register Page** - Clicking the registration link takes the user to an external registration page where they must provide their personal details in the required sequence.
+A "Take me back home" button is available to return to the homepage at any time.
+If the user is already logged in, they are automatically directed to the Sign In section instead of completing the registration form again.
 
 ![registration](staticfiles/images/reg%201.png)
+
 ![registration2](staticfiles/images/regi.png)
 
-- **Footer** - I used Favicon.io to create the favicon for the site. 
+- **Footer** - In the footer, there is a copyright notice and links to Twitter, Facebook, and Instagram.
+Each link changes to a yellow color when clicked and directs the user to the respective external social media page.
 
 ![Footer](staticfiles/images/Screenshot%202025-10-21%20at%2013.49.12.png)
 
