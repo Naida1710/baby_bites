@@ -206,9 +206,24 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.41.02.png)
 
+- **All Recipe Dropdown Menu List** - I used Favicon.io to create the favicon for the site. 
+
+![Dropdown](staticfiles/images/Screenshot%202025-10-21%20at%2014.06.32.png)
+
+- **Login and Hover** - I used Favicon.io to create the favicon for the site. 
+
+![login](staticfiles/images/Screenshot%202025-10-21%20at%2014.09.13.png)
+![loginpage](staticfiles/images/signin.png)
+![loginpage2](staticfiles/images/signin1.png)
+![loginpage3](staticfiles/images/signinmessage.png)
+
 - **Footer** - I used Favicon.io to create the favicon for the site. 
 
-![Footer](staticfiles/images/)
+![Footer](staticfiles/images/Screenshot%202025-10-21%20at%2013.49.12.png)
+
+- **Footer Hover** - I used Favicon.io to create the favicon for the site. 
+
+![Hover](staticfiles/images/Screenshot%202025-10-21%20at%2014.02.53.png)
 
 
 
