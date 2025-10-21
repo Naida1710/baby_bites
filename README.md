@@ -56,98 +56,37 @@ The All Recipes link should have a downward arrow icon next to the label and act
 3. If a duplicate email address is used, the system should display a clear error message indicating the email is already registered.
 4. If any required fields are left blank, the system should prompt the user with an appropriate error message indicating which fields need to be filled.
 5. Upon successful registration, the user should receive feedback confirming that the account has been created successfully.
-6. Passwords should meet minimum security requirements, such as a minimum length, use of uppercase and lowercase letters, numbers, and/or special characters.
-7. Usernames should be unique across the system to prevent duplication.
-8. The email address should be validated to ensure it is in the correct format and must also be unique in the system.
-9. A UserProfile object (or equivalent user-related profile) should be automatically created and linked to the user upon registration.
-10. After successful registration, the user should be automatically logged in without needing to manually sign in.
+6. Usernames should be unique across the system to prevent duplication.
+7. The email address should be validated to ensure it is in the correct format and must also be unique in the system.
+8. A UserProfile object (or equivalent user-related profile) should be automatically created and linked to the user upon registration.
 
 **Logout link**
 1. Allow users to navigate to the Sign Out page and they are greeted with a warm message asking if they are sure they want to log out.
-2. Allow users to save and update their profile details in real-time, reflecting changes immediately on the page.
-3. If the user is not logged in, redirect them to the login page before allowing access to the profile.
-4. Ensure the profile page is accessible only to the logged-in user, preventing other users from viewing or editing someone else’s profile.
+2. If the user is not logged in, redirect them to the login page before allowing access to the profile.
+3. Ensure the profile page is accessible only to the logged-in user, preventing other users from viewing or editing someone else’s profile.
 
 **Admin - View Posts**
 1. Admin users can see all parents posts in the system.
-2. Posts should display the name of the author, date and time of posting.
-3. Appointments should be sorted by date and time.
+2. Posts should display the name of the author and date.
+3. Posts should be sorted by latest and earliest.
 4. Admin can filter appointments by status (pending, confirmed, completed).
-5. Admin can search appointments by patient name or date.
-6. The admin dashboard should be accessible only to staff users.
-7. Appointments should show creation and update timestamps.
+5. The admin dashboard should be accessible only to staff users.
 
-### Homepage (index.html)
-* **Appointment Booking Form** - The main feature allowing users to book appointments with healthcare professionals. Users can select date, time, appointment type, and add optional notes. The form includes real-time validation and prevents booking past dates or unavailable time slots. This ensures users can only book valid appointments.
+**Users**
 
+1. Users should be logged in to be able to leave the comments and to like/unlike the recepies.
 
-  ![Homepage Booking Form](documentation/homebooking.png)
-
-
-* **Welcome Section** - Displays a welcoming message and brief introduction to Baby Bites blog site. This section introduces the 
-
-
-  ![Homepage Welcome Section](documentation/welcomemessagehome.png)
-
-
-* **Mobile Homepage** - Responsive design showing how the homepage adapts to mobile devices. This ensures users can access the service easily from their smartphones and tablets.
-
-
-  ![Mobile Homepage](documentation/bookingmobhome.png)
-
-
-* **Appointment Success Message** - Confirmation message displayed after successful appointment booking with details and next steps. This provides users with reassurance that their booking has been received.
-
-
-  ![Appointment Success](documentation/homeappsuccess.png)
-
-### Authentication Pages
-* **Login Page** - The login form with username/email and password fields. Includes validation and error message display for failed login attempts.
-Includes Take Me Home button which directs the user to homepage.
-Includes Create an Account option that takes them to the registration/signup page.
-Includes Forgot Password Recover. If a user forgets their password, they can click the "Forgot Password?" link. This directs them to a secure form where they can request a password reset email. From there, they can follow the link provided to set a new password.It also includes AUtofill Support. Autofill Support
-Login forms are optimized for browser autofill, allowing users to log in more quickly with saved credentials.
-
-
-  ![Login Page](staticfiles/images/signin1.png)
-
-  ![Login Page](staticfiles/images/signin.png)
-
-  ![Login Page](staticfiles/images/signin.png)
-
-
-* **Login Success** - Confirmation message displayed after successful login.
-
-
-  ![Login Affirmation](staticfiles/images/signinmessage.png)
-
-
-* **Registration Page** - User registration form with username, email, and password fields. All required fields enforce validation to prevent accidental skips, displaying browser prompts if left empty. Includes a “Take me home” button for easy navigation back to the homepage.
-
-
-  ![Registration Page](staticfiles/images/reg%201.png)
-
-  ![Registration Page](staticfiles/images/regi.png)
-
-
-* **Logout Page** - Includes a “Take me home” button for easy navigation back to the homepage.
-
-
-  ![Logout Page](staticfiles/images/logoutpage.png)
-
-
-* **Logout Success** - Confirmation message displayed after successful logout.
-
-
-  ![Logout Success](documentation/signoutsuccess.png)
+2. Non-registered Users should be able to see all the recepies, except from having access to comment and like/unlike sections.
 
 ### Future planning 
 
-- I want to include - **a "Forgot your password?" option** - on the Login page which would take the user directly to the reset password page. When the users enters their email, a confirmation message appears on the page instructing them to check their email. The email should contain all the necessary information required to reset their password.
+- I included - **a "Forgot your password?" option** - on the Login page which takes the user directly to the reset password page. When the users enters their email, a confirmation message appears on the page instructing them to check their email. The email should contain all the necessary information required to reset their password. At the moment, the user does not receive any email, even though the process appears to complete successfully.
 
-- **favorite/Bookmark Recipes** - Enable users to save their favorite recipes for later use, creating a personal collection they can easily access.
+- **Favorite/Bookmark Recipes** - Enable users to save their favorite recipes for later use, creating a personal collection they can easily access.
 
 - **Advanced Search Options** - Provide advanced search features to filter recipes based on ingredients, difficulty level, cooking time, or dietary restrictions (e.g., gluten-free, vegetarian).
+
+-**Delete comments** - Currently, users can leave comments on posts, but they cannot delete their own comments. I want to enable this functionality, so that users are able to delete the comments they have written.
 
 ### Design
 
@@ -246,6 +185,16 @@ If the user is not registered, they cannot use any of those features, but they c
 
 ![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.34.52.png)
 
+
+**Share a Recipe** - this is a feature where users can submit their own recipes on the website, but each submission must be approved by an admin before it is published.
+- Users also have the option to select the appropriate age group for which the recipe is intended. The post is hidden, until admin approves it.
+
+![share](staticfiles/images/Screenshot%202025-10-21%20at%2020.36.46.png)
+
+![share1](staticfiles/images/Screenshot%202025-10-21%20at%2020.39.41.png)
+
+![share2](staticfiles/images/Screenshot%202025-10-21%20at%2020.43.30.png)
+
 **Login Hover** - When I hover over the login and register links, they change to a prominent color and display an underline.
 
 **Login Page** -When a user is on the login page, they cannot enter the password before typing in their username, and a reminder message appears to let them know.
@@ -255,6 +204,18 @@ If the user is not registered, there is a "Sign me up here" option that allows t
 ![login](staticfiles/images/Screenshot%202025-10-21%20at%2014.09.13.png)
 
 ![loginpage](staticfiles/images/signin.png)
+
+**Reset Password Page** - On the reset password page, the user enters their email. I want to include this page because I plan to have this feature fully functional in the future.
+The user will receive everything they need via email in order to reset their password.
+After submitting the form, a confirmation message will immediately appear, letting them know that an email has been sent to the address they entered.
+- I also believe that having a "Need Support?" or "Contact Us" option is very important, as it provides a way for users to reach out if they did not receive the email or are experiencing other issues.
+
+![loginpage89](staticfiles/images/Screenshot%202025-10-21%20at%2020.50.50.png)
+
+![loginpage90](staticfiles/images/Screenshot%202025-10-21%20at%2020.52.20.png)
+
+![loginpage91](staticfiles/images/Screenshot%202025-10-21%20at%2020.54.25.png)
+
 
 There is always the confirmation message after finishing the process.
 
