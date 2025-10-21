@@ -1,2 +1,4 @@
 env.py
 baby_bites/fixtures/
+venv/
+.venv/

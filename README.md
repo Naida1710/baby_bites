@@ -475,7 +475,7 @@ This project is deployed on [Heroku](https://www.heroku.com/). Follow these step
 - Select the main branch.
 - Click "Deploy Branch".
 
-Heroku deployment link: 
+Heroku deployment link: https://baby-bites-11a284824d28.herokuapp.com
 
 
 ## Credits
