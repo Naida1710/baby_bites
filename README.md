@@ -47,6 +47,7 @@ The All Recipes link should have a downward arrow icon next to the label and act
 6. After logout, the user should be redirected to the homepage.
 7. The login form must validate all required fields and display appropriate error messages for missing or incorrect input.
 8. Failed login attempts should show clear and user-friendly error messages without disclosing any sensitive or security-related information.
+9. A reminder message is displayed at the top of the page to indicate the user’s authentication status, showing whether they are currently logged in or logged out.
 
 **Register an account**
 1. The user can register an account by providing a username, email, and password.
@@ -60,8 +61,8 @@ The All Recipes link should have a downward arrow icon next to the label and act
 9. A UserProfile object (or equivalent user-related profile) should be automatically created and linked to the user upon registration.
 10. After successful registration, the user should be automatically logged in without needing to manually sign in.
 
-**Baby Bites User Profile**
-1. Display user profile data including name, email, profile picture, type of surgery (free text input), and account creation date.
+**Logout link**
+1. Allow users to navigate to the Sign Out page and they are greeted with a warm message asking if they are sure they want to log out.
 2. Allow users to save and update their profile details in real-time, reflecting changes immediately on the page.
 3. If the user is not logged in, redirect them to the login page before allowing access to the profile.
 4. Ensure the profile page is accessible only to the logged-in user, preventing other users from viewing or editing someone else’s profile.
@@ -146,6 +147,12 @@ Login forms are optimized for browser autofill, allowing users to log in more qu
 The application uses a pink, green and grayish gradient theme throughout, maintaining visual consistency across all pages. The color palette was carefully selected using Coolers to give a professional appearance:
 
 ![Colour Palette](staticfiles/images/Coolors.png)
+
+### Features Overview
+
+- Baby Bites logo - the logo mantains across internal pages (Home, About, All Recipe, Share a Recipe), but not across external links (login, Register and Logout).
+
+![Logo](staticfiles/images/logoimg1.png)
 
 #### Typography
 I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
