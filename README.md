@@ -1,4 +1,4 @@
-# baby_bites
+# Baby Bites
 
 
 ## Project Goals
@@ -10,13 +10,13 @@ Introducing solids can be confusing and stressful. Between lack of sleep, return
 - Do I have time to make something nutritious — or will it just be another pouch?
 Baby Bites was created to solve these challenges. This platform provides simple, fast, and nutritious recipes tailored for babies aged 6 to 12 months, so parents can feel confident about feeding their little ones — even on the busiest days.
 The goals of the project are to:
-✅ Take the guesswork out of what to cook for babies at each age stage
-✅ Offer quick and healthy recipes using everyday ingredients
-✅ Support parents who want to feed their babies real food but feel overwhelmed or short on time
-✅ Reduce the reliance on store-bought baby food by making homemade meals accessible
-✅ Empower caregivers with clear, practical feeding guidance without the stress
-✅ Build a supportive community where users can comment on recipes, ask questions, and share their own creations
-✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
+- ✅ Take the guesswork out of what to cook for babies at each age stage
+- ✅ Offer quick and healthy recipes using everyday ingredients
+- ✅ Support parents who want to feed their babies real food but feel overwhelmed or short on time
+- ✅ Reduce the reliance on store-bought baby food by making homemade meals accessible
+- ✅ Empower caregivers with clear, practical feeding guidance without the stress
+- ✅ Build a supportive community where users can comment on recipes, ask questions, and share their own creations
+- ✅ Encourage collaboration between parents, creating a space where real-life experiences and tips can be shared openly
 By combining nutrition, convenience, and real-life practicality, Baby Bites helps parents turn mealtime into something simple, joyful, and nourishing — even when life is chaotic.
 
 ### User Stories
@@ -25,16 +25,16 @@ By combining nutrition, convenience, and real-life practicality, Baby Bites help
 
 **Navigation bar**
 1. The navbar should be displayed on all pages, except the Login, Logout and Registration pages.
-2. The navbar should include clearly labeled links (Home, About, All Recipes, Register, Login and Logout).
+2. The navbar should include clearly labeled links (Home, About, All Recipes (with dropdown menu), Share a Recipe,  Register, Login and Logout).
 3. The currently active page should be visually highlighted to help users identify their location within the site.Additionally, when hovering over Home, About, Login, Logout and Register navigation links, an animated underline should appear smoothly beneath the text to improve user experience and clarity.
-The All Recipes link should have a downward arrow icon next to the label and act as a dropdown menu toggle. When clicked on the arrow, it should display a dropdown list of age-based recipe categories (e.g., 6+ Months, 8+ Months, 10+ Months, 1 Year Old). Each dropdown item should be a clickable link that routes to the corresponding age-specific recipe page part.
+The All Recipes link should have a downward arrow icon next to the label and act as a dropdown menu toggle. When clicked on the arrow, it should display a dropdown list of age-based recipe categories (e.g., 6+ Months, 8+ Months, 10+ Months, 1 Year Old). Selecting an option automatically filters the recipes on the page to show only those appropriate for the chosen age group.
 4. The navigation should dynamically adjust based on the user’s authentication status:
 - If the user is not authenticated: show Login and Register links.
 - If the user is authenticated: show the Logout link instead.
 5. The navbar should be responsive across all device sizes. On smaller screens, links should be collapsed into a dropdown (hamburger menu) for better usability.
 6. All navigation links should route the user to the correct pages:
 - Login, Logout, and Register should link to external pages (typically handled by Django AllAuth or similar).
-- Home and About should link to internal pages within the app (e.g., via {% url 'home' %} and {% url 'about' %}).
+- Home, About, All Recipes (dropdown menu incl.) and Share a Recipe should link to internal pages within the app.
 
 **Login and logout**
 1. Users should be able to log in using their username or email along with their password.
