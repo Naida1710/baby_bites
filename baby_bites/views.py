@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import About
-
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Post, Comment
@@ -14,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Post
 from .models import Recipe
 from .forms import PostForm
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 
 from django.db import models
@@ -79,14 +80,19 @@ def index(request):
 def toggle_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
     user = request.user
+
     if user.is_authenticated:
         if user in post.likes.all():
             post.likes.remove(user)
         else:
             post.likes.add(user)
+
+        # Check if it's an AJAX request
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            html = render_to_string('partials/like_button.html', {'post': post, 'user': user})
+            return JsonResponse({'html': html})
+
     return redirect('post_detail', slug=post.slug)
-
-
 
 def about_view(request):
     if request.method == "POST":

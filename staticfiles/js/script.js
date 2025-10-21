@@ -75,6 +75,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
+  // Like button AJAX handling with smooth scroll to like section
+  document.querySelectorAll('form[id^="like-form-"]').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // prevent full page reload
+
+      const postId = form.dataset.postId;
+      const url = form.action;
+      const csrftoken = form.querySelector('[name=csrfmiddlewaretoken]').value;
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrftoken,
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json(); // Expecting JSON from backend
+          const container = document.querySelector(`#like-container-${postId}`);
+
+          // Replace the container HTML with updated button + count
+          container.innerHTML = data.html;
+
+          // Scroll smoothly to the like section to prevent jumping
+          const likeSection = document.getElementById(`like-section-${postId}`);
+          if (likeSection) {
+            likeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          console.error('Failed to toggle like');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+
   // 5. Recipe filter highlighting
   const filterButtons = document.querySelectorAll('.filter-option');
   const recipeCards = document.querySelectorAll('.card[data-age-group]');
@@ -121,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 7. Add your other JS code here (edit buttons, delete modals, etc.)
 });
-
 
 
  

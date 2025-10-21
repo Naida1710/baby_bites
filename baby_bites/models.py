@@ -4,14 +4,12 @@ from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 
-
 AGE_GROUP_CHOICES = [
-    ("6_months", "6+ Months"),
-    ("8_months", "8+ Months"),
-    ("10_months", "10+ Months"),
-    ("12_months", "1 Year Old"),
-]
-
+        ('6_months', '6 Months'),
+        ('8_months', '8 Months'),
+        ('10_months', '10 Months'),
+        ('12_months', '12 Months'),
+    ]
 
 class About(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -25,6 +23,7 @@ class About(models.Model):
 
 
 class Post(models.Model):
+    
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     author = models.ForeignKey(
@@ -41,6 +40,9 @@ class Post(models.Model):
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default="6_months")
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
     approved = models.BooleanField(default=False)
+
+
+
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.title)
@@ -73,21 +75,25 @@ class CollaborateRequest(models.Model):
 
 
 class Recipe(models.Model):
-    AGE_GROUP = [
+    AGE_GROUP_CHOICES = [
         ('6_months', '6 Months'),
         ('8_months', '8 Months'),
         ('10_months', '10 Months'),
         ('12_months', '12 Months'),
     ]
+  
 
     title = models.CharField(max_length=200)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    age_group = models.CharField(max_length=20, choices=AGE_GROUP)  # added field
-    approved = models.BooleanField(default=False) 
+    age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default='6_months')
+    approved = models.BooleanField(default=False)
+
+    featured_image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
         return self.title
+
 
 
 class Comment(models.Model):
