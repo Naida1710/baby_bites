@@ -249,6 +249,8 @@ If the user is not registered, there is a "Sign me up here" option that allows t
 
 ![loginpage](staticfiles/images/signin.png)
 
+There is always the confirmation message after finishing the process.
+
 ![loginpage2](staticfiles/images/signin1.png)
 
 ![loginpage3](staticfiles/images/signinmessage.png)
@@ -257,18 +259,25 @@ If the user is not registered, there is a "Sign me up here" option that allows t
 
 **Register Page** - Clicking the registration link takes the user to an external registration page where they must provide their personal details in the required sequence.
 A "Take me back home" button is available to return to the homepage at any time.
-If the user is already logged in, they are automatically directed to the Sign In section instead of completing the registration form again.
+If the user is already logged in, they are automatically directed to the Sign In section instead of completing the registration form again (Username already exists.)
 
 ![registration](staticfiles/images/reg%201.png)
 
 ![registration2](staticfiles/images/regi.png)
 
-- **Footer** - In the footer, there is a copyright notice and links to Twitter, Facebook, and Instagram.
+![registration3](staticfiles/images/Screenshot%202025-10-21%20at%2018.19.14.png)
+
+**Logout page** - Users can either log out or click "Take me back home" button instead.
+
+![Logout](staticfiles/images/Screenshot%202025-10-21%20at%2018.17.14.png)
+
+![Logout Page](staticfiles/images/logoutpage.png)
+
+
+**Footer** - In the footer, there is a copyright notice and links to Twitter, Facebook, and Instagram.
 Each link changes to a yellow color when clicked and directs the user to the respective external social media page.
 
 ![Footer](staticfiles/images/Screenshot%202025-10-21%20at%2013.49.12.png)
-
-- **Footer Hover** - I used Favicon.io to create the favicon for the site. 
 
 ![Hover](staticfiles/images/Screenshot%202025-10-21%20at%2014.02.53.png)
 
