@@ -148,11 +148,7 @@ The application uses a pink, green and grayish gradient theme throughout, mainta
 
 ![Colour Palette](staticfiles/images/Coolors.png)
 
-### Features Overview
 
-- Baby Bites logo - the logo mantains across internal pages (Home, About, All Recipe, Share a Recipe), but not across external links (login, Register and Logout).
-
-![Logo](staticfiles/images/logoimg1.png)
 
 #### Typography
 I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
@@ -160,6 +156,16 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 - **Caveat**: Used for headings, brand elements, nutrition summary section and logo providing a casual, handwritten script font designed to feel friendly and approachable..
 - **Segoe UI**: Used for password confirmation email page providing cleand and readable UI elements.
 - **Lato**: Used for password reset page.
+
+### Features Overview
+
+- **Baby Bites logo** - the logo mantains across internal pages (Home, About, All Recipe, Share a Recipe), but not across external links (login, Register and Logout).
+
+![Logo](staticfiles/images/logoimg1.png)
+
+- **Favicon icon** - I used Favicon.io to create the favicon for the site. 
+
+![Favicon](staticfiles/images/favicon12.png)
 
 ## Testing
 
