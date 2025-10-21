@@ -17,6 +17,7 @@ class PostAdmin(SummernoteModelAdmin):
         self.message_user(request, "Selected posts have been approved.")
     approve_posts.short_description = "Approve selected posts"
 
+
 @admin.register(About)
 class AboutAdmin(SummernoteModelAdmin):
     summernote_fields = ('content',)

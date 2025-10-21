@@ -4,16 +4,14 @@ from allauth.account.views import LoginView
 from django.conf import settings
 from django.conf.urls.static import static
 
-
-
 urlpatterns = [
-    path('', views.PostList.as_view(), name='home'),  # or views.index, pick one
-    path('recipes/', views.recipe_list, name='recipe_list'),  # Make sure this view exists
+    path('', views.PostList.as_view(), name='home'),
+    path('recipes/', views.recipe_list, name='recipe_list'),
     path('recipes/6-months/', views.recipes_6_months, name='recipes_6_months'),
     path('recipes/8-months/', views.recipes_8_months, name='recipes_8_months'),
     path('recipes/10-months/', views.recipes_10_months, name='recipes_10_months'),
     path('recipes/12-months/', views.recipes_12_months, name='recipes_12_months'),
-    path('recipes/<slug:slug>/', views.post_detail, name='post_detail'),  # post detail under recipes/
+    path('recipes/<slug:slug>/', views.post_detail, name='post_detail'),
     path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
     path('<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'),
     path('about/', include('about.urls')),
@@ -26,4 +24,3 @@ urlpatterns = [
 # Only in development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

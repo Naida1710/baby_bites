@@ -32,8 +32,6 @@ def create_post(request):
         form = PostForm()
     return render(request, 'baby_bites/create_post.html', {'form': form})
 
-    
-
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
@@ -77,6 +75,7 @@ def index(request):
     # Your logic here
     return render(request, 'index.html')
 
+
 def toggle_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
     user = request.user
@@ -89,10 +88,12 @@ def toggle_like(request, pk):
 
         # Check if it's an AJAX request
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            html = render_to_string('partials/like_button.html', {'post': post, 'user': user})
+            html = render_to_string('partials/like_button.html',
+                                     {'post': post, 'user': user})
             return JsonResponse({'html': html})
 
     return redirect('post_detail', slug=post.slug)
+
 
 def about_view(request):
     if request.method == "POST":
@@ -113,6 +114,7 @@ def about_view(request):
         },
     )
 
+
 def home(request):
     return render(request, 'baby_bites/home.html')
 
@@ -125,7 +127,7 @@ class PostList(generic.ListView):
 
     def get_queryset(self):
         order = self.request.GET.get('order', 'latest')  # default to latest
-        qs = Post.objects.filter (approved=True)
+        qs = Post.objects.filter(approved=True)
         if order == 'earliest':
             return qs.order_by('created_on')
         return qs.order_by('-created_on')
@@ -165,6 +167,7 @@ def post_detail(request, slug):
         },
     )
 
+
 # views.py
 def recipe_list(request):
     order = request.GET.get('order', 'latest')
@@ -173,7 +176,7 @@ def recipe_list(request):
     else:  # latest by default
         post_list = Post.objects.all().order_by('-created_on')
 
-    paginator = Paginator(post_list, 10)  
+    paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -185,6 +188,7 @@ def recipe_list(request):
     }
     return render(request, 'baby_bites/post_list.html', context)
 
+
 def profile_page(request):
     user = get_object_or_404(User, pk=request.user.pk)
     comments = user.commenter.all()
@@ -192,17 +196,17 @@ def profile_page(request):
 
 
 def recipes_6_months(request):
-    recipes = Recipe.objects.filter(age_group="6_months", approved=True)
+    recipes = Post.objects.filter(age_group="6_months", approved=True)
     return render(request, "recipes/6_months.html", {"recipes": recipes})
 
 
 def recipes_8_months(request):
-    recipes = Recipe.objects.filter(age_group="8_months", approved=True)
+    recipes = Post.objects.filter(age_group="8_months", approved=True)
     return render(request, "recipes/8_months.html", {"recipes": recipes})
 
 
 def recipes_10_months(request):
-    recipes = Recipe.objects.filter(age_group="10_months", approved=True)
+    recipes = Post.objects.filter(age_group="10_months", approved=True)
     return render(request, "recipes/10_months.html", {"recipes": recipes})
 
 

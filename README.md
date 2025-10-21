@@ -168,7 +168,9 @@ When a user clicks on one of the options, they are taken directly to that sectio
 
 ![Dropdown](staticfiles/images/Screenshot%202025-10-21%20at%2014.06.32.png)
 
-- **Recipe** - When a user clicks on a post, the recipe opens with a detailed description. Under the recipe title, the post displays date and the author.
+![Dropdown1](staticfiles/images/Screenshot%202025-10-21%20at%2023.48.16.png)
+
+**Recipe** - When a user clicks on a post, the recipe opens with a detailed description. Under the recipe title, the post displays date and the author.
 
 ![Recipe](staticfiles/images/Screenshot%202025-10-21%20at%2014.28.17.png)
 
@@ -178,7 +180,7 @@ When a user clicks on one of the options, they are taken directly to that sectio
 
 ![Back-button](staticfiles/images/Screenshot%202025-10-21%20at%2014.31.08.png)
 
-- **Comment Section and Like/Unlike** - When users open a recipe, the recipe description is displayed immediately. Below that, there is a like/unlike option, where registered users can like or comment on recipes made by others.
+**Comment Section and Like/Unlike** - When users open a recipe, the recipe description is displayed immediately. Below that, there is a like/unlike option, where registered users can like or comment on recipes made by others.
 If the user is not registered, they cannot use any of those features, but they can still see how many likes or comments a recipe has. If there are no comments, a message will be displayed on the page indicating that.
 
 ![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.32.59.png)
