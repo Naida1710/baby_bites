@@ -499,6 +499,6 @@ Heroku deployment link:
 
 ## Acknowledgements
 * I would love to thank my husband for his immense support during a period that was not the easiest for anyone, especially since we were all exclusively sick for a month and a half. 
-* I would also like to give a special thanks to the Student Support team at Code Institute for their incredible kindness and understanding.
+* I would also like to give a special thanks to my mentor and the Student Support team at Code Institute for their incredible kindness and understanding.
 
 
