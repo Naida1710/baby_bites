@@ -167,6 +167,52 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ![Favicon](staticfiles/images/favicon12.png)
 
+- **Navigation bar** - I used Favicon.io to create the favicon for the site. 
+
+![Navmenu](staticfiles/images/navbar.png)
+![Navmenudesktop](staticfiles/images/navbardesktop.png)
+
+- **Introductory message** - I used Favicon.io to create the favicon for the site. 
+
+![Intro](staticfiles/images/intro.png)
+
+- **Hero image** - I used Favicon.io to create the favicon for the site. 
+
+![Intro](staticfiles/images/heroo.png)
+
+- **Introductory text/home page** - I used Favicon.io to create the favicon for the site. 
+
+![Introtext](staticfiles/images/introtext.png)
+
+
+
+- **Introductory text/home page** - I used Favicon.io to create the favicon for the site. 
+
+![Introtext1](staticfiles/images/homepag.png)
+
+- **Introductory text/home page** - I used Favicon.io to create the favicon for the site. 
+
+![About](staticfiles/images/getto.png)
+
+- **All Recipe** - I used Favicon.io to create the favicon for the site. 
+
+![AllRecipe](staticfiles/images/allrecipe.png)
+
+- **All Recipe Filter** - I used Favicon.io to create the favicon for the site. 
+
+![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.38.42.png)
+
+- **All Recipe Page Count** - I used Favicon.io to create the favicon for the site. 
+
+![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.41.02.png)
+
+- **Footer** - I used Favicon.io to create the favicon for the site. 
+
+![Footer](staticfiles/images/)
+
+
+
+
 ## Testing
 
 ###
