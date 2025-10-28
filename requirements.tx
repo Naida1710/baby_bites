@@ -3,11 +3,11 @@ bleach==6.2.0
 cachetools==5.5.2
 certifi==2025.10.5
 charset-normalizer==3.4.2
+django-ckeditor==6.3.0
 cloudinary==1.44.1
 dj-database-url==3.0.1
 Django==4.2.23
 django-allauth==65.11.2
-django-ckeditor==6.7.3
 django-cloudinary-storage==0.3.0
 django-js-asset==3.1.2
 django-summernote==0.8.20.0

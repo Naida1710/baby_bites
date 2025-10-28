@@ -171,6 +171,7 @@ def post_detail(request, slug):
 # views.py
 def recipe_list(request):
     order = request.GET.get('order', 'latest')
+    post_list = Post.objects.filter(approved=True)
     if order == 'earliest':
         post_list = Post.objects.all().order_by('created_on')
     else:  # latest by default
