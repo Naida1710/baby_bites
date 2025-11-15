@@ -3,8 +3,9 @@ bleach==6.2.0
 cachetools==5.5.2
 certifi==2025.10.5
 charset-normalizer==3.4.2
-cloudinary==1.44.1
+cloudinary==1.36.0
 dj-database-url==3.0.1
+dj3-cloudinary-storage==0.0.6
 Django==4.2.23
 django-allauth==65.11.2
 django-ckeditor==6.7.3
@@ -25,6 +26,6 @@ requests-oauthlib==2.0.0
 rsa==4.9.1
 six==1.17.0
 sqlparse==0.5.3
-urllib3==2.4.0
+urllib3==1.26.20
 webencodings==0.5.1
 whitenoise==6.11.0
