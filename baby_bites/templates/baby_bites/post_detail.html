@@ -24,10 +24,10 @@
         </p>
 
         <!-- Post Image -->
-        {% if post.image %}
+        {% if post.featured_image %}
         <div class="text-center my-4">
           <img
-            src="{{ post.image.url }}"
+            src="{{ post.featured_image.url }}"
             class="img-fluid rounded shadow-sm"
             alt="{{ post.title }}"
           />

@@ -11,16 +11,17 @@ urlpatterns = [
     path('recipes/8-months/', views.recipes_8_months, name='recipes_8_months'),
     path('recipes/10-months/', views.recipes_10_months, name='recipes_10_months'),
     path('recipes/12-months/', views.recipes_12_months, name='recipes_12_months'),
-    path('recipes/<slug:slug>/', views.post_detail, name='post_detail'),
     path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
     path('<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'),
-    path('about/', include('about.urls')),
-    path('accounts/login/', LoginView.as_view(), name='account_login'),
+    path('recipes/<slug:slug>/', views.post_detail, name='post_detail'),
+    path('about/', views.about_view, name='about'),
     path('post/<int:pk>/like/', views.toggle_like, name='toggle_like'),
     path('create/', views.create_post, name='create_post'),
-    path('about/', views.about_view, name='about'),
+    path('accounts/login/', LoginView.as_view(), name='account_login'),
+     
 ]
 
 # Only in development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
