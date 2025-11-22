@@ -5,34 +5,54 @@ const commentText = document.getElementById("id_body");
 const commentForm = document.getElementById("commentForm");
 const submitButton = document.getElementById("submitButton");
 const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteConfirm = document.getElementById("deleteConfirm");
 
+// -----------------------------
+// ✏️ Edit Comment
+// -----------------------------
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
     let commentId = e.target.getAttribute("comment_id");
-    let commentContent = document.getElementById(
-      `comment${commentId}`
-    ).innerText;
+    let commentContent = document.getElementById(`comment${commentId}`).innerText;
     commentText.value = commentContent;
     submitButton.innerText = "Update";
     commentForm.setAttribute("action", `edit_comment/${commentId}`);
   });
 }
 
-/**
- * Initializes deletion functionality for the provided delete buttons.
- *
- * For each button in the `deleteButtons` collection:
- * - Retrieves the associated comment's ID upon click.
- * - Updates the `deleteConfirm` link's href to point to the
- * deletion endpoint for the specific comment.
- * - Displays a confirmation modal (`deleteModal`) to prompt
- * the user for confirmation before deletion.
- */
+// -----------------------------
+// 🗑️ Delete Comment via AJAX
+// -----------------------------
 for (let button of deleteButtons) {
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", async (e) => {
     let commentId = e.target.getAttribute("comment_id");
-    deleteConfirm.href = `delete_comment/${commentId}`;
 
+    if (!confirm("Are you sure you want to delete this comment?")) return;
+
+    const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+    const url = `delete_comment/${commentId}`; // your endpoint
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          const commentElement = document.getElementById(`comment${commentId}`);
+          if (commentElement) commentElement.remove();
+        } else {
+          console.error("Failed to delete comment");
+        }
+      } else {
+        console.error("Server returned an error");
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
   });
 }

@@ -87,12 +87,18 @@
           </h3>
           <div class="comment-grid">
             {% for comment in comments %}
-            <div class="comment-card mb-3 p-3 border rounded bg-light">
+            <div id="comment{{ comment.id }}" class="comment-card mb-3 p-3 border rounded bg-light">
               <p class="mb-1"><strong>{{ comment.author.username }}</strong></p>
               <p class="mb-1">{{ comment.body }}</p>
               <small class="text-muted"
                 >{{ comment.created_on|date:"M d, Y - H:i" }}</small
               >
+              {% if comment.author == user %}
+    <div class="mt-2">
+      <button class="btn-edit btn btn-sm btn-outline-primary" comment_id="{{ comment.id }}">Edit</button>
+      <button class="btn-delete btn btn-sm btn-outline-danger" comment_id="{{ comment.id }}">Delete</button>
+    </div>
+    {% endif %}
             </div>
             {% empty %}
             <p class="text-center">No comments yet. Be the first to comment!</p>

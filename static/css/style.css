@@ -116,10 +116,18 @@ body {
 /* FIXED GRID — consistent layout for 1, 2, or 3 items per row */
 .post-grid {
   display: grid;
-  align-items: start; 
   grid-template-columns: repeat(3, 1fr); /* ALWAYS 4 per row */
   gap: 1.5rem;
   grid-auto-rows: 1fr; /* make rows equal height */
+}
+
+/* Only show first 2 rows */
+.post-grid.show-limited .post-card {
+  display: none;
+}
+
+.post-grid.show-limited .post-card:nth-child(-n+6) {
+  display: block; /* 3 columns x 2 rows = 6 items */
 }
 
 .post-card {
