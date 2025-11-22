@@ -119,6 +119,7 @@ body {
   align-items: start; 
   grid-template-columns: repeat(3, 1fr); /* ALWAYS 4 per row */
   gap: 1.5rem;
+  grid-auto-rows: 1fr; /* make rows equal height */
 }
 
 .post-card {
