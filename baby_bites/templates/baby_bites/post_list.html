@@ -39,10 +39,10 @@
         {% if post.featured_image %}
         <img src="{{ post.featured_image.url }}"
              alt="{{ post.title }}"
-             class="card-img-top"
+             class="post-img"
              style="height: 200px; object-fit: cover;">
         {% endif %}
-        
+
         <h3>
           {% if post.slug %}
             <a href="{% url 'post_detail' slug=post.slug %}#post-content" class="green-link">{{ post.title }}</a>

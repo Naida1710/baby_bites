@@ -112,36 +112,32 @@ body {
   color: white;
 }
 
+
+/* FIXED GRID — consistent layout for 1, 2, or 3 items per row */
 .post-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  align-items: start; 
+  grid-template-columns: repeat(3, 1fr); /* ALWAYS 4 per row */
   gap: 1.5rem;
-  margin-top: 2rem;
-  justify-content: space-between; /* or center */
 }
 
 .post-card {
   background: #fff;
+  height: 90%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   padding: 1.5rem;
   transition: transform 0.3s ease;
-  flex: 1 1 calc(33.333% - 1rem); /* 3 per row with gap */
-  min-width: 280px; /* same as your min grid width */
-  box-sizing: border-box;
 }
 
-.post-card:hover {
-  transform: translateY(-5px);
+.post-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
 }
 
-.post-card h3 {
-  margin-top: 0;
-}
 
-.post-card p {
-  margin-bottom: 0.5rem;
-}
 
 .leave-comment-section {
   text-align: center;
@@ -1398,5 +1394,17 @@ textarea:hover {
     left: 50% !important;
     transform: translateX(-50%) !important;
     right: auto !important;
+  }
+}
+
+@media(max-width: 992px) {
+  .post-grid {
+      grid-template-columns: repeat(2, 1fr); /* tablets */
+  }
+}
+
+@media(max-width: 576px) {
+  .post-grid {
+      grid-template-columns: 1fr; /* mobile */
   }
 }
