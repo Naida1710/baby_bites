@@ -83,7 +83,7 @@
 
               {% if comment.author == user %}
               <div class="mt-2 d-flex gap-2">
-                <button type="button" class="btn btn-sm btn-outline-warning btn-edit" data-comment-id="{{ comment.id }}">Edit</button>
+                <button type="button" class="btn btn-sm btn-edit-custom" data-comment-id="{{ comment.id }}">Edit</button>
                 <form method="post" action="{% url 'comment_delete' post.slug comment.id %}" class="d-inline">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
@@ -120,12 +120,30 @@
   </div>
 </div>
 
-<!-- Inline Edit & Delete Script -->
+<!-- Custom Button Styles -->
+<style>
+.btn-edit-custom {
+  border: 2px solid #FFD700;  /* Yellow border */
+  background-color: white;    /* White background */
+  color: #FFD700;             /* Yellow text */
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-edit-custom:hover,
+.btn-edit-custom:focus,
+.btn-edit-custom:active {
+  background-color: #fff8e1;  /* Light yellow on hover */
+  color: #FFC107;             /* Slightly darker yellow text */
+  box-shadow: none;
+}
+</style>
+
+<!-- Inline Edit Script -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const editButtons = document.querySelectorAll(".btn-edit");
+  const editButtons = document.querySelectorAll(".btn-edit-custom");
 
-  // Edit button functionality
   editButtons.forEach(button => {
     button.addEventListener("click", async () => {
       const commentId = button.dataset.commentId;
