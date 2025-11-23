@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
+from django.utils import timezone
 
 AGE_GROUP_CHOICES = [
         ('6_months', '6 Months'),
@@ -94,7 +95,8 @@ class Recipe(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default='6_months')
     approved = models.BooleanField(default=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
@@ -109,18 +111,15 @@ class Recipe(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name="comments"
-    )
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="commenter"
-    )
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
-    approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ["created_on"]
+    approved = models.BooleanField(default=False)
+    
+    # Track editing
+    edited = models.BooleanField(default=False)
+    edited_on = models.DateTimeField(null=True, blank=True)  # New field for edit timestamp
 
     def __str__(self):
-        return f"Comment {self.body} by {self.author}"
+        return f"{self.author} - {self.body[:20]}"

@@ -16,6 +16,8 @@ from .forms import PostForm
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.db import models
+from django.utils import timezone
+
 
 def create_post(request):
     if request.method == 'POST':
@@ -31,28 +33,28 @@ def create_post(request):
     return render(request, 'baby_bites/create_post.html', {'form': form})
 
 def comment_edit(request, slug, comment_id):
-    """
-    Edit comment immediately without admin approval.
-    """
     if request.method == "POST":
         post = get_object_or_404(Post, slug=slug, approved=True)
         comment = get_object_or_404(Comment, pk=comment_id)
 
-        # Only the author can edit
         if comment.author != request.user:
-            messages.error(request, "You can only edit your own comments!")
-            return redirect('post_detail', slug=slug)
+            return JsonResponse({'success': False, 'message': "You can only edit your own comments!"})
 
-        # Update comment body directly
         body = request.POST.get("body", "").strip()
         if body:
             comment.body = body
+            comment.edited = True
+            comment.edited_on = timezone.now()
             comment.save()
-            messages.success(request, "Comment updated successfully!")
+            return JsonResponse({
+                'success': True,
+                'body': comment.body,
+                'edited_on': comment.edited_on.strftime("%d %b %Y %H:%M")
+            })
         else:
-            messages.error(request, "Comment cannot be empty!")
+            return JsonResponse({'success': False, 'message': "Comment cannot be empty!"})
 
-    return redirect('post_detail', slug=slug)
+    return JsonResponse({'success': False, 'message': "Invalid request"})
 
 
 

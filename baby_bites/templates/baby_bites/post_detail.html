@@ -77,7 +77,13 @@
             {% for comment in comments %}
             <div id="comment{{ comment.id }}" class="comment-card mb-3 p-3 border rounded bg-light" data-slug="{{ post.slug }}">
 
-              <p class="mb-1"><strong>{{ comment.author.username }}</strong></p>
+              <p class="mb-1">
+                <strong>{{ comment.author.username }}</strong>
+                {% if comment.edited %}
+                  <span class="text-muted small edited-badge">(Edited on {{ comment.edited_on|date:"d M Y H:i" }})</span>
+                {% endif %}
+              </p>
+
               <p class="mb-1 comment-body">{{ comment.body }}</p>
               <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
 
@@ -123,9 +129,9 @@
 <!-- Custom Button Styles -->
 <style>
 .btn-edit-custom {
-  border: 2px solid #FFD700;  /* Yellow border */
-  background-color: white;    /* White background */
-  color: #FFD700;             /* Yellow text */
+  border: 2px solid #FFD700;
+  background-color: white;
+  color: #FFD700;
   font-weight: 500;
   transition: all 0.2s ease;
 }
@@ -133,8 +139,8 @@
 .btn-edit-custom:hover,
 .btn-edit-custom:focus,
 .btn-edit-custom:active {
-  background-color: #fff8e1;  /* Light yellow on hover */
-  color: #FFC107;             /* Slightly darker yellow text */
+  background-color: #fff8e1;
+  color: #FFC107;
   box-shadow: none;
 }
 </style>
@@ -149,14 +155,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const commentId = button.dataset.commentId;
       const commentCard = document.getElementById(`comment${commentId}`);
       const commentBody = commentCard.querySelector(".comment-body");
+      const editedBadge = commentCard.querySelector(".edited-badge");
       const slug = commentCard.dataset.slug;
 
       if (button.innerText === "Edit") {
+        // Enable editing
         commentBody.contentEditable = "true";
         commentBody.focus();
         commentBody.style.backgroundColor = "#fff9c4";
         button.innerText = "Submit";
       } else {
+        // Submit edited comment
         const updatedBody = commentBody.innerText.trim();
         if (!updatedBody) {
           alert("Comment cannot be empty.");
@@ -170,17 +179,34 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             headers: {
               "X-CSRFToken": csrftoken,
+              "X-Requested-With": "XMLHttpRequest",
               "Content-Type": "application/x-www-form-urlencoded"
             },
             body: new URLSearchParams({ body: updatedBody })
           });
 
-          if (response.ok) {
+          const data = await response.json();
+
+          if (data.success) {
+            // Update the comment text
+            commentBody.textContent = data.body;
+
+            // Update or add edited badge
+            if (editedBadge) {
+              editedBadge.textContent = `(Edited on ${data.edited_on})`;
+            } else {
+              const span = document.createElement("span");
+              span.className = "text-muted small edited-badge";
+              span.textContent = `(Edited on ${data.edited_on})`;
+              commentBody.parentNode.insertBefore(span, commentBody.nextSibling);
+            }
+
+            // Reset edit mode
             commentBody.contentEditable = "false";
             commentBody.style.backgroundColor = "";
             button.innerText = "Edit";
           } else {
-            alert("Error updating comment.");
+            alert(data.message || "Error updating comment.");
           }
         } catch (err) {
           console.error(err);
