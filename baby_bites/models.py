@@ -81,6 +81,12 @@ class Recipe(models.Model):
         ('10_months', '10 Months'),
         ('12_months', '12 Months'),
     ]
+
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
   
 
     title = models.CharField(max_length=200)
@@ -88,8 +94,14 @@ class Recipe(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default='6_months')
     approved = models.BooleanField(default=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='pending')
 
     featured_image = CloudinaryField('image', default='placeholder')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

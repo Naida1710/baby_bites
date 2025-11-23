@@ -93,16 +93,19 @@
               <small class="text-muted"
                 >{{ comment.created_on|date:"M d, Y - H:i" }}</small
               >
+              
               {% if comment.author == user %}
-    <div class="mt-2">
-      <button class="btn-edit btn btn-sm btn-outline-primary" comment_id="{{ comment.id }}">Edit</button>
-      <button class="btn-delete btn btn-sm btn-outline-danger" comment_id="{{ comment.id }}">Delete</button>
-    </div>
-    {% endif %}
+              <div class="mt-2">
+                <button class="btn-edit" comment_id="{{ comment.id }}" data-slug="{{ post.slug }}">Edit</button>
+<button class="btn-delete" comment_id="{{ comment.id }}" data-slug="{{ post.slug }}">Delete</button>
+
+              </div>
+              {% endif %}
+              
             </div>
-            {% empty %}
+              {% empty %}
             <p class="text-center">No comments yet. Be the first to comment!</p>
-            {% endfor %}
+              {% endfor %}
           </div>
         </div>
 
@@ -112,9 +115,9 @@
         {% if user.is_authenticated %}
         <div class="leave-comment-section mt-5">
           <h4 class="mb-3">Leave a Comment</h4>
-          <form method="post">
+          <form id="commentForm" method="post">
             {% csrf_token %} {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            <button id="submitButton" type="submit" class="btn btn-primary mt-2">Submit</button>
           </form>
         </div>
         {% else %}

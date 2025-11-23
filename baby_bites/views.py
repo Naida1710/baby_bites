@@ -15,8 +15,6 @@ from .models import Recipe
 from .forms import PostForm
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-
-
 from django.db import models
 
 def create_post(request):
@@ -54,23 +52,26 @@ def comment_edit(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
-
 def comment_delete(request, slug, comment_id):
     """
     view to delete comment
     """
-    queryset = Post.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
+    post = get_object_or_404(Post, slug=slug)
 
-    if comment.author == request.user:
-        comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
-    else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+    if comment.author != request.user:
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({"success": False, "error": "Permission denied"}, status=403)
+        messages.error(request, "You can only delete your own comments!")
+        return redirect('post_detail', slug=slug)
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    comment.delete()
 
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse({"success": True, "comment_id": comment_id})
+
+    messages.success(request, "Comment deleted!")
+    return redirect('post_detail', slug=slug)
 def index(request):
     # Your logic here
     return render(request, 'index.html')
@@ -167,15 +168,21 @@ def post_detail(request, slug):
         },
     )
 
+def approve_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    recipe.status = 'approved'
+    recipe.save()
+    return redirect('admin_pending_recipes')
 
 # views.py
 def recipe_list(request):
     order = request.GET.get('order', 'latest')
     post_list = Post.objects.filter(approved=True)
+
     if order == 'earliest':
-        post_list = Post.objects.all().order_by('created_on')
+        post_list = post_list.order_by('created_on')
     else:  # latest by default
-        post_list = Post.objects.all().order_by('-created_on')
+        post_list = post_list.order_by('-created_on')
 
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
