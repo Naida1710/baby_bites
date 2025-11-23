@@ -13,10 +13,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['body']
-        labels = {
-            'body': '',
+        widgets = {
+            'body': forms.Textarea(attrs={'id': 'id_body', 'class': 'form-control', 'placeholder': 'Write your comment...'}),
         }
-
 
 class PostForm(forms.ModelForm):
     class Meta:

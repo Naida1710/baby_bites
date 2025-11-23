@@ -32,47 +32,46 @@ def create_post(request):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    Edit comment immediately without admin approval.
     """
     if request.method == "POST":
-
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
+        post = get_object_or_404(Post, slug=slug, approved=True)
         comment = get_object_or_404(Comment, pk=comment_id)
-        comment_form = CommentForm(data=request.POST, instance=comment)
 
-        if comment_form.is_valid() and comment.author == request.user:
-            comment = comment_form.save(commit=False)
-            comment.post = post
-            comment.approved = False
+        # Only the author can edit
+        if comment.author != request.user:
+            messages.error(request, "You can only edit your own comments!")
+            return redirect('post_detail', slug=slug)
+
+        # Update comment body directly
+        body = request.POST.get("body", "").strip()
+        if body:
+            comment.body = body
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.success(request, "Comment updated successfully!")
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.error(request, "Comment cannot be empty!")
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    return redirect('post_detail', slug=slug)
+
+
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    View to delete a comment immediately by the author.
     """
     comment = get_object_or_404(Comment, pk=comment_id)
     post = get_object_or_404(Post, slug=slug)
 
     if comment.author != request.user:
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            return JsonResponse({"success": False, "error": "Permission denied"}, status=403)
         messages.error(request, "You can only delete your own comments!")
         return redirect('post_detail', slug=slug)
 
     comment.delete()
-
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return JsonResponse({"success": True, "comment_id": comment_id})
-
-    messages.success(request, "Comment deleted!")
+    messages.success(request, "Comment deleted successfully!")
     return redirect('post_detail', slug=slug)
-def index(request):
+
+
     # Your logic here
     return render(request, 'index.html')
 
