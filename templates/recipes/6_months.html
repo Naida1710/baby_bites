@@ -15,6 +15,19 @@
       <hr class="pastel-divider">
     </div>
 
+
+    <!-- ⭐ SORTING DROPDOWN GOES HERE -->
+    <form method="get" class="d-flex justify-content-end mb-3" style="gap: 0.5rem;">
+      <label for="order-select" class="form-label align-self-center mb-0 me-2" style="font-weight: 600;">Sort by:</label>
+
+      <select id="order-select" name="order" class="form-select w-auto" onchange="this.form.submit()">
+        <option value="latest" {% if order == 'latest' %}selected{% endif %}>Latest</option>
+        <option value="earliest" {% if order == 'earliest' %}selected{% endif %}>Earliest</option>
+      </select>
+    </form>
+    <!-- ⭐ END SORTING DROPDOWN -->
+
+
     <!-- Recipe Grid -->
     <div class="post-grid mt-4">
       {% for recipe in recipes %}
@@ -38,7 +51,7 @@
     </div>
 
     <div class="text-center mt-4">
-      <a href="{% url 'recipes_6_months' %}" class="btn btn-outline-primary"></a>
+      <a href="{% url 'recipes_6_months' %}" class="btn btn-outline-primary">
         ← Back to Home
       </a>
     </div>

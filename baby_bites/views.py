@@ -184,7 +184,7 @@ def recipe_list(request):
     else:  # latest by default
         post_list = post_list.order_by('-created_on')
 
-    paginator = Paginator(post_list, 10)
+    paginator = Paginator(post_list, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -204,20 +204,63 @@ def profile_page(request):
 
 
 def recipes_6_months(request):
+    order = request.GET.get('order', 'latest')
+
     recipes = Post.objects.filter(age_group="6_months", approved=True)
-    return render(request, "recipes/6_months.html", {"recipes": recipes})
+
+    if order == 'earliest':
+        recipes = recipes.order_by('created_on')
+    else:
+        recipes = recipes.order_by('-created_on')
+
+    return render(request, "recipes/6_months.html", {
+        "recipes": recipes,
+        "order": order,
+    })
 
 
 def recipes_8_months(request):
+    order = request.GET.get('order', 'latest')
+
     recipes = Post.objects.filter(age_group="8_months", approved=True)
-    return render(request, "recipes/8_months.html", {"recipes": recipes})
+
+    if order == 'earliest':
+        recipes = recipes.order_by('created_on')
+    else:
+        recipes = recipes.order_by('-created_on')
+
+    return render(request, "recipes/8_months.html", {
+        "recipes": recipes,
+        "order": order,
+    })
 
 
 def recipes_10_months(request):
-    recipes = Post.objects.filter(age_group="10_months", approved=True)
-    return render(request, "recipes/10_months.html", {"recipes": recipes})
+    order = request.GET.get('order', 'latest')
 
+    recipes = Post.objects.filter(age_group="10_months", approved=True)
+
+    if order == 'earliest':
+        recipes = recipes.order_by('created_on')
+    else:
+        recipes = recipes.order_by('-created_on')
+
+    return render(request, "recipes/10_months.html", {
+        "recipes": recipes,
+        "order": order,
+    })
 
 def recipes_12_months(request):
+    order = request.GET.get('order', 'latest')
+
     recipes = Post.objects.filter(age_group="12_months", approved=True)
-    return render(request, "recipes/12_months.html", {"recipes": recipes})
+
+    if order == 'earliest':
+        recipes = recipes.order_by('created_on')
+    else:
+        recipes = recipes.order_by('-created_on')
+
+    return render(request, "recipes/12_months.html", {
+        "recipes": recipes,
+        "order": order,
+    })
