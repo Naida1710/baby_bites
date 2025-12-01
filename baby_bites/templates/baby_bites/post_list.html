@@ -8,38 +8,28 @@
   <div class="card p-4 baby-bg shadow fadeInCard">
     
     <!-- Page Heading -->
-     <div id="recipes00">
-    
-        <!-- your post content -->
-    
-      
-    <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
-      All Recipes
-    </h1>
-    <hr class="pastel-divider">
+    <div id="recipes00">
+      <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
+        All Recipes
+      </h1>
+      <hr class="pastel-divider">
     </div>
- 
 
     <!-- Sort Filter Dropdown -->
     <form method="get" class="d-flex justify-content-end mb-3" style="gap: 0.5rem;">
-      
       <label for="order-select" class="form-label align-self-center mb-0 me-2" style="font-weight: 600;">Sort by:</label>
       <select id="order-select" name="order" class="form-select w-auto" onchange="this.form.submit()">
         <option value="latest" {% if request.GET.order == 'latest' or not request.GET.order %}selected{% endif %}>Latest</option>
         <option value="earliest" {% if request.GET.order == 'earliest' %}selected{% endif %}>Earliest</option>
       </select>
-   
     </form>
 
-    <!-- ✅ Anchor Target for Back to Recipes Button -->
+    <!-- Recipes Grid -->
     <div id="recipes" class="post-grid limit-rows mt-4">
       {% for post in posts %}
       <div class="post-card mb-4">
-
         {% if post.featured_image %}
-        <img src="{{ post.featured_image.url }}"
-             alt="{{ post.title }}"
-             class="post-img"
+        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-img"
              style="height: 200px; object-fit: cover;">
         {% endif %}
 
@@ -53,36 +43,55 @@
         <p class="text-muted">{{ post.created_on|date:"F d, Y" }}</p>
         <p>{{ post.excerpt|truncatewords:20 }}</p>
       </div>
-    {% empty %}
-      <p class="text-center">No posts found.</p>
-    {% endfor %}
-    
+      {% empty %}
+        <p class="text-center">No posts found.</p>
+      {% endfor %}
     </div>
 
-    <!-- Pagination Controls -->
-{% if is_paginated %}
-<div class="pagination mt-4 d-flex justify-content-center align-items-center flex-wrap">
-  {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes" class="btn btn-outline-secondary me-2">Previous</a>
-  {% endif %}
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="pagination mt-4 d-flex justify-content-center align-items-center flex-wrap">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes"
+           class="btn btn-outline-secondary me-2">Previous</a>
+      {% endif %}
 
-  {% for num in paginator.page_range %}
-    {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
-      <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes"
-        class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
-        {{ num }}
-      </a>
+      {% for num in paginator.page_range %}
+        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+          <a href="?page={{ num }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes"
+             class="btn {% if page_obj.number == num %}btn-primary{% else %}btn-outline-secondary{% endif %} mx-1">
+            {{ num }}
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes"
+           class="btn btn-outline-secondary ms-2">Next</a>
+      {% endif %}
+    </div>
     {% endif %}
-  {% endfor %}
 
-  {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}#recipes" class="btn btn-outline-secondary ms-2">Next</a>
-  {% endif %}
-</div>
-
-
-    {% endif %}
   </div>
 </div>
-{% endblock %}
 
+<!-- ⭐ Smooth scroll to center All Recipes section -->
+<script>
+  window.onload = function() {
+      // Check if URL has hash #recipes00
+      if(window.location.hash === '#recipes00') {
+          const section = document.getElementById('recipes00');
+          if(section) {
+              const topOffset = (window.innerHeight / 2 - section.offsetHeight / 2) * 0.5;
+              const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({
+                  top: sectionTop - topOffset,
+                  behavior: 'smooth'
+              });
+          }
+      }
+  };
+  </script>
+  
+
+{% endblock %}

@@ -8,7 +8,7 @@
   <div class="card p-4 baby-bg shadow fadeInCard">
     
     <!-- Page Heading -->
-    <div id="recipe_list">
+    <div id="recipes12">
       <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597;">
         12+ Months Recipes
       </h1>
@@ -55,4 +55,21 @@
     </div>
   </div>
 </div>
+
+<!-- ⭐ Smooth scroll to center the section when arriving from dropdown -->
+<script>
+window.onload = function() {
+    const section = document.getElementById('recipes12');
+    if(section) {
+        // Adjust multiplier to move section slightly lower for perfect centralization
+        const topOffset = (window.innerHeight / 2 - section.offsetHeight / 2) * 0.5;
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+            top: sectionTop - topOffset,
+            behavior: 'smooth'
+        });
+    }
+};
+</script>
+
 {% endblock %}
