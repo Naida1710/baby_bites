@@ -218,4 +218,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- Scroll to Top on Page Load -->
+<!-- Scroll to Top of Post Card on Page Load -->
+<script>
+  window.addEventListener('load', () => {
+      const postCard = document.querySelector('.card.baby-bg');
+      if (postCard) {
+          postCard.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+  });
+  </script>
+  
+  
+  
+
 {% endblock %}
