@@ -32,6 +32,11 @@ def create_post(request):
         form = PostForm()
     return render(request, 'baby_bites/create_post.html', {'form': form})
 
+def recipe_list(request):
+    posts = Post.objects.all()  # Query to get all the posts
+    return render(request, 'recipes/all_recipes.html', {'posts': posts})
+
+
 def comment_edit(request, slug, comment_id):
     if request.method == "POST":
         post = get_object_or_404(Post, slug=slug, approved=True)

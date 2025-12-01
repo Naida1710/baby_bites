@@ -62,7 +62,7 @@
                 <!-- All Recipes Navigation (Preserving Previous Design) -->
                 <div class="nav-item dropdown d-flex align-items-center dropdown-wrapper">
                   <!-- "All Recipes" direct link -->
-                  <a class="nav-link green-link" id="allRecipesLink" href="#recipes00" >
+                  <a class="nav-link green-link" id="allRecipesLink" href="{% url 'all_recipes' %}#recipes00">
                     All Recipes
                   </a>
 
@@ -154,7 +154,7 @@
         <img src="{% static 'images/fried-egg.png' %}" alt="egg icon" />
       </div>
 
-      <div class="container mt-5 pt-5">
+      <div id="about_me" class="container mt-5 pt-5">
         <div class="row align-items-center">
           <div class="col-md-7 intro-section pe-md-5">
             <h2>Your baby’s first bites start here.</h2>
@@ -176,7 +176,7 @@
             </div>
           </div>
 
-          <div id="about_me" class="col-md-5 text-center ps-md-4">
+          <div class="col-md-5 text-center ps-md-4">
             <div class="baby-bg mx-auto" style="max-width: 200px">
               <img src="{% static 'images/foodie3.png' %}" alt="Baby girl eating food" class="img-fluid rounded-circle mx-auto d-block" />
               <div class="mt-3 text-muted" style="font-size: 0.85rem;">
