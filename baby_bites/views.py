@@ -159,7 +159,7 @@ def post_detail(request, slug):
             comment.approved = True  # ✅ Automatically approve
             comment.save()
             messages.success(request, "Your comment was posted successfully.")
-            return redirect("post_detail", slug=slug)
+            return redirect(f"{reverse('post_detail', kwargs={'slug': slug})}#message-container")
     else:
         comment_form = CommentForm()
 

@@ -89,37 +89,43 @@ document.addEventListener("DOMContentLoaded", function () {
   // -----------------------------
   // ❤️ Like Button AJAX Handling
   // -----------------------------
+  // ❤️ Like Button AJAX Handling
+function handleLikeSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const postId = form.dataset.postId;
+  const url = form.action;
+  const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": csrftoken,
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  })
+  .then(response => response.json())
+  .then(data => {
+    const container = document.querySelector(`#like-container-${postId}`);
+    if (container) {
+      container.innerHTML = data.html;
+      bindLikeForms(); // Re-bind event for the new button
+    }
+  })
+  .catch(error => console.error("Error:", error));
+}
+
+function bindLikeForms() {
   document.querySelectorAll('form[id^="like-form-"]').forEach(form => {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const postId = form.dataset.postId;
-      const url = form.action;
-      const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "X-CSRFToken": csrftoken,
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const container = document.querySelector(`#like-container-${postId}`);
-          if (container) container.innerHTML = data.html;
-
-          const likeSection = document.getElementById(`like-section-${postId}`);
-          if (likeSection) likeSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          console.error("Failed to toggle like");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    });
+    form.removeEventListener("submit", handleLikeSubmit);
+    form.addEventListener("submit", handleLikeSubmit);
   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  bindLikeForms();
+});
+
 
   // -----------------------------
   // 🍴 Recipe Filter Highlighting

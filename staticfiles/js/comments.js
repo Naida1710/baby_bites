@@ -1,28 +1,87 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-  const editButtons = document.querySelectorAll(".btn-edit");
+
+  const editButtons = document.querySelectorAll(".btn-edit-custom");
   const deleteButtons = document.querySelectorAll(".btn-delete");
-  const commentText = document.getElementById("id_body"); // main textarea
+  const commentText = document.getElementById("id_body");
   const commentForm = document.getElementById("commentForm");
   const submitButton = document.getElementById("submitButton");
 
-  // -----------------------------
-  // ✏️ Edit Comment (inline toggle)
-  // -----------------------------
+  // ---------------------------------------------------
+  // ⭐ 1. POST NEW COMMENT WITHOUT PAGE RELOAD (AJAX)
+  // ---------------------------------------------------
+  if (commentForm) {
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Stop page reload
+
+      const body = commentText.value.trim();
+      if (!body) return alert("Comment cannot be empty.");
+
+      const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+      try {
+        const response = await fetch(commentForm.action, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": csrftoken,
+            "X-Requested-With": "XMLHttpRequest",
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: new URLSearchParams({ body })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Insert comment into the DOM
+          const container = document.querySelector(".comment-grid");
+          const newComment = document.createElement("div");
+
+          newComment.id = `comment${data.comment.id}`;
+          newComment.className = "comment-card mb-3 p-3 border rounded bg-light";
+          newComment.dataset.slug = data.comment.slug;
+
+          newComment.innerHTML = `
+            <p class="mb-1"><strong>${data.comment.author}</strong></p>
+            <p class="mb-1 comment-body">${data.comment.body}</p>
+            <small class="text-muted">${data.comment.created_on}</small>
+          `;
+
+          container.prepend(newComment);
+
+          // Clear the input field
+          commentText.value = "";
+
+          // Scroll smoothly to the new comment
+          newComment.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+      } catch (err) {
+        console.error("Error posting comment:", err);
+        alert("Could not post your comment.");
+      }
+    });
+  }
+
+  // ---------------------------------------------------
+  // ✏️ 2. INLINE EDIT COMMENT
+  // ---------------------------------------------------
   editButtons.forEach(button => {
     button.addEventListener("click", async () => {
       const commentId = button.dataset.commentId;
       const commentCard = document.getElementById(`comment${commentId}`);
       const commentBody = commentCard.querySelector(".comment-body");
+      const editedBadge = commentCard.querySelector(".edited-badge");
       const slug = commentCard.dataset.slug;
 
       if (button.innerText === "Edit") {
-        // Switch to edit mode
+        // Enable editing
         commentBody.contentEditable = "true";
         commentBody.focus();
-        commentBody.style.backgroundColor = "#fff9c4"; // highlight editable
+        commentBody.style.backgroundColor = "#fff9c4";
         button.innerText = "Submit";
       } else {
-        // Submit updated comment via POST
+        // Submit edited comment
         const updatedBody = commentBody.innerText.trim();
         if (!updatedBody) {
           alert("Comment cannot be empty.");
@@ -36,17 +95,34 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             headers: {
               "X-CSRFToken": csrftoken,
+              "X-Requested-With": "XMLHttpRequest",
               "Content-Type": "application/x-www-form-urlencoded"
             },
             body: new URLSearchParams({ body: updatedBody })
           });
 
-          if (response.ok) {
+          const data = await response.json();
+
+          if (data.success) {
+            // Update the comment text
+            commentBody.textContent = data.body;
+
+            // Update or add edited badge
+            if (editedBadge) {
+              editedBadge.textContent = `(Edited on ${data.edited_on})`;
+            } else {
+              const span = document.createElement("span");
+              span.className = "text-muted small edited-badge";
+              span.textContent = `(Edited on ${data.edited_on})`;
+              commentBody.insertAdjacentElement("afterend", span);
+            }
+
+            // Reset edit mode
             commentBody.contentEditable = "false";
             commentBody.style.backgroundColor = "";
             button.innerText = "Edit";
           } else {
-            alert("Error updating comment.");
+            alert(data.message || "Error updating comment.");
           }
         } catch (err) {
           console.error(err);
@@ -56,44 +132,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // -----------------------------
-  // 📝 Edit Comment via Main Form (optional fallback)
-  // -----------------------------
-  if (editButtons.length && commentForm && commentText) {
-    editButtons.forEach(button => {
-      button.addEventListener("click", (e) => {
-        const commentId = button.dataset.commentId;
-        const commentBodyElement = document.querySelector(`#comment${commentId} .comment-body`);
-        if (!commentBodyElement) return;
-
-        // Fill main textarea with comment text
-        commentText.value = commentBodyElement.innerText.trim();
-        commentText.focus();
-
-        // Set form action to the edit URL
-        const slug = button.closest(".comment-card").dataset.slug;
-        commentForm.setAttribute("action", `/recipes/${slug}/edit_comment/${commentId}/`);
-        submitButton.innerText = "Update"; // optional: indicate update mode
-      });
-    });
-  }
-
-  // -----------------------------
-  // 🗑️ Delete Comment
-  // -----------------------------
+  // ---------------------------------------------------
+  // 🗑️ 3. DELETE COMMENT VIA AJAX
+  // ---------------------------------------------------
   deleteButtons.forEach(button => {
     button.addEventListener("click", async (e) => {
       e.preventDefault();
+      if (!confirm("Delete this comment?")) return;
+
       const commentId = button.dataset.commentId;
       const slug = button.closest(".comment-card").dataset.slug;
 
-      if (!confirm("Are you sure you want to delete this comment?")) return;
-
       const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
-      const url = `/recipes/${slug}/delete_comment/${commentId}/`;
 
       try {
-        const response = await fetch(url, {
+        const response = await fetch(`/recipes/${slug}/delete_comment/${commentId}/`, {
           method: "POST",
           headers: {
             "X-CSRFToken": csrftoken,
@@ -102,17 +155,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
+
         if (data.success) {
-          const commentElement = document.getElementById(`comment${commentId}`);
-          if (commentElement) commentElement.remove();
-        } else {
-          console.error(data.error || "Failed to delete comment");
-          alert("Failed to delete comment.");
+          document.getElementById(`comment${commentId}`).remove();
         }
+
       } catch (err) {
         console.error("Error deleting comment:", err);
-        alert("An error occurred while deleting the comment.");
+        alert("Could not delete comment.");
       }
     });
   });
+  
 });
+

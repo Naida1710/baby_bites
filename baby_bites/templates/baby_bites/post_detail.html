@@ -37,7 +37,7 @@
         <!-- Like Section -->
         <div class="text-center mt-4" id="like-section-{{ post.pk }}">
           <div id="like-container-{{ post.pk }}">
-            <form id="like-form-{{ post.pk }}" data-post-id="{{ post.pk }}" action="{% url 'toggle_like' post.pk %}#like-section-{{ post.pk }}" method="POST">
+            <form id="like-form-{{ post.pk }}" data-post-id="{{ post.pk }}" action="{% url 'toggle_like' post.pk %}" method="POST">
               {% csrf_token %}
               {% if user in post.likes.all %}
                 <button class="btn btn-danger" type="submit">Unlike ❤️</button>
@@ -59,47 +59,40 @@
           </div>
         </div>
 
-        <!-- Django Messages -->
-        {% if messages %}
-        <div class="mt-4">
-          {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-          {% endfor %}
-        </div>
-        {% endif %}
+      
 
         <!-- Comments Section -->
-        <div class="comment-section-wrapper mt-5">
+        <div class="comment-section-wrapper mt-5" id="comment-section">
           <h3 class="mb-3 text-center" style="color: #4a4a4a">
             Comments ({{ comment_count }})
           </h3>
           <div class="comment-grid">
             {% for comment in comments %}
-            <div id="comment{{ comment.id }}" class="comment-card mb-3 p-3 border rounded bg-light" data-slug="{{ post.slug }}">
+  <div id="comment{{ comment.id }}" class="comment-card mb-3 p-3 border rounded bg-light" data-slug="{{ post.slug }}">
+    <p class="mb-1">
+      <strong>{{ comment.author.username }}</strong>
+      {% if comment.edited %}
+        <span class="text-muted small edited-badge">(Edited on {{ comment.edited_on|date:"d M Y H:i" }})</span>
+      {% endif %}
+    </p>
 
-              <p class="mb-1">
-                <strong>{{ comment.author.username }}</strong>
-                {% if comment.edited %}
-                  <span class="text-muted small edited-badge">(Edited on {{ comment.edited_on|date:"d M Y H:i" }})</span>
-                {% endif %}
-              </p>
+    <p class="mb-1 comment-body">{{ comment.body }}</p>
+    <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
 
-              <p class="mb-1 comment-body">{{ comment.body }}</p>
-              <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
+    {% if comment.author == user %}
+      <div class="mt-2 d-flex gap-2">
+        <button type="button" class="btn btn-sm btn-edit-custom" data-comment-id="{{ comment.id }}">Edit</button>
+        <form method="post" action="{% url 'comment_delete' post.slug comment.id %}" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% empty %}
+  <p class="text-center">No comments yet. Be the first to comment!</p>
+{% endfor %}
 
-              {% if comment.author == user %}
-              <div class="mt-2 d-flex gap-2">
-                <button type="button" class="btn btn-sm btn-edit-custom" data-comment-id="{{ comment.id }}">Edit</button>
-                <form method="post" action="{% url 'comment_delete' post.slug comment.id %}" class="d-inline">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                </form>
-              </div>
-              {% endif %}
-            </div>
-            {% empty %}
-            <p class="text-center">No comments yet. Be the first to comment!</p>
-            {% endfor %}
           </div>
         </div>
 
@@ -218,8 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- Scroll to Top on Page Load -->
-<!-- Scroll to Top of Post Card on Page Load -->
 <script>
   window.addEventListener('load', () => {
       const postCard = document.querySelector('.card.baby-bg');
@@ -228,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   });
   </script>
+  
   
   
   
