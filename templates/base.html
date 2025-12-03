@@ -101,6 +101,17 @@
               <li class="nav-item">
                 <a href="{% url 'create_post' %}#create_recipe" class="btn btn-outline-success ms-lg-2">+ Share a Recipe</a>
               </li>
+
+              {% if pending_recipe_count > 0 %}
+<li class="nav-item">
+  <a class="nav-link position-relative" href="{% url 'my_recipes' %}">
+    <i class="fas fa-bell"></i>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+      {{ pending_recipe_count }}
+    </span>
+  </a>
+</li>
+{% endif %}
             
               <li class="nav-item">
                 <a class="nav-link logout-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>

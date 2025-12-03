@@ -25,12 +25,21 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)  # Don't save yet
             post.author = request.user      # Set the author to the logged-in user
+            post.approved = False  # or post.status = "pending"
             post.save()                    # Now save
             messages.success(request, 'Your recipe has been submitted and is awaiting admin approval.')
             return redirect("home")
     else:
         form = PostForm()
     return render(request, 'baby_bites/create_post.html', {'form': form})
+
+
+@login_required
+def my_recipes(request):
+    user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
+    return render(request, 'baby_bites/my_recipes.html', {'posts': user_posts})
+
+
 
 def recipe_list(request):
     posts = Post.objects.all()  # Query to get all the posts

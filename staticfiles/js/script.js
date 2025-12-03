@@ -41,9 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // -----------------------------
   // ❤️ Like Button AJAX Handling
   // -----------------------------
+  // ❤️ Like Button AJAX Handling
   document.querySelectorAll('form[id^="like-form-"]').forEach(form => {
     form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      e.preventDefault(); // stop page reload
+
       const postId = form.dataset.postId;
       const url = form.action;
       const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
@@ -59,11 +61,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (response.ok) {
           const data = await response.json();
-          const container = document.querySelector(`#like-container-${postId}`);
-          if (container) container.innerHTML = data.html;
 
-          const likeSection = document.getElementById(`like-section-${postId}`);
-          if (likeSection) likeSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Update only the form HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data.html, 'text/html');
+          const newForm = doc.querySelector('form');
+
+          if (newForm) {
+            form.innerHTML = newForm.innerHTML; // update button and total likes
+          }
+
+          // Optional: keep the page in the same scroll position
+          // window.scrollTo(0, window.scrollY);
         } else {
           console.error("Failed to toggle like");
         }
@@ -72,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
 
   // -----------------------------
   // 🔽 Order Form Select Open/Close Toggle
