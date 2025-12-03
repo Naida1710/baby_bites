@@ -103,12 +103,15 @@
               </li>
 
               {% if pending_recipe_count > 0 %}
+<!-- Navbar alert/button -->
 <li class="nav-item">
   <a class="nav-link position-relative" href="{% url 'my_recipes' %}">
-    <i class="fas fa-bell"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-      {{ pending_recipe_count }}
+    My Recipes
+    {% if pending_count %}
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{ pending_count }}
     </span>
+    {% endif %}
   </a>
 </li>
 {% endif %}

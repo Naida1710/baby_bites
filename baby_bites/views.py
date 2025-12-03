@@ -39,6 +39,24 @@ def my_recipes(request):
     user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
     return render(request, 'baby_bites/my_recipes.html', {'posts': user_posts})
 
+@login_required
+def my_pending_recipes(request):
+    # approved=False for pending
+    recipes = Post.objects.filter(author=request.user, approved=False).order_by('-created_on')
+    return render(request, 'baby_bites/my_recipes_list.html', {
+        'recipes': recipes,
+        'title': 'Pending Recipes'
+    })
+
+@login_required
+def my_approved_recipes(request):
+    # approved=True for approved
+    recipes = Post.objects.filter(author=request.user, approved=True).order_by('-created_on')
+    return render(request, 'baby_bites/my_recipes_list.html', {
+        'recipes': recipes,
+        'title': 'Approved Recipes'
+    })
+
 
 
 def recipe_list(request):
