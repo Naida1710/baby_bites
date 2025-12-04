@@ -91,7 +91,7 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-ROOT_URLCONF = 'baby_bites.urls'
+ROOT_URLCONF = 'my_project.urls'
 
 TEMPLATES = [
     {
