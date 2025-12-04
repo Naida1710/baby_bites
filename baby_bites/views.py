@@ -17,7 +17,23 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.db import models
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.views import PasswordResetView
+from allauth.account.views import PasswordResetFromKeyView
 
+class CustomPasswordResetView(PasswordResetView):
+    email_template_name = 'account/email/password_reset_message.txt'
+    subject_template_name = 'account/email/password_reset_subject.txt'
+
+    def get_email_context(self, user):
+        context = super().get_email_context(user)
+        context['password_reset_url'] = self.request.build_absolute_uri(context['password_reset_url'])
+        return context
+       
+
+class MyPasswordResetFromKeyView(PasswordResetFromKeyView):
+    template_name = 'account/password_reset_confirm.html'
 
 def create_post(request):
     if request.method == 'POST':
@@ -41,6 +57,24 @@ def create_post(request):
 
     return render(request, 'baby_bites/create_post.html', {'form': form})
 
+def send_mail_page(request):
+    context = {}
+
+    if request.method == 'POST':
+        address = request.POST.get('address')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        if address and subject and message:
+            try:
+                send_mail(subject, message, settings.EMAIL_HOST_USER, [address])
+                context['result'] = 'Email sent successfully'
+            except Exception as e:
+                context['result'] = f'Error sending email: {e}'
+        else:
+            context['result'] = 'All fields are required'
+    
+    return render(request, "index.html", context)
 
 @login_required
 def my_recipes(request):
