@@ -23,14 +23,22 @@ def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)  # Don't save yet
-            post.author = request.user      # Set the author to the logged-in user
-            post.approved = False  # or post.status = "pending"
-            post.save()                    # Now save
-            messages.success(request, 'Your recipe has been submitted and is awaiting admin approval.')
+            post = form.save(commit=False)
+            post.author = request.user
+
+            # Only admin/staff recipes are automatically approved
+            if request.user.is_staff or request.user.is_superuser:
+                post.approved = True
+                messages.success(request, 'Your recipe has been posted successfully and is live.')
+            else:
+                post.approved = False
+                messages.info(request, 'Your recipe has been submitted and is awaiting admin approval.')
+
+            post.save()
             return redirect("home")
     else:
         form = PostForm()
+
     return render(request, 'baby_bites/create_post.html', {'form': form})
 
 
@@ -41,8 +49,15 @@ def my_recipes(request):
 
 @login_required
 def my_pending_recipes(request):
-    # approved=False for pending
-    recipes = Post.objects.filter(author=request.user, approved=False).order_by('-created_on')
+    user = request.user
+
+    if user.is_staff or user.is_superuser:
+        # Admins don't have pending posts
+        recipes = Post.objects.filter(author=user, approved=True).order_by('-created_on')
+    else:
+        # Regular users see only unapproved posts
+        recipes = Post.objects.filter(author=user, approved=False).order_by('-created_on')
+
     return render(request, 'baby_bites/my_recipes_list.html', {
         'recipes': recipes,
         'title': 'Pending Recipes'
@@ -50,12 +65,12 @@ def my_pending_recipes(request):
 
 @login_required
 def my_approved_recipes(request):
-    # approved=True for approved
     recipes = Post.objects.filter(author=request.user, approved=True).order_by('-created_on')
     return render(request, 'baby_bites/my_recipes_list.html', {
         'recipes': recipes,
         'title': 'Approved Recipes'
     })
+
 
 
 

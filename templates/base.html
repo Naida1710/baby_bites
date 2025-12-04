@@ -105,15 +105,18 @@
               {% if pending_recipe_count > 0 %}
 <!-- Navbar alert/button -->
 <li class="nav-item">
-  <a class="nav-link position-relative" href="{% url 'my_recipes' %}">
-    My Recipes
-    {% if pending_count %}
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-      {{ pending_count }}
-    </span>
-    {% endif %}
-  </a>
-</li>
+  <li class="nav-item position-relative">
+    <a class="nav-link d-flex align-items-center" href="{% url 'my_recipes' %}">
+       My Recipes
+      {% if pending_recipe_count > 0 %}
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ pending_recipe_count }}
+        <span class="visually-hidden">pending recipes</span>
+      </span>
+      {% endif %}
+    </a>
+  </li>
+  
 {% endif %}
             
               <li class="nav-item">
