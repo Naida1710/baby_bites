@@ -39,11 +39,12 @@ The All Recipes link should have a downward arrow icon next to the label and act
 6. All navigation links should route the user to the correct pages:
 - Login, Logout, and Register should link to external pages.
 - Home, About, All Recipes (dropdown menu incl.), My Recipes  and Share a Recipe should link to internal pages within the app.
-7. The My Recipes menu item behaves differently for admins and regular users, and it only appears when needed:
+7. My Recipes menu item behaves differently for admins and regular users, and it only appears when needed:
 - For Admin: The badge shows the number of recipe submissions that are waiting for approval.
 - For regular Users: It includes the Recipes that were already approved and published, or Recipes that were submitted and are still waiting for approval. 
 - If the user has no submitted or published recipes, the My Recipes link does not appear at all.
 - If the admin has no recipes to approve, the My Recipes link does not appear at all.
+8. Share Recipe menu navigation bar is not visible to logged-out users.
 
 **Login and logout**
 1. Users should be able to log in using their username or email along with their password.
@@ -77,10 +78,9 @@ The All Recipes link should have a downward arrow icon next to the label and act
 **Admin - View Posts**
 1. Admin users can see all parents posts in the system.
 2. Posts should display the name of the author and date.
-3. Admin can delete, edit or approve/reject any post.
+3. Admin can delete, edit or approve/reject any post via admin panel.
 4. When the admin creates or publishes a recipe, it does not require approval.
 Admin posts are published immediately and appear on the site automatically.
-5. 
 
 **Users**
 
@@ -99,6 +99,8 @@ Admin posts are published immediately and appear on the site automatically.
 - **Advanced Search Options** - Provide advanced search features to filter recipes based on ingredients, difficulty level, cooking time, or dietary restrictions (e.g., gluten-free, vegetarian).
 
 -**Delete posts** - Currently, users can leave a post, but they cannot delete their own posts, only comments to the posts. I want to enable this functionality, so that users are able to delete the posts they have written.
+
+-**Like Display Names** - I would like the like feature to display the names of users who liked a post, not just the like count.
 
 ### Design
 
@@ -131,11 +133,11 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 ![Navmenu](staticfiles/images/navbar.png)
 
-![Navmenudesktop](staticfiles/images/navbardesktop.png)
+![Navmenudesktop](staticfiles/images/Screenshot%202025-12-04%20at%2020.53.10.png)
 
 - When the user is logged in, they can add their own recipe, so the Share a Recipe and Logout links are visible.
 
-![Navmenu1](staticfiles/images/Screenshot%202025-10-21%20at%2014.54.47.png)
+![Navmenu1](staticfiles/images/Screenshot%202025-12-04%20at%2020.53.54.png)
 
 - When the user is not logged in, the Share a Recipe and Logout links are hidden, and instead, the Register and Login links are shown.
 
@@ -165,11 +167,11 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 
 **All Recipes** - When we click on the "All Recipes" link (and not the arrow next to it) in the menu bar, we are taken to the All Recipes section, where all posts from both the admin and users are displayed.
 
-![AllRecipe](staticfiles/images/allrecipe.png)
+![AllRecipe](staticfiles/images/Screenshot%202025-12-04%20at%2021.02.59.png)
 
 **All Recipe Filter** - Users can filter all recipes by latest to see the most recently added posts first, or by earliest to view the oldest recipes at the top. This helps users easily find new additions or browse from the beginning.
 
-![Filter](staticfiles/images/Screenshot%202025-10-21%20at%2013.38.42.png)
+![Filter](staticfiles/images/Screenshot%202025-12-04%20at%2021.04.16.png)
 
 **All Recipe Page Count** - On the All Recipes page, users can navigate through multiple pages of content using a pagination system. It features "Previous" and "Next" buttons, along with numbered page links (such as 1, 2, 3, 4), allowing users to jump to specific pages and browse recipes more efficiently.
 
@@ -190,14 +192,18 @@ When a user clicks on one of the options, they are taken directly to that sectio
 
 - At the top of the page, there is a "Back to All Recipes" button that automatically takes the user back to the main recipe page.
 
-![Back-button](staticfiles/images/Screenshot%202025-10-21%20at%2014.31.08.png)
+![Back-button](staticfiles/images/Screenshot%202025-12-04%20at%2021.05.41.png)
 
 **Comment Section and Like/Unlike** - When users open a recipe, the recipe description is displayed immediately. Below that, there is a like/unlike option, where registered users can like or comment on recipes made by others.
-If the user is not registered, they cannot use any of those features, but they can still see how many likes or comments a recipe has. If there are no comments, a message will be displayed on the page indicating that.
+If the user is not registered, they cannot use any of those features, but they can still see how many likes or comments a recipe has. If a post has no comments, a message will be displayed indicating this.
 
 ![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.32.59.png)
 
 ![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.34.52.png)
+
+Users can leave comments when logged in, and can edit or delete only their own comments. When a comment is edited, the edit time is displayed along with the original post date. Comments do not require admin approval; every comment is published automatically.
+
+![comment2](staticfiles/images/Screenshot%202025-12-04%20at%2021.11.47.png)
 
 
 **Share a Recipe** - this is a feature where users can submit their own recipes on the website, but each submission must be approved by an admin before it is published.
@@ -208,6 +214,26 @@ If the user is not registered, they cannot use any of those features, but they c
 ![share1](staticfiles/images/Screenshot%202025-10-21%20at%2020.39.41.png)
 
 ![share2](staticfiles/images/Screenshot%202025-10-21%20at%2020.43.30.png)
+
+**My Recipe** - When the admin receives a recipe approval request from a user, it appears in a single section showing who submitted it and which recipe it is. The admin can later approve it from the admin panel.
+
+![myrecipe](staticfiles/images//Screenshot%202025-12-04%20at%2021.20.18.png)
+
+If a user has not shared a recipe, they will not have a 'My Recipe' section. Only after submitting the 'Share a Recipe' form will they get the 'My Recipe' section, which shows that the recipe is awaiting admin approval.
+
+![myrecipe1](staticfiles/images/Screenshot%202025-12-04%20at%2021.21.31.png)
+
+![myrecipe2](staticfiles/images/Screenshot%202025-12-04%20at%2021.22.12.png)
+
+Users can view their pending and approved posts.
+
+![myrecipe3](staticfiles/images/Screenshot%202025-12-04%20at%2021.22.39.png)
+
+If users have not published any recipes yet, a message indicating this will appear below the 'Approved Posts' button. They can also see posts they have submitted for approval. The comment and like options are not available until a post is approved.
+
+![myrecipe4](staticfiles/images/Screenshot%202025-12-04%20at%2021.23.02.png)
+
+![myrecipe5](staticfiles/images/Screenshot%202025-12-04%20at%2021.23.30.png)
 
 **Login Hover** - When I hover over the login and register links, they change to a prominent color and display an underline.
 
