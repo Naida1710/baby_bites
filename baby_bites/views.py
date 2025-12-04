@@ -44,14 +44,25 @@ def create_post(request):
 
 @login_required
 def my_recipes(request):
-    user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
-    pending_posts = user_posts.filter(approved=False)
-    approved_posts = user_posts.filter(approved=True)
+    if request.user.username == "Mama":
+        # Mama only sees pending recipes from all users
+        pending_posts = Post.objects.filter(approved=False).order_by('-created_on')
 
-    return render(request, 'baby_bites/my_recipes.html', {
-        'pending_posts': pending_posts,
-        'approved_posts': approved_posts,
-    })
+        return render(request, 'baby_bites/my_recipes.html', {
+            'pending_posts': pending_posts,
+            'is_mama': True,
+        })
+    else:
+        # Regular users see their own pending and approved recipes
+        user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
+        pending_posts = user_posts.filter(approved=False)
+        approved_posts = user_posts.filter(approved=True)
+
+        return render(request, 'baby_bites/my_recipes.html', {
+            'pending_posts': pending_posts,
+            'approved_posts': approved_posts,
+            'is_mama': False,
+        })
 
 @login_required
 def my_pending_recipes(request):
