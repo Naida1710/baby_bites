@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+/* jshint esversion: 8 */
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -78,16 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Force reflow to fix grid height issues
     recipesGrid.style.display = "none";
-    recipesGrid.offsetHeight; // triggers reflow
     recipesGrid.style.display = "grid";
   }
 
   if (backButton && recipesGrid) {
     backButton.addEventListener("click", resetAllRecipesGrid);
   }
-
-  // -----------------------------
-  // ❤️ Like Button AJAX Handling
+  
   // -----------------------------
   // ❤️ Like Button AJAX Handling
 function handleLikeSubmit(e) {

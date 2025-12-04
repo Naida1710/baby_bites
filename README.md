@@ -98,9 +98,9 @@ Admin posts are published immediately and appear on the site automatically.
 
 - **Advanced Search Options** - Provide advanced search features to filter recipes based on ingredients, difficulty level, cooking time, or dietary restrictions (e.g., gluten-free, vegetarian).
 
--**Delete posts** - Currently, users can leave a post, but they cannot delete their own posts, only comments to the posts. I want to enable this functionality, so that users are able to delete the posts they have written.
+- **Delete posts** - Currently, users can leave a post, but they cannot delete their own posts, only comments to the posts. I want to enable this functionality, so that users are able to delete the posts they have written.
 
--**Like Display Names** - I would like the like feature to display the names of users who liked a post, not just the like count.
+- **Like Display Names** - I would like the like feature to display the names of users who liked a post, not just the like count.
 
 ### Design
 
@@ -132,10 +132,6 @@ I used **Caveat**, **Segoe UI** and **Lato** Google Fonts.
 - On the mobile version, the navigation is displayed as a burger icon/dropdown menu.
 
 ![Navmenu](staticfiles/images/navbar.png)
-
-![Navmenudesktop](staticfiles/images/Screenshot%202025-12-04%20at%2020.53.10.png)
-
-- When the user is logged in, they can add their own recipe, so the Share a Recipe and Logout links are visible.
 
 ![Navmenu1](staticfiles/images/Screenshot%202025-12-04%20at%2020.53.54.png)
 
@@ -243,27 +239,13 @@ If the user is not registered, there is a "Sign me up here" option that allows t
 
 ![login](staticfiles/images/Screenshot%202025-10-21%20at%2014.09.13.png)
 
-![loginpage](staticfiles/images/signin.png)
-
-**Reset Password Page** - On the reset password page, the user enters their email. I want to include this page because I plan to have this feature fully functional in the future.
-The user will receive everything they need via email in order to reset their password.
-After submitting the form, a confirmation message will immediately appear, letting them know that an email has been sent to the address they entered.
-- I also believe that having a "Need Support?" or "Contact Us" option is very important, as it provides a way for users to reach out if they did not receive the email or are experiencing other issues.
-
-![loginpage89](staticfiles/images/Screenshot%202025-10-21%20at%2020.50.50.png)
-
-![loginpage90](staticfiles/images/Screenshot%202025-10-21%20at%2020.52.20.png)
-
-![loginpage91](staticfiles/images/Screenshot%202025-10-21%20at%2020.54.25.png)
+![loginpage](staticfiles/images/Screenshot%202025-12-04%20at%2022.29.00%201.png)
 
 
 There is always the confirmation message after finishing the process.
 
-![loginpage2](staticfiles/images/signin1.png)
-
 ![loginpage3](staticfiles/images/signinmessage.png)
 
-![loginpage3](staticfiles/images/Screenshot%202025-10-21%20at%2014.16.03.png)
 
 **Register Page** - Clicking the registration link takes the user to an external registration page where they must provide their personal details in the required sequence.
 A "Take me back home" button is available to return to the homepage at any time.
@@ -284,6 +266,9 @@ A successful signed out message appears on the home page.
 
 ![Logout](staticfiles/images/Screenshot%202025-10-21%20at%2018.17.14.png)
 
+**Useful Feeding Tips** - This section was designed for entertainment and to enrich the content. The tips change every few seconds, making it interactive.
+
+![Tips](staticfiles/images/Screenshot%202025-12-04%20at%2021.39.34.png)
 
 
 **Footer** - In the footer, there is a copyright notice and links to Twitter, Facebook, and Instagram.
@@ -298,8 +283,28 @@ Each link changes to a yellow color when clicked and directs the user to the res
 
 ## Testing
 
-###
+### Functionality testing and Responsiveness
+
+- Responsiveness tested on iPad Air in the following examples.
+
+![Responsiveness](staticfiles/images/Screenshot%202025-12-04%20at%2023.04.35.png)
+
+![Responsiveness1](staticfiles/images/Screenshot%202025-12-04%20at%2023.04.56.png)
+
+- Responsiveness tested on iPhone 15 Pro Max and iPhone 15 Pro in the following examples.
+
+![Responsiveness2](staticfiles/images/WhatsApp%20Image%202025-12-04%20at%2023.03.47.jpeg)
+
+![Responsiveness3](staticfiles/images/WhatsApp%20Image%202025-12-04%20at%2023.03.49.jpeg)
+
 I performed manual testing on each page and feature of the app to test its functionality and responsiveness.
+- Manual Testing: Each page and feature was tested on multiple browsers (Chrome, Firefox, Safari) and devices (desktop, tablet, mobile) to ensure responsiveness.
+
+The following table summarizes the functionality testing performed on Baby Bites, covering user interactions, navigation, authentication, and core features.
+
+![Function](staticfiles/images/tabela.png)
+
+![Function1](staticfiles/images/Screenshot%202025-12-04%20at%2023.32.57.png)
 
 ### Validation Tools Used
 - **Python**: PEP8 compliance with proper formatting and documentation.

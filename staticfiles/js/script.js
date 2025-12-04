@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+/* jshint esversion: 8 */
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -46,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", async (e) => {
       e.preventDefault(); // stop page reload
 
-      const postId = form.dataset.postId;
       const url = form.action;
       const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
 

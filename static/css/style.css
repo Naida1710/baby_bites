@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   scroll-behavior: smooth;
@@ -18,7 +19,6 @@ body {
   background-color: #f9fafc;
 }
 
-
 .cloud-box {
   background: #f5f5f5;
   max-width: 800px;
@@ -26,21 +26,17 @@ body {
   padding: 3rem 2.5rem;
   border-radius: 60% / 50%;
   position: relative;
-  box-shadow:
-    inset -15px -10px 30px #dcdcdc,
-    0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -15px -10px 30px #dcdcdc, 0 15px 30px rgba(0, 0, 0, 0.1);
   animation: floatCloud 6s ease-in-out infinite;
   text-align: center;
   color: #4a4a4a;
   font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: box-shadow 0.3s ease;
 }
 
 .cloud-box:hover {
-  box-shadow:
-    inset -15px -10px 30px #cfcfcf,
-    0 25px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: inset -15px -10px 30px #cfcfcf, 0 25px 40px rgba(0, 0, 0, 0.15);
 }
 
 .cloud-box::after {
@@ -52,9 +48,7 @@ body {
   height: 110px;
   bottom: -60px;
   right: 20%;
-  box-shadow:
-    inset -8px -8px 20px #d0d0d0,
-    0 8px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: inset -8px -8px 20px #d0d0d0, 0 8px 10px rgba(0, 0, 0, 0.05);
   z-index: -1;
   transition: background 0.3s ease;
 }
@@ -62,7 +56,8 @@ body {
 /* Removed .cloud-box::before puff completely */
 
 @keyframes floatCloud {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -112,7 +107,6 @@ body {
   color: white;
 }
 
-
 /* FIXED GRID — consistent layout for 1, 2, or 3 items per row */
 .post-grid {
   display: grid;
@@ -126,7 +120,7 @@ body {
   display: none;
 }
 
-.post-grid.show-limited .post-card:nth-child(-n+6) {
+.post-grid.show-limited .post-card:nth-child(-n + 6) {
   display: block; /* 3 columns x 2 rows = 6 items */
 }
 
@@ -134,7 +128,7 @@ body {
   background: #fff;
   height: 90%;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
   transition: transform 0.3s ease;
 }
@@ -145,8 +139,6 @@ body {
   object-fit: cover;
   display: block;
 }
-
-
 
 .leave-comment-section {
   text-align: center;
@@ -172,7 +164,6 @@ body {
   font-size: 1rem;
 }
 
-
 /* Comment section wrapper - make it wider */
 .comment-section-wrapper {
   width: 50%; /* full width of parent */
@@ -181,7 +172,6 @@ body {
   padding: 2rem 2.5rem;
   box-sizing: border-box;
 }
-
 
 /* Stack comments vertically */
 .comment-grid {
@@ -228,9 +218,8 @@ body {
   font-size: 0.85rem;
 }
 
-
 .love-heading {
-  font-size: 2.0rem;
+  font-size: 2rem;
   font-weight: bold;
   font-family: "Caveat", cursive;
   color: lightgreen;
@@ -264,14 +253,14 @@ body {
 
 /* Heart beat animation */
 @keyframes beat {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
     transform: scale(1.3);
   }
 }
-
 
 .card {
   opacity: 0;
@@ -598,7 +587,6 @@ textarea:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
-
 
 .home-link {
   color: #ff6600 !important; /* Vibrant orange */
@@ -989,7 +977,6 @@ textarea:hover {
   color: #2e8b57;
 }
 
-
 .label-top {
   font-weight: 700;
   font-size: 1.1rem;
@@ -1223,7 +1210,8 @@ textarea:hover {
 }
 
 @keyframes float-cloud {
-  0%, 100% {
+  0%,
+  100% {
     background-position: center top;
   }
   50% {
@@ -1237,8 +1225,7 @@ textarea:hover {
   padding: 2.5rem;
   margin: auto;
   max-width: 760px;
-  box-shadow: 
-    10px 10px 30px rgba(255, 176, 208, 0.15),
+  box-shadow: 10px 10px 30px rgba(255, 176, 208, 0.15),
     -10px -10px 30px rgba(163, 242, 255, 0.15);
   animation: fade-pop 1s ease;
   position: relative;
@@ -1257,7 +1244,7 @@ textarea:hover {
 }
 
 .feeding-title {
-  font-family: 'Caveat', cursive;
+  font-family: "Caveat", cursive;
   font-size: 3.2rem;
   color: #ff69a2;
   text-shadow: 1px 1px 4px rgba(255, 105, 162, 0.2);
@@ -1270,26 +1257,22 @@ textarea:hover {
   padding: 2rem;
   font-size: 1.3rem;
   color: #333;
-  box-shadow:
-    inset 5px 5px 15px rgba(0, 0, 0, 0.05),
+  box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.05),
     inset -5px -5px 15px rgba(255, 255, 255, 0.7);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tip-box:hover {
   transform: translateY(-5px) scale(1.01);
-  box-shadow: 
-    0 10px 20px rgba(255, 105, 162, 0.1),
+  box-shadow: 0 10px 20px rgba(255, 105, 162, 0.1),
     0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .tip-text {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   line-height: 1.8;
   font-weight: 500;
 }
-
-
 
 /* Updated Sign In button style */
 .btn-signin {
@@ -1406,14 +1389,14 @@ textarea:hover {
   }
 }
 
-@media(max-width: 992px) {
+@media (max-width: 992px) {
   .post-grid {
-      grid-template-columns: repeat(2, 1fr); /* tablets */
+    grid-template-columns: repeat(2, 1fr); /* tablets */
   }
 }
 
-@media(max-width: 576px) {
+@media (max-width: 576px) {
   .post-grid {
-      grid-template-columns: 1fr; /* mobile */
+    grid-template-columns: 1fr; /* mobile */
   }
 }

@@ -19,22 +19,11 @@ from django.db import models
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib.auth.views import PasswordResetView
-from allauth.account.views import PasswordResetFromKeyView
+from django.contrib.admin.views.decorators import staff_member_required
 
-class CustomPasswordResetView(PasswordResetView):
-    email_template_name = 'account/email/password_reset_message.txt'
-    subject_template_name = 'account/email/password_reset_subject.txt'
 
-    def get_email_context(self, user):
-        context = super().get_email_context(user)
-        context['password_reset_url'] = self.request.build_absolute_uri(context['password_reset_url'])
-        return context
-       
 
-class MyPasswordResetFromKeyView(PasswordResetFromKeyView):
-    template_name = 'account/password_reset_confirm.html'
-
+@login_required
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -56,6 +45,7 @@ def create_post(request):
         form = PostForm()
 
     return render(request, 'baby_bites/create_post.html', {'form': form})
+
 
 def send_mail_page(request):
     context = {}
@@ -119,7 +109,7 @@ def recipe_list(request):
     posts = Post.objects.all()  # Query to get all the posts
     return render(request, 'recipes/all_recipes.html', {'posts': posts})
 
-
+@login_required
 def comment_edit(request, slug, comment_id):
     if request.method == "POST":
         post = get_object_or_404(Post, slug=slug, approved=True)
@@ -145,7 +135,7 @@ def comment_edit(request, slug, comment_id):
     return JsonResponse({'success': False, 'message': "Invalid request"})
 
 
-
+@login_required
 def comment_delete(request, slug, comment_id):
     """
     View to delete a comment immediately by the author.
@@ -165,7 +155,7 @@ def comment_delete(request, slug, comment_id):
     # Your logic here
     return render(request, 'index.html')
 
-
+@login_required
 def toggle_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
     user = request.user
@@ -257,6 +247,7 @@ def post_detail(request, slug):
         },
     )
 
+@staff_member_required
 def approve_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     recipe.status = 'approved'
@@ -285,7 +276,7 @@ def recipe_list(request):
     }
     return render(request, 'baby_bites/post_list.html', context)
 
-
+@login_required
 def profile_page(request):
     user = get_object_or_404(User, pk=request.user.pk)
     comments = user.commenter.all()

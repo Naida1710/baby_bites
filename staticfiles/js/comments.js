@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+/* jshint esversion: 8 */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -5,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const deleteButtons = document.querySelectorAll(".btn-delete");
   const commentText = document.getElementById("id_body");
   const commentForm = document.getElementById("commentForm");
-  const submitButton = document.getElementById("submitButton");
+  
 
   // ---------------------------------------------------
   // ⭐ 1. POST NEW COMMENT WITHOUT PAGE RELOAD (AJAX)
