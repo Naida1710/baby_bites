@@ -30,7 +30,9 @@
                       ⏳ Pending Approval
                     </span>
                   </div>
-                  <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn-outline-primary" style="border-radius: 30px;">View →</a>
+                  <!-- Add ?source=pending for mama so back button works -->
+                  <a href="{% url 'post_detail' slug=post.slug %}?source=pending#my-recipes-section" 
+                     class="btn btn-outline-primary" style="border-radius: 30px;">View →</a>
                 </div>
               </div>
               {% endfor %}
@@ -38,6 +40,15 @@
               <p class="text-center text-muted mt-4">No pending recipes to review.</p>
             {% endif %}
           </div>
+
+          <!-- Back button for mamas -->
+          {% if request.GET.source == "pending" %}
+          <div class="text-center mt-4">
+            <a href="{% url 'my_recipes' %}#my-recipes-section" class="btn btn-outline-secondary">
+              ← Back to Pending Recipes
+            </a>
+          </div>
+          {% endif %}
 
         {% else %}
           <h2 class="text-center mb-4" style="font-family: 'Caveat', cursive; color: #ff7597;">

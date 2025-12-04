@@ -11,15 +11,18 @@
 
         <!-- Back to Recipes Button -->
         {% if request.GET.source == 'my_recipes' %}
-  <a href="{% url 'my_recipes' %}#my-recipes-section" class="btn btn-outline-primary mb-3">
-    ← Back to My Recipes
-  </a>
-{% else %}
-  <a href="{% url 'recipe_list' %}#recipes00" class="btn btn-outline-primary mb-3">
-    ← Back to All Recipes
-  </a>
-{% endif %}
-
+          <a href="{% url 'my_recipes' %}#my-recipes-section" class="btn btn-outline-primary mb-3">
+            ← Back to My Recipes
+          </a>
+        {% elif request.GET.source == 'pending' and user.is_mama %}
+          <a href="{% url 'my_recipes' %}#my-recipes-section" class="btn btn-outline-primary mb-3">
+            ← Back to Pending Recipes
+          </a>
+        {% else %}
+          <a href="{% url 'recipe_list' %}#recipes00" class="btn btn-outline-primary mb-3">
+            ← Back to All Recipes
+          </a>
+        {% endif %}
 
         <!-- Post Title -->
         <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597">
@@ -34,8 +37,6 @@
             ⏳ Your recipe is awaiting admin approval.
         </div>
         {% endif %}
-        
-
 
         <!-- Post Image -->
         {% if post.featured_image %}
@@ -48,6 +49,9 @@
 
         <!-- Post Content -->
         <div id="post-content" class="mb-4">{{ post.content|safe }}</div>
+
+        <!-- Only show Likes and Comments if post is approved -->
+        {% if post.approved %}
 
         <!-- Like Section -->
         <div class="text-center mt-4" id="like-section-{{ post.pk }}">
@@ -74,8 +78,6 @@
           </div>
         </div>
 
-      
-
         <!-- Comments Section -->
         <div class="comment-section-wrapper mt-5" id="comment-section">
           <h3 class="mb-3 text-center" style="color: #4a4a4a">
@@ -83,35 +85,34 @@
           </h3>
           <div class="comment-grid">
             {% for comment in comments %}
-  <div id="comment{{ comment.id }}" class="comment-card mb-3 p-3 border rounded bg-light" data-slug="{{ post.slug }}">
-    <p class="mb-1">
-      <strong>{{ comment.author.username }}</strong>
-      {% if comment.edited %}
-        <span class="text-muted small edited-badge">(Edited on {{ comment.edited_on|date:"d M Y H:i" }})</span>
-      {% endif %}
-    </p>
+              <div id="comment{{ comment.id }}" class="comment-card mb-3 p-3 border rounded bg-light" data-slug="{{ post.slug }}">
+                <p class="mb-1">
+                  <strong>{{ comment.author.username }}</strong>
+                  {% if comment.edited %}
+                    <span class="text-muted small edited-badge">(Edited on {{ comment.edited_on|date:"d M Y H:i" }})</span>
+                  {% endif %}
+                </p>
 
-    <p class="mb-1 comment-body">{{ comment.body }}</p>
-    <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
+                <p class="mb-1 comment-body">{{ comment.body }}</p>
+                <small class="text-muted">{{ comment.created_on|date:"M d, Y - H:i" }}</small>
 
-    {% if comment.author == user %}
-      <div class="mt-2 d-flex gap-2">
-        <button type="button" class="btn btn-sm btn-edit-custom" data-comment-id="{{ comment.id }}">Edit</button>
-        <form method="post" action="{% url 'comment_delete' post.slug comment.id %}" class="d-inline">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-        </form>
-      </div>
-    {% endif %}
-  </div>
-{% empty %}
-  <p class="text-center">No comments yet. Be the first to comment!</p>
-{% endfor %}
-
+                {% if comment.author == user %}
+                  <div class="mt-2 d-flex gap-2">
+                    <button type="button" class="btn btn-sm btn-edit-custom" data-comment-id="{{ comment.id }}">Edit</button>
+                    <form method="post" action="{% url 'comment_delete' post.slug comment.id %}" class="d-inline">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                  </div>
+                {% endif %}
+              </div>
+            {% empty %}
+              <p class="text-center">No comments yet. Be the first to comment!</p>
+            {% endfor %}
           </div>
         </div>
 
-        <!-- Comment Form (new comment only) -->
+        <!-- Comment Form -->
         {% if user.is_authenticated %}
         <div class="leave-comment-section mt-5">
           <h4 class="mb-3">Leave a Comment</h4>
@@ -129,12 +130,13 @@
         </p>
         {% endif %}
 
+        {% endif %} {# end if post.approved #}
+
       </div>
     </div>
   </div>
 </div>
 
-<!-- Custom Button Styles -->
 <style>
 .btn-edit-custom {
   border: 2px solid #FFD700;
@@ -143,7 +145,6 @@
   font-weight: 500;
   transition: all 0.2s ease;
 }
-
 .btn-edit-custom:hover,
 .btn-edit-custom:focus,
 .btn-edit-custom:active {
@@ -153,7 +154,6 @@
 }
 </style>
 
-<!-- Inline Edit Script -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const editButtons = document.querySelectorAll(".btn-edit-custom");
@@ -167,13 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const slug = commentCard.dataset.slug;
 
       if (button.innerText === "Edit") {
-        // Enable editing
         commentBody.contentEditable = "true";
         commentBody.focus();
         commentBody.style.backgroundColor = "#fff9c4";
         button.innerText = "Submit";
       } else {
-        // Submit edited comment
         const updatedBody = commentBody.innerText.trim();
         if (!updatedBody) {
           alert("Comment cannot be empty.");
@@ -196,10 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const data = await response.json();
 
           if (data.success) {
-            // Update the comment text
             commentBody.textContent = data.body;
 
-            // Update or add edited badge
             if (editedBadge) {
               editedBadge.textContent = `(Edited on ${data.edited_on})`;
             } else {
@@ -209,7 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
               commentBody.parentNode.insertBefore(span, commentBody.nextSibling);
             }
 
-            // Reset edit mode
             commentBody.contentEditable = "false";
             commentBody.style.backgroundColor = "";
             button.innerText = "Edit";
@@ -233,10 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
           postCard.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
   });
-  </script>
-  
-  
-  
-  
+</script>
 
 {% endblock %}
