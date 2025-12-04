@@ -10,9 +10,16 @@
       <div class="card p-4 baby-bg shadow fadeInCard">
 
         <!-- Back to Recipes Button -->
-        <a href="{% url 'recipe_list' %}#recipes00" class="btn btn-outline-primary mb-3">
-          ← Back to All Recipes
-        </a>
+        {% if request.GET.source == 'my_recipes' %}
+  <a href="{% url 'my_recipes' %}#my-recipes-section" class="btn btn-outline-primary mb-3">
+    ← Back to My Recipes
+  </a>
+{% else %}
+  <a href="{% url 'recipe_list' %}#recipes00" class="btn btn-outline-primary mb-3">
+    ← Back to All Recipes
+  </a>
+{% endif %}
+
 
         <!-- Post Title -->
         <h1 class="text-center" style="font-family: 'Caveat', cursive; color: #ff7597">

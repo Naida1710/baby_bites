@@ -21,7 +21,7 @@
         </div>
 
         <!-- Pending Recipes -->
-        <div id="pending-recipes" class="recipe-group">
+        <div id="pending-recipes" class="recipe-group" style="display: none;">
           {% if pending_posts %}
             {% for post in pending_posts %}
             <div class="list-group-item mb-3 shadow-sm"
@@ -35,7 +35,9 @@
                     ⏳ Pending Approval
                   </span>
                 </div>
-                <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn-outline-primary" style="border-radius: 30px;">View →</a>
+                <!-- Pass source=my_recipes to detail page -->
+                <a href="{% url 'post_detail' slug=post.slug %}?source=my_recipes#my-recipes-section" class="btn btn-outline-primary" style="border-radius: 30px;">View →</a>
+
               </div>
             </div>
             {% endfor %}
@@ -59,7 +61,9 @@
                     ✔ Approved
                   </span>
                 </div>
-                <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn-outline-primary" style="border-radius: 30px;">View →</a>
+                <!-- Pass source=my_recipes to detail page -->
+                <a href="{% url 'post_detail' slug=post.slug %}?source=my_recipes" 
+                   class="btn btn-outline-primary" style="border-radius: 30px;">View →</a>
               </div>
             </div>
             {% endfor %}
@@ -68,8 +72,9 @@
           {% endif %}
         </div>
 
-        <div class="text-center mt-4">
-          <a href="{% url 'my_recipes' %}" class="btn btn-outline-secondary">← Back</a>
+        <!-- Back button (only shown when a tab is active) -->
+        <div class="text-center mt-4" id="back-button" style="display: none;">
+          <button class="btn btn-outline-secondary" onclick="showRecipes('all')">← Back to My Recipes</button>
         </div>
 
       </div>
@@ -90,13 +95,20 @@
 function showRecipes(type) {
   const pending = document.getElementById('pending-recipes');
   const approved = document.getElementById('approved-recipes');
+  const backBtn = document.getElementById('back-button');
 
   if (type === 'pending') {
     pending.style.display = 'block';
     approved.style.display = 'none';
+    backBtn.style.display = 'block';
   } else if (type === 'approved') {
     pending.style.display = 'none';
     approved.style.display = 'block';
+    backBtn.style.display = 'block';
+  } else if (type === 'all') {
+    pending.style.display = 'none';
+    approved.style.display = 'none';
+    backBtn.style.display = 'none';
   }
 
   document.getElementById('my-recipes-section').scrollIntoView({ behavior: 'smooth' });
