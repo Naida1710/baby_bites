@@ -45,19 +45,17 @@ def create_post(request):
 @login_required
 def my_recipes(request):
     user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
-    return render(request, 'baby_bites/my_recipes.html', {'posts': user_posts})
+    pending_posts = user_posts.filter(approved=False)
+    approved_posts = user_posts.filter(approved=True)
+
+    return render(request, 'baby_bites/my_recipes.html', {
+        'pending_posts': pending_posts,
+        'approved_posts': approved_posts,
+    })
 
 @login_required
 def my_pending_recipes(request):
-    user = request.user
-
-    if user.is_staff or user.is_superuser:
-        # Admins don't have pending posts
-        recipes = Post.objects.filter(author=user, approved=True).order_by('-created_on')
-    else:
-        # Regular users see only unapproved posts
-        recipes = Post.objects.filter(author=user, approved=False).order_by('-created_on')
-
+    recipes = Post.objects.filter(author=request.user, approved=False).order_by('-created_on')
     return render(request, 'baby_bites/my_recipes_list.html', {
         'recipes': recipes,
         'title': 'Pending Recipes'
@@ -70,8 +68,6 @@ def my_approved_recipes(request):
         'recipes': recipes,
         'title': 'Approved Recipes'
     })
-
-
 
 
 def recipe_list(request):
