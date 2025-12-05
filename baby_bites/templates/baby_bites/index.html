@@ -11,17 +11,17 @@
       {% csrf_token %}
       <div class="mb-3">
         <label for="address" class="form-label">To:</label>
-        <input id="address" type="email" name="address" class="form-control"/>
+        <input id="address" type="email" name="address" class="form-control">
       </div>
       <div class="mb-3">
         <label for="subject" class="form-label">Subject:</label>
-        <input id="subject" name="subject" class="form-control"/>
+        <input id="subject" name="subject" class="form-control">
       </div>
       <div class="mb-3">
         <label for="message" class="form-label">Message:</label>
         <textarea id="message" name="message" class="form-control"></textarea>
       </div>
-      <input type="submit" class="btn btn-primary"/>
+      <input type="submit" class="btn btn-primary">
     </form>
     {% if result %}
       <p class="mt-2">{{ result }}</p>

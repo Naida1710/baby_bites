@@ -2,4 +2,7 @@ env.py
 baby_bites/fixtures/
 venv/
 .venv/
+__pycache__/
+*.pyc
+env.py
 

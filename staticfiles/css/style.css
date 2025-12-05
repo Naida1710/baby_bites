@@ -29,6 +29,28 @@ textarea:focus {
   background-color: #fffafc;
 }
 
+.list-group-item:hover {
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+  box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
+}
+
+.btn-edit-custom {
+  border: 2px solid #ffd700;
+  background-color: white;
+  color: #ffd700;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-edit-custom:hover,
+.btn-edit-custom:focus,
+.btn-edit-custom:active {
+  background-color: #fff8e1;
+  color: #ffc107;
+  box-shadow: none;
+}
+
 .btn-nav {
   position: relative;
   overflow: hidden;

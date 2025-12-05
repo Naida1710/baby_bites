@@ -5,6 +5,16 @@
 {% if is_mama %}Pending Recipes{% else %}My Recipes{% endif %}
 {% endblock %}
 
+{% block extra_css %}
+<style>
+  .list-group-item:hover {
+    transform: translateY(-2px);
+    transition: 0.2s ease;
+    box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container py-5 fadeInCard" id="my-recipes-section">
   <div class="row justify-content-center">
@@ -120,14 +130,6 @@
     </div>
   </div>
 </div>
-
-<style>
-  .list-group-item:hover {
-    transform: translateY(-2px);
-    transition: 0.2s ease;
-    box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
-  }
-</style>
 
 <script>
 /* jshint esversion: 6 */

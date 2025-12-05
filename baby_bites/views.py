@@ -140,20 +140,22 @@ def toggle_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
     user = request.user
 
-    if user.is_authenticated:
-        if user in post.likes.all():
-            post.likes.remove(user)
-        else:
-            post.likes.add(user)
+    if user in post.likes.all():
+        post.likes.remove(user)
+        liked = False
+    else:
+        post.likes.add(user)
+        liked = True
 
-        # Check if it's an AJAX request
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            html = render_to_string('partials/like_button.html',
-                                     {'post': post, 'user': user})
-            return JsonResponse({'html': html})
+    # If it's an AJAX request, return JSON
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse({
+            'liked': liked,
+            'total_likes': post.total_likes()
+        })
 
-    return redirect('post_detail', slug=post.slug)
-
+    # For normal POST, redirect back to the same page (optional)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def about_view(request):
     if request.method == "POST":

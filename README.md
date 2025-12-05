@@ -100,7 +100,7 @@ Admin posts are published immediately and appear on the site automatically.
 
 - **Delete posts** - Currently, users can leave a post, but they cannot delete their own posts, only comments to the posts. I want to enable this functionality, so that users are able to delete the posts they have written.
 
-- **Like Display Names** - I would like the like feature to display the names of users who liked a post, not just the like count.
+- **Like Display Names** - I would like to have this button  feature to display the names of users who liked a post, not just the like count.
 
 ### Design
 
@@ -192,6 +192,7 @@ When a user clicks on one of the options, they are taken directly to that sectio
 
 **Comment Section and Like/Unlike** - When users open a recipe, the recipe description is displayed immediately. Below that, there is a like/unlike option, where registered users can like or comment on recipes made by others.
 If the user is not registered, they cannot use any of those features, but they can still see how many likes or comments a recipe has. If a post has no comments, a message will be displayed indicating this.
+If the user is not logged in, and accidentally click or test the LIKE button, he would be automatically redirected to the login page.
 
 ![comment](staticfiles/images/Screenshot%202025-10-21%20at%2014.32.59.png)
 
@@ -230,6 +231,8 @@ If users have not published any recipes yet, a message indicating this will appe
 ![myrecipe4](staticfiles/images/Screenshot%202025-12-04%20at%2021.23.02.png)
 
 ![myrecipe5](staticfiles/images/Screenshot%202025-12-04%20at%2021.23.30.png)
+
+- There is a “Back to My Recipes” button for regular users, and “Back to Pending Recipes” button for admin, when clicking to open pending or approved posts.
 
 **Login Hover** - When I hover over the login and register links, they change to a prominent color and display an underline.
 
@@ -310,6 +313,14 @@ The following table summarizes the functionality testing performed on Baby Bites
 - **Python**: PEP8 compliance with proper formatting and documentation.
 - **JavaScript**: JSHint validation with ES6 compatibility.
 - **HTML/CSS**: W3C validation for markup and styling.
+
+![HTML](staticfiles/images/Screenshot%202025-12-05%20at%2010.33.21.png)
+
+![CSS](staticfiles/images/Screenshot%202025-12-05%20at%2011.20.05.png)
+
+![JSHINT](staticfiles/images/Screenshot%202025-12-05%20at%2011.21.36.png)
+
+All files have been tested and are error-free.
 
 ## Technologies Used
 
