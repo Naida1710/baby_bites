@@ -92,7 +92,7 @@ Admin posts are published immediately and appear on the site automatically.
 
 ### Future planning 
 
-- I included - **a "Forgot your password?" option** - on the Login page which takes the user directly to the reset password page. When the users enters their email, a confirmation message appears on the page instructing them to check their email. The email should contain all the necessary information required to reset their password. At the moment, the user does not receive any email, even though the process appears to complete successfully.
+- I would like to included - **"Forgot your password?" option** - on the Login page which takes the user directly to the reset password page. When the users enters their email, a confirmation message appears on the page instructing them to check their email. The email should contain all the necessary information required to reset their password. 
 
 - **Favorite/Bookmark Recipes** - Enable users to save their favorite recipes for later use, creating a personal collection they can easily access.
 

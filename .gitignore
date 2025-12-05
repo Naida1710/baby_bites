@@ -1,2 +1,6 @@
+env.py
 path/to/largefile
 venv/
+__pycache__/
+*.pyc
+
