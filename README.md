@@ -282,8 +282,6 @@ Each link changes to a yellow color when clicked and directs the user to the res
 ![Hover](staticfiles/images/Screenshot%202025-10-21%20at%2014.02.53.png)
 
 
-
-
 ## Testing
 
 ### Functionality testing and Responsiveness
@@ -305,9 +303,9 @@ I performed manual testing on each page and feature of the app to test its funct
 
 The following table summarizes the functionality testing performed on Baby Bites, covering user interactions, navigation, authentication, and core features.
 
-![Function](staticfiles/images/tabela.png)
+![Function](staticfiles/images/Screenshot%202025-12-10%20at%2000.19.22.png)
 
-![Function1](staticfiles/images/Screenshot%202025-12-04%20at%2023.32.57.png)
+![Function1](staticfiles/images/Screenshot%202025-12-10%20at%2000.20.00.png)
 
 ### Validation Tools Used
 - **Python**: PEP8 compliance with proper formatting and documentation.
@@ -321,6 +319,17 @@ The following table summarizes the functionality testing performed on Baby Bites
 ![JSHINT](staticfiles/images/Screenshot%202025-12-05%20at%2011.21.36.png)
 
 All files have been tested and are error-free.
+
+## Bugs
+
+### Unfixed Bugs
+
+Error: CSS: font-optical-sizing: 
+- Property font-optical-sizing doesn't exist.
+
+This happens because the validator doesn’t fully support the font-optical-sizing property yet. The error does not affect the appearance or functionality of the site, but it still shows up during validation. One of the fonts I used is not supported by all browsers, only the more modern ones. After consulting with the tutors I was advised to include it under UNFIXED BUGS.
+
+![BUG](staticfiles/images/Screenshot%202025-12-09%20at%2023.25.17.png)
 
 ## Technologies Used
 
